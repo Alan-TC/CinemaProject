@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Admin/">
+    <Project Path="src/Admin/CinemaBackend.Admin.Api/CinemaBackend.Admin.Api.csproj" />
+    <Project Path="src/Admin/CinemaBackend.Admin.Application/CinemaBackend.Admin.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Client/">
+    <Project Path="src/Client/CinemaBackend.Client.Api/CinemaBackend.Client.Api.csproj" />
+    <Project Path="src/Client/CinemaBackend.Client.Application/CinemaBackend.Client.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/CinemaBackend.Domain/CinemaBackend.Domain.csproj" />
+    <Project Path="src/Shared/CinemaBackend.Infrastructure/CinemaBackend.Infrastructure.csproj" />
+  </Folder>
+</Solution>
