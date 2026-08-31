@@ -11,4 +11,9 @@
     <PackageReference Include="Scalar.AspNetCore" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaBackend.Client.Application\CinemaBackend.Client.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
