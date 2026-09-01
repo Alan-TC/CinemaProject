@@ -26,4 +26,6 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+await app.Services.ApplyMigrations();
+
 app.Run();
