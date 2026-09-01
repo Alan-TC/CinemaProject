@@ -1,4 +1,4 @@
-namespace CinemaBackend.Admin.Application.Requests;
+namespace CinemaBackend.SharedKernel.Requests;
 
 public class LoginRequestJson
 {

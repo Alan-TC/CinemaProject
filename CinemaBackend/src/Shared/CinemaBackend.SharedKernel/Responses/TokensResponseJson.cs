@@ -1,4 +1,4 @@
-namespace CinemaBackend.Admin.Application.Responses;
+namespace CinemaBackend.SharedKernel.Responses;
 
 public class ResponseTokensJson
 {

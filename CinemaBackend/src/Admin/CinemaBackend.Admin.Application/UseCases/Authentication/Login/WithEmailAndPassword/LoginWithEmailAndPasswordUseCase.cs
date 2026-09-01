@@ -1,6 +1,6 @@
-using CinemaBackend.Admin.Application.Exceptions;
-using CinemaBackend.Admin.Application.Requests;
-using CinemaBackend.Admin.Application.Responses;
+using CinemaBackend.SharedKernel.Exceptions;
+using CinemaBackend.SharedKernel.Requests;
+using CinemaBackend.SharedKernel.Responses;
 using CinemaBackend.Domain.Repositories;
 using CinemaBackend.Domain.Security.Tokens;
 using CinemaBackend.Domain.Security.PasswordHasher;

@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Shared\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\CinemaBackend.SharedKernel\CinemaBackend.SharedKernel.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
