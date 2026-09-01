@@ -1,15 +1,14 @@
 using System.Net;
-using CinemaBackend.Communication.Exception;
 
 namespace CinemaBackend.Communication.Exceptions;
 
 public class ErrorOnValidationException : CinemaBackendExceptionBase
 {
-    private IEnumerable<string> Errors;
+    private readonly List<string> Messages;
     
-    public ErrorOnValidationException(IEnumerable<string> errors) => Errors = errors;
+    public ErrorOnValidationException(List<string> errors) => Messages = errors;
     
-    public override int GetErrorCode() => (int)HttpStatusCode.BadRequest;
+    public override HttpStatusCode GetErrorCode() => HttpStatusCode.BadRequest;
 
-    public override IEnumerable<string> GetErrorsMessages() => Errors;
+    public override List<string> GetErrorMessages() => Messages;
 }

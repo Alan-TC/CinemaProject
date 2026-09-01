@@ -1,7 +1,9 @@
-namespace CinemaBackend.Communication.Exception;
+using System.Net;
 
-public abstract class CinemaBackendExceptionBase : System.Exception
+namespace CinemaBackend.Communication.Exceptions;
+
+public abstract class CinemaBackendExceptionBase : Exception
 {
-    public abstract IEnumerable<string> GetErrorsMessages();
-    public abstract int GetErrorCode();
+    public abstract List<string> GetErrorMessages();
+    public abstract HttpStatusCode GetErrorCode();
 }

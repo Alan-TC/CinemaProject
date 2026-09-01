@@ -22,6 +22,7 @@ public static class DependencyInjectionExtensions
         AddCommonInfrastructure(services, configuration);
 
         services.AddScoped<IAdminUserReadOnlyRepository, AdminUserRepository>();
+        services.AddScoped<IAdminUserWriteOnlyRepository, AdminUserRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -36,6 +37,8 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IPasswordHasher, PasswordHasherArgon2id>();
         AddJwtTokenHandler(services, configuration);
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
     private static void AddJwtTokenHandler(this IServiceCollection services, IConfiguration configuration)

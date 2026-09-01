@@ -13,4 +13,6 @@ internal class AdminUserRepository(CinemaDbContext dbContext) : IAdminUserReadOn
     }
 
     public async Task AddAdminUser(AdminUser user) => await _dbContext.AdminUsers.AddAsync(user);
+
+    public async Task<bool> AdminUserEmailExists(string email) => await _dbContext.AdminUsers.AnyAsync(u => u.Email == email && u.DeactivatedAt == null);
 }

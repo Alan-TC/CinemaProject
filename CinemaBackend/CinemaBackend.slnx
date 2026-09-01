@@ -13,4 +13,10 @@
     <Project Path="src/Shared/CinemaBackend.Domain/CinemaBackend.Domain.csproj" />
     <Project Path="src/Shared/CinemaBackend.Infrastructure/CinemaBackend.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TestsCommonUtilities/TestsCommonUtilities.csproj" />
+  </Folder>
+  <Folder Name="/tests/Admin/">
+    <Project Path="tests/Admin/UseCases.Tests/UseCases.Tests.csproj" />
+  </Folder>
 </Solution>
