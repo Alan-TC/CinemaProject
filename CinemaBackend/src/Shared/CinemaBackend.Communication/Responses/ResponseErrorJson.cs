@@ -1,4 +1,4 @@
-namespace CinemaBackend.SharedKernel.Responses;
+namespace CinemaBackend.Communication.Responses;
 
 public class ResponseErrorJson
 {

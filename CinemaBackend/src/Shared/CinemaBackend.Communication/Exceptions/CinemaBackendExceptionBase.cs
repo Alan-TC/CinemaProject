@@ -1,4 +1,4 @@
-namespace CinemaBackend.SharedKernel.Exception;
+namespace CinemaBackend.Communication.Exception;
 
 public abstract class CinemaBackendExceptionBase : System.Exception
 {

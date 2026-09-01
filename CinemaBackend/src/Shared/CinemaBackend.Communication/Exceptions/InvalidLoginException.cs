@@ -1,7 +1,7 @@
 using System.Net;
-using CinemaBackend.SharedKernel.Exception;
+using CinemaBackend.Communication.Exception;
 
-namespace CinemaBackend.SharedKernel.Exceptions;
+namespace CinemaBackend.Communication.Exceptions;
 
 public class InvalidLoginException : CinemaBackendExceptionBase
 {

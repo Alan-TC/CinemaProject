@@ -1,18 +1,16 @@
 using CinemaBackend.Domain.Entities;
-using CinemaBackend.Domain.Repositories;
-using CinemaBackend.Infrastructure.Security.PasswordHasher;
+using CinemaBackend.Domain.Repositories.AdminUser;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaBackend.Infrastructure.Data.Repositories;
 
-public class AdminUserRepository : IAdminUserReadOnlyRepository
+internal class AdminUserRepository(CinemaDbContext dbContext) : IAdminUserReadOnlyRepository, IAdminUserWriteOnlyRepository
 {
+    private readonly CinemaDbContext _dbContext = dbContext;
     public async Task<AdminUser?> GetAdminUserByEmail(string email)
     {
-        // TODO: Temporário
-        return new AdminUser
-        {
-            Email = email,
-            PasswordHash = new PasswordHasherArgon2id().HashPassword("password")
-        };
+        return await _dbContext.AdminUsers.FirstOrDefaultAsync(u => u.Email == email && u.DeactivatedAt == null);
     }
+
+    public async Task AddAdminUser(AdminUser user) => await _dbContext.AdminUsers.AddAsync(user);
 }

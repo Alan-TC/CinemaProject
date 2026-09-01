@@ -1,4 +1,4 @@
-namespace CinemaBackend.SharedKernel.Requests;
+namespace CinemaBackend.Communication.Requests;
 
 public class RegisterUserAdminRequest
 {

@@ -1,4 +1,4 @@
-using CinemaBackend.SharedKernel.Requests;
+using CinemaBackend.Communication.Requests;
 
 namespace CinemaBackend.Admin.Application.UseCases.Authentication.Register;
 

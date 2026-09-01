@@ -1,5 +1,5 @@
-using CinemaBackend.SharedKernel.Requests;
-using CinemaBackend.SharedKernel.Responses;
+using CinemaBackend.Communication.Requests;
+using CinemaBackend.Communication.Responses;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using Microsoft.AspNetCore.Mvc;
 

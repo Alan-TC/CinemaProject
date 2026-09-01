@@ -1,5 +1,5 @@
 using System.Reflection;
-using CinemaBackend.Domain.Repositories;
+using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens;
 using CinemaBackend.Infrastructure.Data;
