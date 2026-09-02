@@ -1,3 +1,4 @@
+using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,5 +14,6 @@ public static class DependencyInjectionExtensions
     private static void AddUseCases(this IServiceCollection services)
     {
         services.AddScoped<ILoginWithEmailAndPasswordUseCase, LoginWithEmailAndPasswordUseCase>();
+        services.AddScoped<IRegisterUserAdminUseCase, RegisterUserAdminUseCase>();
     }
 }

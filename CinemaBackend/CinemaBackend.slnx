@@ -12,6 +12,7 @@
     <Project Path="src/Shared/CinemaBackend.Communication/CinemaBackend.Communication.csproj" />
     <Project Path="src/Shared/CinemaBackend.Domain/CinemaBackend.Domain.csproj" />
     <Project Path="src/Shared/CinemaBackend.Infrastructure/CinemaBackend.Infrastructure.csproj" />
+    <Project Path="src/Shared/CinemaBackend.SharedKernel/CinemaBackend.SharedKernel.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/TestsCommonUtilities/TestsCommonUtilities.csproj" />
