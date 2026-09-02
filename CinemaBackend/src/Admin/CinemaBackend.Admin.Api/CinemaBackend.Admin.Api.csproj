@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\CinemaBackend.Communication\CinemaBackend.Communication.csproj" />
     <ProjectReference Include="..\CinemaBackend.Admin.Application\CinemaBackend.Admin.Application.csproj" />
     <ProjectReference Include="..\..\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
   </ItemGroup>

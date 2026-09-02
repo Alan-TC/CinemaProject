@@ -11,6 +11,12 @@
     <PackageReference Include="EFCore.NamingConventions" />
     <PackageReference Include="FluentMigrator" />
     <PackageReference Include="FluentMigrator.Runner.Postgres" />
+    <PackageReference Include="Konscious.Security.Cryptography.Argon2" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
   </ItemGroup>
   
 </Project>

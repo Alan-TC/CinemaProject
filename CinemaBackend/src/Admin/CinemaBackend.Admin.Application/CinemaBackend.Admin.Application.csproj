@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Shared\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\CinemaBackend.Communication\CinemaBackend.Communication.csproj" />
+  </ItemGroup>  
+
 </Project>

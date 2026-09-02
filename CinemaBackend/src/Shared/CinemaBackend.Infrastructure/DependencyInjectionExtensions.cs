@@ -1,5 +1,11 @@
 using System.Reflection;
+using CinemaBackend.Domain.Repositories.AdminUser;
+using CinemaBackend.Domain.Security.PasswordHasher;
+using CinemaBackend.Domain.Security.Tokens;
 using CinemaBackend.Infrastructure.Data;
+using CinemaBackend.Infrastructure.Data.Repositories;
+using CinemaBackend.Infrastructure.Security.PasswordHasher;
+using CinemaBackend.Infrastructure.Security.Tokens;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -13,14 +19,41 @@ public static class DependencyInjectionExtensions
     private const string DbConnectionName = "DbConnection";
     public static void AddAdminInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        AddDatabase(services, configuration);
-        AddMigrations(services, configuration);
+        AddCommonInfrastructure(services, configuration);
+
+        services.AddScoped<IAdminUserReadOnlyRepository, AdminUserRepository>();
+        services.AddScoped<IAdminUserWriteOnlyRepository, AdminUserRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        AddCommonInfrastructure(services, configuration);
+    }
+
+    private static void AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    {
         AddDatabase(services, configuration);
         AddMigrations(services, configuration);
+
+        services.AddScoped<IPasswordHasher, PasswordHasherArgon2id>();
+        AddJwtTokenHandler(services, configuration);
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
+
+    private static void AddJwtTokenHandler(this IServiceCollection services, IConfiguration configuration)
+    {
+        var signingKey = configuration["Jwt:SigningKey"]!;
+        var issuer = configuration["Jwt:Issuer"]!;
+        var audience = configuration["Jwt:Audience"]!;
+        var accessTokenExpirationMinutes = uint.Parse(configuration["Jwt:AccessTokenExpirationTimeMinutes"]!);
+        var refreshTokenExpirationMinutes = uint.Parse(configuration["Jwt:RefreshTokenExpirationTimeMinutes"]!);
+
+        services.AddScoped<IAccessTokenGenerator>(provider =>
+            new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
+
+        services.AddScoped<IRefreshTokenGenerator>(provider =>
+            new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
     }
 
     private static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
