@@ -2,14 +2,16 @@ using System.Net;
 using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Communication.Exceptions;
 using Shouldly;
+using TestsCommonUtilities;
 using TestsCommonUtilities.Repositories;
 using TestsCommonUtilities.Repositories.AdminUser;
 using TestsCommonUtilities.Requests;
 using TestsCommonUtilities.Security;
+using Xunit.Abstractions;
 
 namespace UseCases.Tests.AdminUser.Register;
 
-public class RegisterUserAdminUseCaseTests
+public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestBaseClass(testOutput)
 {
     [Fact]
     public async Task Success()
@@ -19,36 +21,51 @@ public class RegisterUserAdminUseCaseTests
 
         var useCase = CreateUseCase();
 
-        await useCase.Execute(request).ShouldNotThrowAsync();
+        await ExecuteWithContext(request, async () =>
+        {
+           await useCase.Execute(request).ShouldNotThrowAsync(); 
+        });
     }
 
     [Fact]
     public async Task Validate_ShouldThrowException_WhenEmailAlreadyExists()
     {
+        var context = new TestContext();
+
         var request = new RegisterUserAdminRequestJsonBuilder()
             .Build();
+        context.Add(request);
 
         var useCase = CreateUseCase(request.Email);
 
-        var result = await useCase.Execute(request).ShouldThrowAsync<ConflicException>();
+        await ExecuteWithContext(context, async() =>
+        {
+           var result = await useCase.Execute(request).ShouldThrowAsync<ConflicException>();
 
-        result.GetErrorCode().ShouldBe(HttpStatusCode.Conflict);
-        result.GetErrorMessages().Count.ShouldBe(1);
+            result.GetErrorCode().ShouldBe(HttpStatusCode.Conflict);
+            result.GetErrorMessages().Count.ShouldBe(1); 
+        });
     }
 
     [Fact]
     public async Task Validate_ShouldThrowException_WhenPasswordIsEmpty()
     {
+        var context = new TestContext();
+
         var request = new RegisterUserAdminRequestJsonBuilder()
             .WithPassword(string.Empty)
             .Build();
+        context.Add(request);
 
         var useCase = CreateUseCase();
 
-        var result = await useCase.Execute(request).ShouldThrowAsync<ErrorOnValidationException>();
+        await ExecuteWithContext(context, async() =>
+        {
+            var result = await useCase.Execute(request).ShouldThrowAsync<ErrorOnValidationException>();
 
-        result.GetErrorCode().ShouldBe(HttpStatusCode.BadRequest);
-        result.GetErrorMessages().Count.ShouldBe(1);
+            result.GetErrorCode().ShouldBe(HttpStatusCode.BadRequest);
+            result.GetErrorMessages().Count.ShouldBe(1);
+        });
     }
 
     private static RegisterUserAdminUseCase CreateUseCase(string? email = null)
