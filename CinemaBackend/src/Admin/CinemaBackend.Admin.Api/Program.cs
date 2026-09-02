@@ -1,6 +1,7 @@
 using Scalar.AspNetCore;
 using CinemaBackend.Infrastructure;
 using CinemaBackend.Admin.Application;
+using CinemaBackend.Admin.Api.WebApplicationExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,5 +25,7 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 await app.Services.ApplyMigrations();
+
+await app.RegisterInitialAdminUser();
 
 app.Run();
