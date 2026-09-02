@@ -9,8 +9,6 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     name: CI Build & Tests
     defaults:
       run:
