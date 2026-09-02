@@ -97,6 +97,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or password is incorrect..
+        /// </summary>
+        public static string VALIDATE_INVALID_LOGIN {
+            get {
+                return ResourceManager.GetString("VALIDATE_INVALID_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password must be at least 6 characters long..
         /// </summary>
         public static string VALIDATE_PASSWORD_LENGHT {

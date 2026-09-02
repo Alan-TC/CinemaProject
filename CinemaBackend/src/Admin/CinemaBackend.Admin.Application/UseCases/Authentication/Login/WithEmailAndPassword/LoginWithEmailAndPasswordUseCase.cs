@@ -9,13 +9,13 @@ namespace CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmai
 
 public class LoginWithEmailAndPasswordUseCase(
     IPasswordHasher passwordHasher, 
-    IAdminUserReadOnlyRepository adminUserRepository,
+    IAdminUserReadOnlyRepository adminUserReadOnlyRepository,
     IAccessTokenGenerator accessTokenGenerator,
     IRefreshTokenGenerator refreshTokenGenerator
     ) : ILoginWithEmailAndPasswordUseCase
 {
     private readonly IPasswordHasher _passwordHasher = passwordHasher;
-    private readonly IAdminUserReadOnlyRepository _adminUserRepository = adminUserRepository;
+    private readonly IAdminUserReadOnlyRepository _adminUserRepository = adminUserReadOnlyRepository;
     private readonly IAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
     private readonly IRefreshTokenGenerator _refreshTokenGenerator = refreshTokenGenerator;
 

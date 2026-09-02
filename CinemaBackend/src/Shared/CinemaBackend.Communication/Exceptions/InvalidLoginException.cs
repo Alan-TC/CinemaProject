@@ -1,9 +1,10 @@
 using System.Net;
+using CinemaBackend.Communication.ResourceFiles.Errors;
 
 namespace CinemaBackend.Communication.Exceptions;
 
 public class InvalidLoginException : CinemaBackendExceptionBase
 {
     public override HttpStatusCode GetErrorCode() => HttpStatusCode.Unauthorized;
-    public override List<string> GetErrorMessages() => ["Invalid login credentials"];
+    public override List<string> GetErrorMessages() => [ResourceErrorMessages.VALIDATE_INVALID_LOGIN];
 }

@@ -14,5 +14,12 @@ public class IAdminUserReadOnlyRepositoryBuilder
         return this;
     }
 
+    public IAdminUserReadOnlyRepositoryBuilder GetAdminUserByEmail(CinemaBackend.Domain.Entities.AdminUser adminUser)
+    {
+        _mock.Setup(repository => repository.GetAdminUserByEmail(adminUser.Email)).ReturnsAsync(adminUser);
+
+        return this;
+    }
+
     public IAdminUserReadOnlyRepository Build() => _mock.Object;
 }
