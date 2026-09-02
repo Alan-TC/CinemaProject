@@ -11,7 +11,7 @@ public class AuthenticationController : ControllerBase
 {
     [HttpPost("login")]
     [ProducesResponseType(typeof(ResponseTokensJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Login([FromServices] ILoginWithEmailAndPasswordUseCase useCase, [FromBody] LoginRequestJson request)
     {
         var response = await useCase.Execute(request);

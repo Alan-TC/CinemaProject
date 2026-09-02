@@ -1,15 +1,15 @@
 namespace CinemaBackend.Communication.Responses;
 
-public class ResponseErrorJson
+public class ErrorResponseJson
 {
     public IEnumerable<string> ErrorMessages { get; private set; } = [];
     public bool AccessTokoenExpired { get; private set; } = false;
 
-    public ResponseErrorJson(IEnumerable<string> errorMessages) => ErrorMessages = errorMessages;
+    public ErrorResponseJson(IEnumerable<string> errorMessages) => ErrorMessages = errorMessages;
 
-    public ResponseErrorJson(string errorMessage) => ErrorMessages = [errorMessage];
+    public ErrorResponseJson(string errorMessage) => ErrorMessages = [errorMessage];
 
-    public ResponseErrorJson(string errorMessage, bool accessTokenExpired)
+    public ErrorResponseJson(string errorMessage, bool accessTokenExpired)
     {
         ErrorMessages = [errorMessage];
         AccessTokoenExpired = accessTokenExpired;

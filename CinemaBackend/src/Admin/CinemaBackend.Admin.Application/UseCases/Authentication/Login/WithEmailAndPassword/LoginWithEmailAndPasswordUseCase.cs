@@ -21,6 +21,8 @@ public class LoginWithEmailAndPasswordUseCase(
 
     public async Task<ResponseTokensJson> Execute(LoginRequestJson request)
     {
+        ValidateAndThrowOnFailures(request);
+
         var user = await _adminUserRepository.GetAdminUserByEmail(request.Email);
 
         if (user is null)
@@ -40,5 +42,15 @@ public class LoginWithEmailAndPasswordUseCase(
             AccessToken = accesToken,
             RefreshToken = refreshToken
         };
+    }
+
+    private static void ValidateAndThrowOnFailures(LoginRequestJson request)
+    {
+        var validator = new LoginWithEmailAndPasswordValidator();
+
+        var result = validator.Validate(request);
+
+        if (result.IsValid == false)
+            throw new InvalidLoginException();
     }
 }
