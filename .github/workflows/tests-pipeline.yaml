@@ -9,9 +9,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    name: CI Build & Tests
     permissions:
       pull-requests: write
+    name: CI Build & Tests
     defaults:
       run:
         working-directory: ./CinemaBackend
