@@ -1,4 +1,3 @@
-using System.Text.Json;
 using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;

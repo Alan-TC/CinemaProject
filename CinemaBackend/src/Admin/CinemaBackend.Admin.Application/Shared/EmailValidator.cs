@@ -1,4 +1,5 @@
 using FluentValidation;
+using CinemaBackend.Communication.ResourceFiles.Errors;
 
 namespace CinemaBackend.Admin.Application.Shared;
 
@@ -9,8 +10,8 @@ internal static class EmailValidator
         return ruleBuilder
             .Cascade(CascadeMode.Stop)
             .NotEmpty()
-            .WithMessage("Email is required.")
+            .WithMessage(ResourceErrorMessages.VALIDATE_EMAIL_REQUIRED)
             .EmailAddress()
-            .WithMessage("Invalid email format.");
+            .WithMessage(ResourceErrorMessages.VALIDATE_EMAIL_INVALID);
     }
 }

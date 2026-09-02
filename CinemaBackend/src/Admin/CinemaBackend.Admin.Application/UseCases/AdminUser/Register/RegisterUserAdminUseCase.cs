@@ -1,5 +1,6 @@
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
+using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Security.PasswordHasher;
 
@@ -44,6 +45,6 @@ public class RegisterUserAdminUseCase(
         var userExists = await _adminUserReadOnlyRepository.AdminUserEmailExists(request.Email);
 
         if (userExists)
-            throw new ConflicException("Email already exists");
+            throw new ConflicException(ResourceErrorMessages.VALIDATE_EMAIL_EXISTS);
     }
 }

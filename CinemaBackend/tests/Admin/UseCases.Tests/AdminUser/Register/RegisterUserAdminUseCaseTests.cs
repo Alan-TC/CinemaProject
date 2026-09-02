@@ -1,6 +1,7 @@
 using System.Net;
 using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Communication.Exceptions;
+using CinemaBackend.Communication.ResourceFiles.Errors;
 using Shouldly;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Repositories;
@@ -43,7 +44,8 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestB
            var result = await useCase.Execute(request).ShouldThrowAsync<ConflicException>();
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.Conflict);
-            result.GetErrorMessages().Count.ShouldBe(1); 
+            result.GetErrorMessages().Count.ShouldBe(1);
+            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATE_EMAIL_EXISTS));
         });
     }
 
@@ -65,6 +67,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestB
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.BadRequest);
             result.GetErrorMessages().Count.ShouldBe(1);
+            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATE_PASSWORD_REQUIRED));
         });
     }
 
