@@ -27,7 +27,7 @@ public static class TokenValidationUtils
         };
     }
     
-    public static async Task OnChalenge(JwtBearerChallengeContext context)
+    public static async Task OnChallenge(JwtBearerChallengeContext context)
     {
         context.HandleResponse();
 

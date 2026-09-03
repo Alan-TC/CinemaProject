@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using CinemaBackend.Admin.Api.Tokens;
 using CinemaBackend.Admin.Api.Extensions.WebApplicationExtensions;
 using CinemaBackend.Admin.Api.Extensions;
+using CinemaBackend.Infrastructure.Security.Tokens;
+using CinemaBackend.Communication.ResourceFiles.Errors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +29,20 @@ builder.Services
 
         jwtOption.Events = new JwtBearerEvents
         {
+            OnTokenValidated = context =>
+            {
+                var tokenUse = context.Principal?.FindFirst(TokensTypes.TokenTypeClaimName)?.Value;
+
+                if (tokenUse != TokensTypes.Access)
+                {
+                    context.Fail("Invalid access token");
+                }
+
+                return Task.CompletedTask;
+            },
             OnChallenge = async context =>
             {
-                await TokenValidationUtils.OnChalenge(context);
+                await TokenValidationUtils.OnChallenge(context);
             }
         };
     });

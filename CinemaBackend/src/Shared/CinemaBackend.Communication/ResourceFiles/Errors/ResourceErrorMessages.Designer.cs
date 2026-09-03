@@ -133,6 +133,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid access token..
+        /// </summary>
+        public static string VALIDATION_ACCESS_TOKEN_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_ACCESS_TOKEN_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Validation access token is required..
         /// </summary>
         public static string VALIDATION_ACCESS_TOKEN_REQUIRED {

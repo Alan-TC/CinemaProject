@@ -141,6 +141,9 @@
   <data name="VALIDATION_ACCESS_TOKEN_EXPIRED" xml:space="preserve">
     <value>Validation access token expired.</value>
   </data>
+  <data name="VALIDATION_ACCESS_TOKEN_INVALID" xml:space="preserve">
+    <value>Invalid access token.</value>
+  </data>
   <data name="VALIDATION_ACCESS_TOKEN_REQUIRED" xml:space="preserve">
     <value>Validation access token is required.</value>
   </data>

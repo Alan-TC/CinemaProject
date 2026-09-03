@@ -32,7 +32,8 @@ public class JwtTokenHandler : IAdminAccessTokenGenerator, IAdminRefreshTokenGen
     {
         var claims = new List<Claim>
         {
-            new (JwtRegisteredClaimNames.Sub, adminUser.Id.ToString())
+            new (JwtRegisteredClaimNames.Sub, adminUser.Id.ToString()),
+            new (TokensTypes.TokenTypeClaimName, TokensTypes.Access)
         };
 
         var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_accessTokenExpirationMinutes));
@@ -44,7 +45,8 @@ public class JwtTokenHandler : IAdminAccessTokenGenerator, IAdminRefreshTokenGen
     {
         var claims = new List<Claim>
         {
-            new (JwtRegisteredClaimNames.Sub, adminUse.Id.ToString())
+            new (JwtRegisteredClaimNames.Sub, adminUse.Id.ToString()),
+            new (TokensTypes.TokenTypeClaimName, TokensTypes.Refresh)
         };
 
         var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_refreshTokenExpirationMinutes));

@@ -1,4 +1,5 @@
 using CinemaBackend.Domain.Security.Tokens.Admin;
+using CinemaBackend.Infrastructure.Security.Tokens;
 using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace CinemaBackend.Admin.Api.Tokens;
@@ -25,6 +26,13 @@ public class AdminRefreshTokenService(IConfiguration configuration) : IAdminRefr
 
         var result = await handler.ValidateTokenAsync(refreshToken, validationParameters);
 
-        return result.IsValid;
+        if (result.IsValid == false)
+            return false;
+        
+        if (result.Claims.TryGetValue(TokensTypes.TokenTypeClaimName, out object? value) &&
+            (string)value == TokensTypes.Refresh)
+            return true;
+
+        return false;
     }
 }
