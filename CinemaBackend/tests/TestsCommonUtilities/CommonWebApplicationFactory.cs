@@ -1,5 +1,5 @@
 using CinemaBackend.Domain.Security.PasswordHasher;
-using CinemaBackend.Domain.Security.Tokens;
+using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -33,22 +33,22 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
 
         var dbContext = scope.ServiceProvider.GetRequiredService<CinemaDbContext>();
         var passwordHasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
-        var accessTokenGenerator = scope.ServiceProvider.GetRequiredService<IAccessTokenGenerator>();
-        var refresTokenGenerator = scope.ServiceProvider.GetRequiredService<IRefreshTokenGenerator>();
+        var adminAccessTokenGenerator = scope.ServiceProvider.GetRequiredService<IAdminAccessTokenGenerator>();
+        var adminRefresTokenGenerator = scope.ServiceProvider.GetRequiredService<IAdminRefreshTokenGenerator>();
 
-        AdminUser = await CreateAdminUser(dbContext, passwordHasher, accessTokenGenerator, refresTokenGenerator);
+        AdminUser = await CreateAdminUser(dbContext, passwordHasher, adminAccessTokenGenerator, adminRefresTokenGenerator);
     }
 
     private static async Task<AdminUserIdentityManager> CreateAdminUser(CinemaDbContext dbContext, 
-        IPasswordHasher passwordHasher, IAccessTokenGenerator accessTokenGenerator,
-        IRefreshTokenGenerator refreshTokenGenerator)
+        IPasswordHasher passwordHasher, IAdminAccessTokenGenerator adminAccessTokenGenerator,
+        IAdminRefreshTokenGenerator adminRefreshTokenGenerator)
     {
         var (adminUser, password) = new AdminUserBuilder()
             .WithPasswordHasher(passwordHasher)
             .Build();
 
-        var accessToken = accessTokenGenerator.Generate(adminUser.Id.ToString());
-        var refreshToken = refreshTokenGenerator.Generate(adminUser.Id.ToString());
+        var accessToken = adminAccessTokenGenerator.Generate(adminUser);
+        var refreshToken = adminRefreshTokenGenerator.Generate(adminUser);
 
         await dbContext.AdminUsers.AddAsync(adminUser);
         await dbContext.SaveChangesAsync();

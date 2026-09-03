@@ -1,7 +1,7 @@
 using System.Reflection;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Security.PasswordHasher;
-using CinemaBackend.Domain.Security.Tokens;
+using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
 using CinemaBackend.Infrastructure.Data.Repositories;
 using CinemaBackend.Infrastructure.Security.PasswordHasher;
@@ -49,10 +49,10 @@ public static class DependencyInjectionExtensions
         var accessTokenExpirationMinutes = uint.Parse(configuration["Jwt:AccessTokenExpirationTimeMinutes"]!);
         var refreshTokenExpirationMinutes = uint.Parse(configuration["Jwt:RefreshTokenExpirationTimeMinutes"]!);
 
-        services.AddScoped<IAccessTokenGenerator>(provider =>
+        services.AddScoped<IAdminAccessTokenGenerator>(provider =>
             new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
 
-        services.AddScoped<IRefreshTokenGenerator>(provider =>
+        services.AddScoped<IAdminRefreshTokenGenerator>(provider =>
             new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
     }
 

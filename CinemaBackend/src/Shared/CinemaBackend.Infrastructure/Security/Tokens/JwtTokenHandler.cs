@@ -1,11 +1,12 @@
 using System.Security.Claims;
-using CinemaBackend.Domain.Security.Tokens;
+using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Security.Tokens.Admin;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CinemaBackend.Infrastructure.Security.Tokens;
 
-public class JwtTokenHandler : IAccessTokenGenerator, IRefreshTokenGenerator
+public class JwtTokenHandler : IAdminAccessTokenGenerator, IAdminRefreshTokenGenerator
 {
     private readonly string _signingtKey;
     private readonly string _issuer;
@@ -27,11 +28,11 @@ public class JwtTokenHandler : IAccessTokenGenerator, IRefreshTokenGenerator
         _refreshTokenExpirationMinutes = refreshTokenExpirationMinutes;
     }
 
-    string IAccessTokenGenerator.Generate(string subClaim)
+    string IAdminAccessTokenGenerator.Generate(AdminUser adminUser)
     {
         var claims = new List<Claim>
         {
-            new (JwtRegisteredClaimNames.Sub, subClaim)
+            new (JwtRegisteredClaimNames.Sub, adminUser.Id.ToString())
         };
 
         var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_accessTokenExpirationMinutes));
@@ -39,11 +40,11 @@ public class JwtTokenHandler : IAccessTokenGenerator, IRefreshTokenGenerator
         return token;
     }
 
-    string IRefreshTokenGenerator.Generate(string subClaim)
+    string IAdminRefreshTokenGenerator.Generate(AdminUser adminUse)
     {
         var claims = new List<Claim>
         {
-            new (JwtRegisteredClaimNames.Sub, subClaim)
+            new (JwtRegisteredClaimNames.Sub, adminUse.Id.ToString())
         };
 
         var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_refreshTokenExpirationMinutes));
