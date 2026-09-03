@@ -2,6 +2,8 @@ using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using Microsoft.AspNetCore.Mvc;
+using CinemaBackend.Admin.Application.UseCases.Authentication.RefreshToken;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CinemaBackend.Admin.Api.Controllers;
 
@@ -10,7 +12,7 @@ namespace CinemaBackend.Admin.Api.Controllers;
 public class AuthenticationController : ControllerBase
 {
     [HttpPost("login")]
-    [ProducesResponseType(typeof(ResponseTokensJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TokensResponseJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Login([FromServices] ILoginWithEmailAndPasswordUseCase useCase, [FromBody] LoginRequestJson request)
     {
@@ -18,4 +20,18 @@ public class AuthenticationController : ControllerBase
         
         return Ok(response);
     }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(
+        [FromServices] IRefreshTokenUseCase useCase,
+        [FromBody] RefreshTokenRequestJson request)
+    {
+        var response = await useCase.Execute(request);
+
+        return Ok(response);
+    }
+
+    [Authorize]
+    [HttpGet("hello-world")]
+    public async Task<IActionResult> HelloWorld() => Ok("Hello World!");
 }

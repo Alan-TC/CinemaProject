@@ -19,7 +19,7 @@ public class LoginWithEmailAndPasswordUseCase(
     private readonly IAdminAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
     private readonly IAdminRefreshTokenGenerator _refreshTokenGenerator = refreshTokenGenerator;
 
-    public async Task<ResponseTokensJson> Execute(LoginRequestJson request)
+    public async Task<TokensResponseJson> Execute(LoginRequestJson request)
     {
         ValidateAndThrowOnFailures(request);
 
@@ -37,7 +37,7 @@ public class LoginWithEmailAndPasswordUseCase(
 
         var refreshToken = _refreshTokenGenerator.Generate(userAdmin);
 
-        return new ResponseTokensJson()
+        return new TokensResponseJson()
         {
             AccessToken = accesToken,
             RefreshToken = refreshToken

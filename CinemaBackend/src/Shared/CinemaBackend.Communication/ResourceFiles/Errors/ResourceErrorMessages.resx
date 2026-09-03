@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root><accessability>internal</accessability>
+<root>
   <!-- 
     Microsoft ResX Schema 
     
@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,25 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UNKNOWN_ERROR" xml:space="preserve" id="747be9ea-9635-411e-95ea-7b5a1ddbd7f7">
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>
   </data>
-  <data name="VALIDATE_EMAIL_EXISTS" xml:space="preserve" id="543f9267-3957-4d67-ba1f-0ddd37124378">
+  <data name="VALIDATE_EMAIL_EXISTS" xml:space="preserve">
     <value>E-mail already exists.</value>
   </data>
-  <data name="VALIDATE_EMAIL_INVALID" xml:space="preserve" id="6f75b68f-d810-40de-9aa7-8f7e4833040c">
+  <data name="VALIDATE_EMAIL_INVALID" xml:space="preserve">
     <value>Invalid email format.</value>
   </data>
-  <data name="VALIDATE_EMAIL_REQUIRED" xml:space="preserve" id="137da066-ffec-4c07-8220-a154474fa3d7">
+  <data name="VALIDATE_EMAIL_REQUIRED" xml:space="preserve">
     <value>Email is required.</value>
   </data>
-  <data name="VALIDATE_INVALID_LOGIN" xml:space="preserve" id="4bfca079-d51c-45cb-ba29-d9e5b560f8d5">
+  <data name="VALIDATE_INVALID_LOGIN" xml:space="preserve">
     <value>Email or password is incorrect.</value>
   </data>
-  <data name="VALIDATE_PASSWORD_LENGHT" xml:space="preserve" id="13b7cf26-d3f3-4053-8b1c-477011ab91e6">
+  <data name="VALIDATE_PASSWORD_LENGHT" xml:space="preserve">
     <value>Password must be at least 6 characters long.</value>
   </data>
-  <data name="VALIDATE_PASSWORD_REQUIRED" xml:space="preserve" id="7979fb9f-45e0-4c08-b65c-b924f49695a2">
+  <data name="VALIDATE_PASSWORD_REQUIRED" xml:space="preserve">
     <value>Password is required.</value>
+  </data>
+  <data name="VALIDATION_ACCESS_TOKEN_EXPIRED" xml:space="preserve">
+    <value>Validation access token expired.</value>
+  </data>
+  <data name="VALIDATION_ACCESS_TOKEN_REQUIRED" xml:space="preserve">
+    <value>Validation access token is required.</value>
+  </data>
+  <data name="VALIDATION_REFRESH_TOKEN_INVALID" xml:space="preserve">
+    <value>Refresh token is invalid or expired.</value>
+  </data>
+  <data name="VALIDATION_RESOURCE_ACCESS_DENIED" xml:space="preserve">
+    <value>Access denied.</value>
   </data>
 </root>

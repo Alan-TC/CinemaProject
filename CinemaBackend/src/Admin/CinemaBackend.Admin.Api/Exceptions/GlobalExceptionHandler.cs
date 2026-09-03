@@ -7,7 +7,7 @@ namespace CinemaBackend.Admin.Api.Exceptions;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, System.Exception exception, CancellationToken cancellationToken)
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
         if (exception is CinemaBackendExceptionBase cinemaException)
         {

@@ -5,5 +5,5 @@ namespace CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmai
 
 public interface ILoginWithEmailAndPasswordUseCase
 {
-    public Task<ResponseTokensJson> Execute(LoginRequestJson request);
+    public Task<TokensResponseJson> Execute(LoginRequestJson request);
 }
