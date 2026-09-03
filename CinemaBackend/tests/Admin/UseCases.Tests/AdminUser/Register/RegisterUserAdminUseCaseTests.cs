@@ -10,10 +10,12 @@ using TestsCommonUtilities.Requests;
 using TestsCommonUtilities.Security;
 using Xunit.Abstractions;
 
-namespace UseCases.Tests.AdminUser.Register;
+namespace Admin.UseCases.Tests.AdminUser.Register;
 
-public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestBaseClass(testOutput)
+public class RegisterUserAdminUseCaseTests(ITestOutputHelper output)
 {
+    private readonly TestLoggingClass _testLogger = new(output);
+
     [Fact]
     public async Task Success()
     {
@@ -22,7 +24,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestB
 
         var useCase = CreateUseCase();
 
-        await ExecuteWithContext(request, async () =>
+        await _testLogger.ExecuteWithContext(request, async () =>
         {
            await useCase.Execute(request).ShouldNotThrowAsync(); 
         });
@@ -39,7 +41,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestB
 
         var useCase = CreateUseCase(request.Email);
 
-        await ExecuteWithContext(context, async() =>
+        await _testLogger.ExecuteWithContext(context, async() =>
         {
            var result = await useCase.Execute(request).ShouldThrowAsync<ConflicException>();
 
@@ -61,7 +63,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper testOutput) : TestB
 
         var useCase = CreateUseCase();
 
-        await ExecuteWithContext(context, async() =>
+        await _testLogger.ExecuteWithContext(context, async() =>
         {
             var result = await useCase.Execute(request).ShouldThrowAsync<ErrorOnValidationException>();
 

@@ -12,8 +12,10 @@ using Xunit.Abstractions;
 
 namespace UseCases.Tests.Authentication.Login.WithEmailAndPassword;
 
-public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output) : TestBaseClass(output)
+public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
 {
+    private readonly TestLoggingClass _testLogger = new(output);
+
     [Fact]
     public async Task Success()
     {
@@ -31,7 +33,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output) : T
 
         var useCase = CreateUseCase(adminUser, request.Password);
 
-        await ExecuteWithContext(context, async () =>
+        await _testLogger.ExecuteWithContext(context, async () =>
         {
             var result = await useCase.Execute(request);
 
@@ -51,7 +53,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output) : T
         
         var useCase = CreateUseCase(password: request.Password);
 
-        await ExecuteWithContext(context, async () =>
+        await _testLogger.ExecuteWithContext(context, async () =>
         {
            var result = await useCase.Execute(request)
             .ShouldThrowAsync<InvalidLoginException>();
@@ -77,7 +79,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output) : T
         
         var useCase = CreateUseCase(adminUser);
 
-        await ExecuteWithContext(context, async () =>
+        await _testLogger.ExecuteWithContext(context, async () =>
         {
            var result = await useCase.Execute(request)
             .ShouldThrowAsync<InvalidLoginException>();

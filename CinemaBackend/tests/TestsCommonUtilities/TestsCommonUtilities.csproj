@@ -20,11 +20,14 @@
 
   <ItemGroup>
     <PackageReference Include="Moq" />
-    <PackageReference Include="Bogus" />  
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Shared\CinemaBackend.Communication\CinemaBackend.Communication.csproj" />
     <ProjectReference Include="..\..\src\Shared\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

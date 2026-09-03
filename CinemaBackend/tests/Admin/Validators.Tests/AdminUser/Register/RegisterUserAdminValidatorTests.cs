@@ -6,10 +6,12 @@ using TestsCommonUtilities;
 using TestsCommonUtilities.Requests;
 using Xunit.Abstractions;
 
-namespace Validators.Tests.AdminUser.Register;
+namespace Admin.Validators.Tests.AdminUser.Register;
 
-public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBaseClass(output)
+public class RegisterUserAdminValidatorTests(ITestOutputHelper output)
 {
+    private readonly TestLoggingClass _testLogger = new(output);
+
     [Fact]
     public async Task Success()
     {
@@ -21,7 +23,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBas
 
         var validator = new RegisterUserAdminValidator();
 
-        ExecuteWithContext(context, () =>
+        _testLogger.ExecuteWithContext(context, () =>
         {
             var result = validator.Validate(request);
 
@@ -46,7 +48,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBas
 
         var validator = new RegisterUserAdminValidator();
 
-        ExecuteWithContext(context, () =>
+        _testLogger.ExecuteWithContext(context, () =>
         {
             var result = validator.Validate(request);
 
@@ -69,7 +71,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBas
 
         var validator = new RegisterUserAdminValidator();
         
-        ExecuteWithContext(context, () =>
+        _testLogger.ExecuteWithContext(context, () =>
         {
             var result = validator.Validate(request);
             result.IsValid.ShouldBeFalse();
@@ -93,7 +95,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBas
 
         var validator = new RegisterUserAdminValidator();
 
-        ExecuteWithContext(context, () =>
+        _testLogger.ExecuteWithContext(context, () =>
         {
             var result = validator.Validate(request);
 
@@ -119,7 +121,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output) : TestBas
 
         var validator = new RegisterUserAdminValidator();
 
-        ExecuteWithContext(context, () =>
+        _testLogger.ExecuteWithContext(context, () =>
         {
             var result = validator.Validate(request);
 

@@ -12,6 +12,12 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Shouldly" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Admin\CinemaBackend.Admin.Api\CinemaBackend.Admin.Api.csproj" />
+    <ProjectReference Include="..\..\TestsCommonUtilities\TestsCommonUtilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

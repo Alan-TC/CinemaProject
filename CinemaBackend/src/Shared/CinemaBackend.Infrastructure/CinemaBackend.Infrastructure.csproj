@@ -18,5 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TestsCommonUtilities" />
+  </ItemGroup>
   
 </Project>

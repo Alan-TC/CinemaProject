@@ -18,8 +18,8 @@
     <Project Path="tests/TestsCommonUtilities/TestsCommonUtilities.csproj" />
   </Folder>
   <Folder Name="/tests/Admin/">
-    <Project Path="tests/Admin/UseCases.Tests/UseCases.Tests.csproj" />
-    <Project Path="tests/Admin/Validators.Tests/Validators.Tests.csproj" />
-    <Project Path="tests/Admin/WebApi.Tests/WebApi.Tests.csproj" />
+    <Project Path="tests/Admin/UseCases.Tests/Admin.UseCases.Tests.csproj" />
+    <Project Path="tests/Admin/Validators.Tests/Admin.Validators.Tests.csproj" />
+    <Project Path="tests/Admin/WebApi.Tests/Admin.WebApi.Tests.csproj" />
   </Folder>
 </Solution>

@@ -5,6 +5,8 @@ namespace TestsCommonUtilities;
 public class TestContext
 {
     public Dictionary<string, object?> Context {get;} = [];
+
+    [JsonIgnore]
     public Dictionary<string, int> _keyCount = [];
 
     public void Add(object contextObject)
