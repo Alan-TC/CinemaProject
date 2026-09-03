@@ -122,5 +122,50 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
                 return ResourceManager.GetString("VALIDATE_PASSWORD_REQUIRED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation access token expired..
+        /// </summary>
+        public static string VALIDATION_ACCESS_TOKEN_EXPIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_ACCESS_TOKEN_EXPIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid access token..
+        /// </summary>
+        public static string VALIDATION_ACCESS_TOKEN_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_ACCESS_TOKEN_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation access token is required..
+        /// </summary>
+        public static string VALIDATION_ACCESS_TOKEN_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_ACCESS_TOKEN_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh token is invalid or expired..
+        /// </summary>
+        public static string VALIDATION_REFRESH_TOKEN_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_REFRESH_TOKEN_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access denied..
+        /// </summary>
+        public static string VALIDATION_RESOURCE_ACCESS_DENIED {
+            get {
+                return ResourceManager.GetString("VALIDATION_RESOURCE_ACCESS_DENIED", resourceCulture);
+            }
+        }
     }
 }

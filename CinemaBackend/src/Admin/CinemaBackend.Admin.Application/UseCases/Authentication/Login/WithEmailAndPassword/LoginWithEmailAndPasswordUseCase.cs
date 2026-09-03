@@ -2,42 +2,42 @@ using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Domain.Repositories.AdminUser;
-using CinemaBackend.Domain.Security.Tokens;
 using CinemaBackend.Domain.Security.PasswordHasher;
+using CinemaBackend.Domain.Security.Tokens.Admin;
 
 namespace CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 
 public class LoginWithEmailAndPasswordUseCase(
     IPasswordHasher passwordHasher, 
     IAdminUserReadOnlyRepository adminUserReadOnlyRepository,
-    IAccessTokenGenerator accessTokenGenerator,
-    IRefreshTokenGenerator refreshTokenGenerator
+    IAdminAccessTokenGenerator accessTokenGenerator,
+    IAdminRefreshTokenGenerator refreshTokenGenerator
     ) : ILoginWithEmailAndPasswordUseCase
 {
     private readonly IPasswordHasher _passwordHasher = passwordHasher;
     private readonly IAdminUserReadOnlyRepository _adminUserRepository = adminUserReadOnlyRepository;
-    private readonly IAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
-    private readonly IRefreshTokenGenerator _refreshTokenGenerator = refreshTokenGenerator;
+    private readonly IAdminAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
+    private readonly IAdminRefreshTokenGenerator _refreshTokenGenerator = refreshTokenGenerator;
 
-    public async Task<ResponseTokensJson> Execute(LoginRequestJson request)
+    public async Task<TokensResponseJson> Execute(LoginRequestJson request)
     {
         ValidateAndThrowOnFailures(request);
 
-        var user = await _adminUserRepository.GetAdminUserByEmail(request.Email);
+        var userAdmin = await _adminUserRepository.GetAdminUserByEmail(request.Email);
 
-        if (user is null)
+        if (userAdmin is null)
             throw new InvalidLoginException();
 
-        var isPasswordValid = _passwordHasher.VerifyPassword(request.Password, user.PasswordHash);
+        var isPasswordValid = _passwordHasher.VerifyPassword(request.Password, userAdmin.PasswordHash);
 
         if (isPasswordValid is false)
             throw new InvalidLoginException();
 
-        var accesToken = _accessTokenGenerator.Generate(user.Id.ToString());
+        var accesToken = _accessTokenGenerator.Generate(userAdmin);
 
-        var refreshToken = _refreshTokenGenerator.Generate(user.Id.ToString());
+        var refreshToken = _refreshTokenGenerator.Generate(userAdmin);
 
-        return new ResponseTokensJson()
+        return new TokensResponseJson()
         {
             AccessToken = accesToken,
             RefreshToken = refreshToken

@@ -3,7 +3,7 @@ using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.SharedKernel.Extensions;
 
-namespace CinemaBackend.Admin.Api.WebApplicationExtensions;
+namespace CinemaBackend.Admin.Api.Extensions.WebApplicationExtensions;
 
 public static class InitialAdminUser
 {

@@ -100,10 +100,10 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
         if (password != null)
             passwordHasherBuilder.VerifyPassword(password);
         
-        var accessTokenGenerator = new IAccessTokenGeneratorBuilder()
+        var accessTokenGenerator = new IAdminAccessTokenGeneratorBuilder()
             .Build();
 
-        var refreshTokenGenerator = new IRefreshTokenGeneratorBuilder()
+        var refreshTokenGenerator = new IAdminRefreshTokenGeneratorBuilder()
             .Build();
 
         return new LoginWithEmailAndPasswordUseCase
