@@ -1,5 +1,6 @@
 using System.Reflection;
 using CinemaBackend.Domain.Repositories.AdminUser;
+using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Domain.Storage.Movie;
@@ -27,6 +28,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IAdminUserWriteOnlyRepository, AdminUserRepository>();
 
         services.AddScoped<IMovieImageStorage, MovieImageStorage>();
+        services.AddScoped<IMovieWriteOnlyRepository, MovieRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)

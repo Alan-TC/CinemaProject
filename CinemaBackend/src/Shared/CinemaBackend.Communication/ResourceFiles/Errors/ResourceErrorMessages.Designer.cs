@@ -70,60 +70,6 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-mail already exists..
-        /// </summary>
-        public static string VALIDATE_EMAIL_EXISTS {
-            get {
-                return ResourceManager.GetString("VALIDATE_EMAIL_EXISTS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid email format..
-        /// </summary>
-        public static string VALIDATE_EMAIL_INVALID {
-            get {
-                return ResourceManager.GetString("VALIDATE_EMAIL_INVALID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email is required..
-        /// </summary>
-        public static string VALIDATE_EMAIL_REQUIRED {
-            get {
-                return ResourceManager.GetString("VALIDATE_EMAIL_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email or password is incorrect..
-        /// </summary>
-        public static string VALIDATE_INVALID_LOGIN {
-            get {
-                return ResourceManager.GetString("VALIDATE_INVALID_LOGIN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password must be at least 6 characters long..
-        /// </summary>
-        public static string VALIDATE_PASSWORD_LENGHT {
-            get {
-                return ResourceManager.GetString("VALIDATE_PASSWORD_LENGHT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password is required..
-        /// </summary>
-        public static string VALIDATE_PASSWORD_REQUIRED {
-            get {
-                return ResourceManager.GetString("VALIDATE_PASSWORD_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Validation access token expired..
         /// </summary>
         public static string VALIDATION_ACCESS_TOKEN_EXPIRED {
@@ -147,6 +93,168 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         public static string VALIDATION_ACCESS_TOKEN_REQUIRED {
             get {
                 return ResourceManager.GetString("VALIDATION_ACCESS_TOKEN_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail already exists..
+        /// </summary>
+        public static string VALIDATION_EMAIL_EXISTS {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email format..
+        /// </summary>
+        public static string VALIDATION_EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is required..
+        /// </summary>
+        public static string VALIDATION_EMAIL_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_EMAIL_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only JPG and PNG images are accepted..
+        /// </summary>
+        public static string VALIDATION_INVALID_IMAGE {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email or password is incorrect..
+        /// </summary>
+        public static string VALIDATION_INVALID_LOGIN {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie ClassInd is invelid..
+        /// </summary>
+        public static string VALIDATION_MOVIE_CLASS_IND_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_CLASS_IND_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie ClassInd is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_CLASS_IND_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_CLASS_IND_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie datails is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_DETAILS_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_DETAILS_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie duration is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_DURATION_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_DURATION_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid movie genre..
+        /// </summary>
+        public static string VALIDATION_MOVIE_GENRES_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_GENRES_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one movie genre is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_GENRES_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_GENRES_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie release date is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_RELEASE_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_RELEASE_DATE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie sinopse maximum length is 2048..
+        /// </summary>
+        public static string VALIDATION_MOVIE_SINOPSE_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_SINOPSE_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie sinopse is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_SINOPSE_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_SINOPSE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie title maximum length is 256..
+        /// </summary>
+        public static string VALIDATION_MOVIE_TITLE_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_TITLE_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie title is required..
+        /// </summary>
+        public static string VALIDATION_MOVIE_TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_MOVIE_TITLE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 6 characters long..
+        /// </summary>
+        public static string VALIDATION_PASSWORD_LENGHT {
+            get {
+                return ResourceManager.GetString("VALIDATION_PASSWORD_LENGHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required..
+        /// </summary>
+        public static string VALIDATION_PASSWORD_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_PASSWORD_REQUIRED", resourceCulture);
             }
         }
         

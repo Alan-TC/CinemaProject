@@ -45,6 +45,6 @@ public class RegisterUserAdminUseCase(
         var userExists = await _adminUserReadOnlyRepository.AdminUserEmailExists(request.Email);
 
         if (userExists)
-            throw new ConflicException(ResourceErrorMessages.VALIDATE_EMAIL_EXISTS);
+            throw new ConflicException(ResourceErrorMessages.VALIDATION_EMAIL_EXISTS);
     }
 }

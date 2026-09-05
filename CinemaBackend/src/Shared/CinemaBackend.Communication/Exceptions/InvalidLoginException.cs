@@ -6,5 +6,5 @@ namespace CinemaBackend.Communication.Exceptions;
 public class InvalidLoginException : CinemaBackendExceptionBase
 {
     public override HttpStatusCode GetErrorCode() => HttpStatusCode.Unauthorized;
-    public override List<string> GetErrorMessages() => [ResourceErrorMessages.VALIDATE_INVALID_LOGIN];
+    public override List<string> GetErrorMessages() => [ResourceErrorMessages.VALIDATION_INVALID_LOGIN];
 }

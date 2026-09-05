@@ -54,7 +54,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output)
 
             result.IsValid.ShouldBeFalse();
             result.Errors.Count.ShouldBe(1);
-            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATE_EMAIL_REQUIRED)); 
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_EMAIL_REQUIRED)); 
         });
     }
 
@@ -76,7 +76,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output)
             var result = validator.Validate(request);
             result.IsValid.ShouldBeFalse();
             result.Errors.Count.ShouldBe(1);
-            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATE_EMAIL_INVALID));
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_EMAIL_INVALID));
         });
     }
 
@@ -101,7 +101,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output)
 
             result.IsValid.ShouldBeFalse();
             result.Errors.Count.ShouldBe(1);
-            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATE_PASSWORD_REQUIRED));
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_PASSWORD_REQUIRED));
         });
     }
 
@@ -127,7 +127,7 @@ public class RegisterUserAdminValidatorTests(ITestOutputHelper output)
 
             result.IsValid.ShouldBeFalse();
             result.Errors.Count.ShouldBe(1);
-            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATE_PASSWORD_LENGHT));
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_PASSWORD_LENGHT));
         });
     }
 }

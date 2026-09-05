@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Shared\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
     <ProjectReference Include="..\..\Shared\CinemaBackend.Communication\CinemaBackend.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\CinemaBackend.SharedKernel\CinemaBackend.SharedKernel.csproj" />
   </ItemGroup>  
 
 </Project>

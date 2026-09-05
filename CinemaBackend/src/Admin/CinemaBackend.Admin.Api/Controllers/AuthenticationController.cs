@@ -3,8 +3,6 @@ using CinemaBackend.Communication.Responses;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using Microsoft.AspNetCore.Mvc;
 using CinemaBackend.Admin.Application.UseCases.Authentication.RefreshToken;
-using CinemaBackend.Domain.Storage.Movie;
-using CinemaBackend.Domain.DTOs;
 
 namespace CinemaBackend.Admin.Api.Controllers;
 

@@ -47,7 +47,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper output)
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.Conflict);
             result.GetErrorMessages().Count.ShouldBe(1);
-            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATE_EMAIL_EXISTS));
+            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATION_EMAIL_EXISTS));
         });
     }
 
@@ -69,7 +69,7 @@ public class RegisterUserAdminUseCaseTests(ITestOutputHelper output)
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.BadRequest);
             result.GetErrorMessages().Count.ShouldBe(1);
-            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATE_PASSWORD_REQUIRED));
+            result.GetErrorMessages().ShouldContain(message => message.Equals(ResourceErrorMessages.VALIDATION_PASSWORD_REQUIRED));
         });
     }
 
