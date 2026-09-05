@@ -483,3 +483,6 @@ $RECYCLE.BIN/
 
 # Visual Studio Code
 .vscode/
+
+# Aux folders
+dev-storage/*/

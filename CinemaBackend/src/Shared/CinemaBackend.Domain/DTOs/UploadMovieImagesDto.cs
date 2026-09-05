@@ -1,12 +1,12 @@
 namespace CinemaBackend.Domain.DTOs;
 
 public record UploadMovieImagesDto(
-    ImageInfos? Poster = null,
-    ImageInfos? FeaturedBanner = null,
-    ImageInfos? StandardBanner = null
+    ImageInfo? Poster = null,
+    ImageInfo? FeaturedBanner = null,
+    ImageInfo? StandardBanner = null
 );
 
-public record ImageInfos(
+public record ImageInfo(
     string ContentType,
     Stream ImageStream
 );

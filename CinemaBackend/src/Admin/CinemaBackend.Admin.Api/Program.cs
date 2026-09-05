@@ -1,13 +1,14 @@
-using Scalar.AspNetCore;
-using CinemaBackend.Infrastructure;
-using CinemaBackend.Admin.Application;
 using CinemaBackend.Admin.Api.Exceptions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using CinemaBackend.Admin.Api.Tokens;
-using CinemaBackend.Admin.Api.Extensions.WebApplicationExtensions;
 using CinemaBackend.Admin.Api.Extensions;
+using CinemaBackend.Admin.Api.Extensions.WebApplicationExtensions;
+using CinemaBackend.Admin.Api.Tokens;
+using CinemaBackend.Admin.Application;
+using CinemaBackend.Infrastructure;
 using CinemaBackend.Infrastructure.Security.Tokens;
-using CinemaBackend.Communication.ResourceFiles.Errors;
+using CinemaBackend.Infrastructure.Storage;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddOpenApiWithJwtBearer();
 
-builder.Services.AddApiServices(builder.Configuration);
+builder.Services.AddApiServices(builder);
 builder.Services.AddApplication();
 builder.Services.AddAdminInfrastructure(builder.Configuration);
 
@@ -67,4 +68,21 @@ await app.Services.ApplyMigrations();
 
 await app.RegisterInitialAdminUser();
 
+var (storageRootPath, storageRequestPath) = GetStorageFileRootPath();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(storageRootPath),
+    RequestPath = storageRequestPath
+});
+
 app.Run();
+
+(string storageRootPath, string storageRequestPath) GetStorageFileRootPath()
+{
+    using var scope = app.Services.CreateScope();
+
+    var hostInfo = scope.ServiceProvider.GetService<IHostInfoProvider>();
+
+    return (hostInfo!.GetStorageRootPath(), hostInfo!.GetStorageRequestPath());
+}

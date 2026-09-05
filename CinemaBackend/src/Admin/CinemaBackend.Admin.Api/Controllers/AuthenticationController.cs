@@ -3,7 +3,8 @@ using CinemaBackend.Communication.Responses;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using Microsoft.AspNetCore.Mvc;
 using CinemaBackend.Admin.Application.UseCases.Authentication.RefreshToken;
-using Microsoft.AspNetCore.Authorization;
+using CinemaBackend.Domain.Storage.Movie;
+using CinemaBackend.Domain.DTOs;
 
 namespace CinemaBackend.Admin.Api.Controllers;
 
@@ -30,8 +31,4 @@ public class AuthenticationController : ControllerBase
 
         return Ok(response);
     }
-
-    [Authorize]
-    [HttpGet("hello-world")]
-    public async Task<IActionResult> HelloWorld() => Ok("Hello World!");
 }
