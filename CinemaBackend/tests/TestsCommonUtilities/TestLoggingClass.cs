@@ -10,10 +10,11 @@ public class TestLoggingClass(ITestOutputHelper output)
     protected readonly ITestOutputHelper _output = output;
 
     private readonly JsonSerializerOptions jsonOptions = new() { 
-        WriteIndented = true, 
+        WriteIndented = true,
+        ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles,
         TypeInfoResolver = new DefaultJsonTypeInfoResolver
             {
-                Modifiers = { IncludePrivateFieldsModifier }
+                Modifiers = { IncludePrivateFieldsModifier, IgnoreStreamPropertiesModifier }
             }
         };
 
@@ -47,9 +48,18 @@ public class TestLoggingClass(ITestOutputHelper output)
     {
         if (context is null)
             return;
-            
+
         _output.WriteLine("Test failed with the following context:");
-        _output.WriteLine(JsonSerializer.Serialize(context, jsonOptions));
+
+        try
+        {
+            _output.WriteLine(JsonSerializer.Serialize(context, jsonOptions));
+        }
+        catch (Exception ex)
+        {
+            _output.WriteLine($"[Context serialization failed: {ex.Message}]");
+            _output.WriteLine(context.ToString() ?? string.Empty);
+        }
     }
 
     static void IncludePrivateFieldsModifier(JsonTypeInfo typeInfo)
@@ -57,15 +67,34 @@ public class TestLoggingClass(ITestOutputHelper output)
         if (typeInfo.Kind != JsonTypeInfoKind.Object)
             return;
 
-        var privateFields = typeInfo.Type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+        if (typeInfo.Type.Namespace?.StartsWith("System") == true)
+            return;
+
+        var privateFields = typeInfo.Type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(f => !f.Name.Contains('<'));
 
         foreach (var field in privateFields)
         {
             var jsonProp = typeInfo.CreateJsonPropertyInfo(field.FieldType, field.Name);
             jsonProp.Get = obj => field.GetValue(obj);
             jsonProp.Set = (obj, value) => field.SetValue(obj, value);
-            
+
             typeInfo.Properties.Add(jsonProp);
+        }
+    }
+
+    static void IgnoreStreamPropertiesModifier(JsonTypeInfo typeInfo)
+    {
+        if (typeof(Stream).IsAssignableFrom(typeInfo.Type))
+        {
+            for (int i = typeInfo.Properties.Count - 1; i >= 0; i--)
+            {
+                var propName = typeInfo.Properties[i].Name;
+                if (propName is nameof(Stream.ReadTimeout) or nameof(Stream.WriteTimeout))
+                {
+                    typeInfo.Properties.RemoveAt(i);
+                }
+            }
         }
     }
 }

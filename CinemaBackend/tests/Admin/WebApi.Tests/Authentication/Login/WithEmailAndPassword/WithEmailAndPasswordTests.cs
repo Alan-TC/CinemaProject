@@ -5,7 +5,7 @@ using CinemaBackend.SharedKernel.Extensions;
 using Shouldly;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Requests;
-using TestsCommonUtilities.Resources;
+using TestsCommonUtilities.Identity;
 using Xunit.Abstractions;
 
 namespace Admin.WebApi.Tests.Authentication.Login.WithEmailAndPassword;

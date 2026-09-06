@@ -1,6 +1,6 @@
 using CinemaBackend.Domain.Entities;
 
-namespace TestsCommonUtilities.Resources;
+namespace TestsCommonUtilities.Identity;
 
 public class AdminUserIdentityManager
 {
