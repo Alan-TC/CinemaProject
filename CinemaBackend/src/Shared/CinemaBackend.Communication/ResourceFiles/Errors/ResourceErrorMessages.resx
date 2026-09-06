@@ -120,22 +120,25 @@
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>
   </data>
-  <data name="VALIDATE_EMAIL_EXISTS" xml:space="preserve">
+  <data name="VALIDATION_EMAIL_EXISTS" xml:space="preserve">
     <value>E-mail already exists.</value>
   </data>
-  <data name="VALIDATE_EMAIL_INVALID" xml:space="preserve">
+  <data name="VALIDATION_EMAIL_INVALID" xml:space="preserve">
     <value>Invalid email format.</value>
   </data>
-  <data name="VALIDATE_EMAIL_REQUIRED" xml:space="preserve">
+  <data name="VALIDATION_EMAIL_REQUIRED" xml:space="preserve">
     <value>Email is required.</value>
   </data>
-  <data name="VALIDATE_INVALID_LOGIN" xml:space="preserve">
+  <data name="VALIDATION_INVALID_IMAGE" xml:space="preserve">
+    <value>Only JPG and PNG images are accepted.</value>
+  </data>
+  <data name="VALIDATION_INVALID_LOGIN" xml:space="preserve">
     <value>Email or password is incorrect.</value>
   </data>
-  <data name="VALIDATE_PASSWORD_LENGHT" xml:space="preserve">
+  <data name="VALIDATION_PASSWORD_LENGHT" xml:space="preserve">
     <value>Password must be at least 6 characters long.</value>
   </data>
-  <data name="VALIDATE_PASSWORD_REQUIRED" xml:space="preserve">
+  <data name="VALIDATION_PASSWORD_REQUIRED" xml:space="preserve">
     <value>Password is required.</value>
   </data>
   <data name="VALIDATION_ACCESS_TOKEN_EXPIRED" xml:space="preserve">
@@ -147,10 +150,43 @@
   <data name="VALIDATION_ACCESS_TOKEN_REQUIRED" xml:space="preserve">
     <value>Validation access token is required.</value>
   </data>
+  <data name="VALIDATION_MOVIE_DURATION_REQUIRED" xml:space="preserve">
+    <value>Movie duration is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_DETAILS_REQUIRED" xml:space="preserve">
+    <value>Movie datails is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_SINOPSE_MAX_LENGTH" xml:space="preserve">
+    <value>Movie sinopse maximum length is 2048.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_SINOPSE_REQUIRED" xml:space="preserve">
+    <value>Movie sinopse is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_TITLE_MAX_LENGTH" xml:space="preserve">
+    <value>Movie title maximum length is 256.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_TITLE_REQUIRED" xml:space="preserve">
+    <value>Movie title is required.</value>
+  </data>
   <data name="VALIDATION_REFRESH_TOKEN_INVALID" xml:space="preserve">
     <value>Refresh token is invalid or expired.</value>
   </data>
   <data name="VALIDATION_RESOURCE_ACCESS_DENIED" xml:space="preserve">
     <value>Access denied.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_RELEASE_DATE_REQUIRED" xml:space="preserve">
+    <value>Movie release date is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_CLASS_IND_REQUIRED" xml:space="preserve">
+    <value>Movie ClassInd is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_CLASS_IND_INVALID" xml:space="preserve">
+    <value>Movie ClassInd is invelid.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_GENRES_REQUIRED" xml:space="preserve">
+    <value>At least one movie genre is required.</value>
+  </data>
+  <data name="VALIDATION_MOVIE_GENRES_INVALID" xml:space="preserve">
+    <value>Invalid movie genre.</value>
   </data>
 </root>

@@ -1,5 +1,7 @@
-﻿using CinemaBackend.Admin.Api.Tokens;
+﻿using CinemaBackend.Admin.Api.HostProvider;
+using CinemaBackend.Admin.Api.Tokens;
 using CinemaBackend.Domain.Security.Tokens.Admin;
+using CinemaBackend.Infrastructure.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi;
 
@@ -38,11 +40,35 @@ public static class DenpendencyInjectionExtensions
         });
     }
 
-    public static void AddApiServices(this IServiceCollection services, IConfiguration configuration)
+    public static void AddApiServices(this IServiceCollection services, WebApplicationBuilder builder)
     {
+        var configuration = builder.Configuration;
+
         services.AddScoped<IAdminRefreshTokenService>(_ =>
         {
             return new AdminRefreshTokenService(configuration);
         });
+
+        services.AddScoped<IHostInfoProvider>(_ =>
+        {
+            var baseUrl = configuration["Host:BaseUrl"]!;
+
+            var storageRoot = builder.Environment.IsDevelopment()
+                ? PathOfDevUtils(builder.Environment.ContentRootPath) 
+                : configuration["Host:StorageRootPath"]!;
+
+            var requestPath = configuration["Host:StorageRequestPath"]!;
+
+            return new HostInfoProvider(baseUrl, storageRoot, requestPath);
+        });
+    }
+
+    private static string PathOfDevUtils(string contentRootPath)
+    {
+        var adminPath = Directory.GetParent(contentRootPath)!.FullName;
+        var srcPath = Directory.GetParent(adminPath)!.FullName;
+        var slnxPath = Directory.GetParent(srcPath)!.FullName;
+
+        return Path.Combine(slnxPath, "dev-storage");
     }
 }

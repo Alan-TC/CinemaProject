@@ -1,11 +1,14 @@
 using System.Reflection;
 using CinemaBackend.Domain.Repositories.AdminUser;
+using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
+using CinemaBackend.Domain.Storage.Movie;
 using CinemaBackend.Infrastructure.Data;
 using CinemaBackend.Infrastructure.Data.Repositories;
 using CinemaBackend.Infrastructure.Security.PasswordHasher;
 using CinemaBackend.Infrastructure.Security.Tokens;
+using CinemaBackend.Infrastructure.Storage;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -23,6 +26,9 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IAdminUserReadOnlyRepository, AdminUserRepository>();
         services.AddScoped<IAdminUserWriteOnlyRepository, AdminUserRepository>();
+
+        services.AddScoped<IMovieImageStorage, MovieImageStorage>();
+        services.AddScoped<IMovieWriteOnlyRepository, MovieRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)

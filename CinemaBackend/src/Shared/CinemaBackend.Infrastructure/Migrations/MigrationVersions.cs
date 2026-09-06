@@ -3,4 +3,5 @@ namespace CinemaBackend.Infrastructure.Migrations;
 internal abstract class MigrationVersions
 {
     public const uint AdminUserTable = 1;
+    public const uint MovieRelatedTablesAndImageTable = 2;
 }

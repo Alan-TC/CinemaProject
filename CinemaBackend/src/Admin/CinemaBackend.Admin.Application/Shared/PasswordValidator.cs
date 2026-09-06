@@ -1,3 +1,4 @@
+using CinemaBackend.Communication.ResourceFiles.Errors;
 using FluentValidation;
 
 namespace CinemaBackend.Admin.Application.Shared;
@@ -9,8 +10,8 @@ internal static class PasswordValidator
         return ruleBuilder
             .Cascade(CascadeMode.Stop)
             .NotEmpty()
-            .WithMessage("Password is required.")
+            .WithMessage(ResourceErrorMessages.VALIDATION_PASSWORD_REQUIRED)
             .MinimumLength(6)
-            .WithMessage("Password must be at least 6 characters long.");
+            .WithMessage(ResourceErrorMessages.VALIDATION_PASSWORD_LENGHT);
     }
 }

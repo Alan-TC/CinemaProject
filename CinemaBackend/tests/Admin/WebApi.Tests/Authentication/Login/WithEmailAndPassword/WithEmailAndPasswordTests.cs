@@ -81,7 +81,7 @@ public class WithEmailAndPasswordTests : IClassFixture<AdminWebApplicationFactor
             errors.Count().ShouldBe(1);
             errors.ShouldContain(error => 
                 error.GetString().IsNotEmpty() && 
-                error.GetString()!.Equals(ResourceErrorMessages.VALIDATE_INVALID_LOGIN));
+                error.GetString()!.Equals(ResourceErrorMessages.VALIDATION_INVALID_LOGIN));
         });
     }
 }

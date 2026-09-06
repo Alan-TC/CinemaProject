@@ -60,7 +60,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.Unauthorized);
             result.GetErrorMessages().Count.ShouldBe(1);
-            result.GetErrorMessages().ShouldContain(ResourceErrorMessages.VALIDATE_INVALID_LOGIN);
+            result.GetErrorMessages().ShouldContain(ResourceErrorMessages.VALIDATION_INVALID_LOGIN);
         });
     }
 
@@ -86,7 +86,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.Unauthorized);
             result.GetErrorMessages().Count.ShouldBe(1);
-            result.GetErrorMessages().ShouldContain(ResourceErrorMessages.VALIDATE_INVALID_LOGIN);
+            result.GetErrorMessages().ShouldContain(ResourceErrorMessages.VALIDATION_INVALID_LOGIN);
         });
     }
 

@@ -1,12 +1,11 @@
-using CinemaBackend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CinemaBackend.Infrastructure.Data.Mappings;
+namespace CinemaBackend.Infrastructure.Data.Mappings.AdminUser;
 
-public class AdminUserMapping : IEntityTypeConfiguration<AdminUser>
+public class AdminUserMapping : IEntityTypeConfiguration<Domain.Entities.AdminUser>
 {
-    public void Configure(EntityTypeBuilder<AdminUser> builder)
+    public void Configure(EntityTypeBuilder<Domain.Entities.AdminUser> builder)
     {
         builder.ToTable("admin_users");
         
@@ -14,7 +13,7 @@ public class AdminUserMapping : IEntityTypeConfiguration<AdminUser>
         builder.Property(u => u.Id)
             .ValueGeneratedNever();
 
-        builder.Property(u => u.Email).IsRequired();
-        builder.Property(u => u.PasswordHash).IsRequired();
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(256);
+        builder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(256);
     }
 }

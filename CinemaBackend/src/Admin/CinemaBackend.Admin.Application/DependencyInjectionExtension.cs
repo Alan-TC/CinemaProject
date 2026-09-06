@@ -1,6 +1,7 @@
 using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using CinemaBackend.Admin.Application.UseCases.Authentication.RefreshToken;
+using CinemaBackend.Admin.Application.UseCases.Movie.Create;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CinemaBackend.Admin.Application;
@@ -18,5 +19,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IRefreshTokenUseCase, RefreshTokenUseCase>();
 
         services.AddScoped<IRegisterUserAdminUseCase, RegisterUserAdminUseCase>();
+
+        services.AddScoped<ICreateMovieUseCase, CreateMovieUseCase>();
     }
 }

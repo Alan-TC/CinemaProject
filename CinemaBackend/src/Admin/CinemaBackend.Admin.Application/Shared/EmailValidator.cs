@@ -10,8 +10,8 @@ internal static class EmailValidator
         return ruleBuilder
             .Cascade(CascadeMode.Stop)
             .NotEmpty()
-            .WithMessage(ResourceErrorMessages.VALIDATE_EMAIL_REQUIRED)
+            .WithMessage(ResourceErrorMessages.VALIDATION_EMAIL_REQUIRED)
             .EmailAddress()
-            .WithMessage(ResourceErrorMessages.VALIDATE_EMAIL_INVALID);
+            .WithMessage(ResourceErrorMessages.VALIDATION_EMAIL_INVALID);
     }
 }
