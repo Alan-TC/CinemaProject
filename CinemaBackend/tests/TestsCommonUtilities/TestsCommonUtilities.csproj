@@ -26,6 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="./Resources/Files/file.txt" />
+    <EmbeddedResource Include="./Resources/Images/image.bmp" />
+    <EmbeddedResource Include="./Resources/Images/image.jpg" />
+    <EmbeddedResource Include="./Resources/Images/image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Admin\CinemaBackend.Admin.Application\CinemaBackend.Admin.Application.csproj" />
     <ProjectReference Include="..\..\src\Shared\CinemaBackend.Communication\CinemaBackend.Communication.csproj" />
     <ProjectReference Include="..\..\src\Shared\CinemaBackend.Domain\CinemaBackend.Domain.csproj" />
     <ProjectReference Include="..\..\src\Shared\CinemaBackend.Infrastructure\CinemaBackend.Infrastructure.csproj" />

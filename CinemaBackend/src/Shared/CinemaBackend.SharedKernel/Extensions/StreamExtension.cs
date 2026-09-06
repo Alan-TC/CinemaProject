@@ -7,6 +7,9 @@ public static class StreamExtension
 {
     public static string? ImageContentType(this Stream stream)
     {
+        if (stream.Length <= 0)
+            return null;
+            
         string? contentType = null;
 
         if (stream.Is<JointPhotographicExpertsGroup>())

@@ -2,6 +2,7 @@
 using CinemaBackend.Admin.Api.Tokens;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Storage;
+using CinemaBackend.SharedKernel.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi;
 
@@ -54,7 +55,7 @@ public static class DenpendencyInjectionExtensions
             var baseUrl = configuration["Host:BaseUrl"]!;
 
             var storageRoot = builder.Environment.IsDevelopment()
-                ? PathOfDevUtils(builder.Environment.ContentRootPath) 
+                ? PathOfDevUtils(configuration, builder.Environment.ContentRootPath) 
                 : configuration["Host:StorageRootPath"]!;
 
             var requestPath = configuration["Host:StorageRequestPath"]!;
@@ -62,9 +63,13 @@ public static class DenpendencyInjectionExtensions
             return new HostInfoProvider(baseUrl, storageRoot, requestPath);
         });
     }
-
-    private static string PathOfDevUtils(string contentRootPath)
+    private static string PathOfDevUtils(IConfiguration configuration, string contentRootPath)
     {
+        string? path = configuration["Host:StorageRootPath"];
+
+        if (path.IsNotEmpty())
+            return path;
+
         var adminPath = Directory.GetParent(contentRootPath)!.FullName;
         var srcPath = Directory.GetParent(adminPath)!.FullName;
         var slnxPath = Directory.GetParent(srcPath)!.FullName;
