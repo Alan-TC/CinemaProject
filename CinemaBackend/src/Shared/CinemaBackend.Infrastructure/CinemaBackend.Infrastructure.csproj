@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="TestsCommonUtilities" />
+    <InternalsVisibleTo Include="Admin.WebApi.Tests" />
   </ItemGroup>
   
 </Project>

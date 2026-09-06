@@ -13,9 +13,9 @@ public static class StreamExtension
         string? contentType = null;
 
         if (stream.Is<JointPhotographicExpertsGroup>())
-            contentType = "image/png";
-        else if (stream.Is<PortableNetworkGraphic>())
             contentType = "image/jpeg";
+        else if (stream.Is<PortableNetworkGraphic>())
+            contentType = "image/png";
 
         stream.Position = 0;
 

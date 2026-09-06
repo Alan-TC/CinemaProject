@@ -9,7 +9,7 @@ namespace CinemaBackend.Admin.Api.Controllers;
 [Route("[controller]")]
 [ApiController]
 [Authorize]
-public class MovieController : ControllerBase
+public class MoviesController : ControllerBase
 {
     [HttpPost("create")]
     [Consumes("multipart/form-data")]

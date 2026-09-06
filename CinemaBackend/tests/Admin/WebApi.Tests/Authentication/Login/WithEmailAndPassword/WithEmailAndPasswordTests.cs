@@ -57,7 +57,7 @@ public class WithEmailAndPasswordTests : IClassFixture<AdminWebApplicationFactor
     }
 
     [Fact]
-    public async Task ShouldThrowException_WhenUserNotExist()
+    public async Task Validate_ShouldBeUnauthorizedErrorResponse_WhenUserNotExist()
     {
         var context = new TestContext();
 

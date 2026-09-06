@@ -80,7 +80,7 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
     protected abstract IConfiguration GetConfiguration();
 
     Task IAsyncLifetime.DisposeAsync() {
-        Directory.Delete(_storagePath);
+        Directory.Delete(_storagePath, true);
 
         return _postgreSqlContainer.StopAsync();
     }

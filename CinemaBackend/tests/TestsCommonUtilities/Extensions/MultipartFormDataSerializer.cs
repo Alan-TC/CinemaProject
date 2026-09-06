@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace TestsCommonUtilities.Extensions;
 
@@ -53,7 +49,6 @@ public static class MultipartFormDataSerializer
             return;
         }
 
-        // 4. Coleções / Listas (ex: List<Genres>)
         if (obj is IEnumerable enumerable)
         {
             int index = 0;
