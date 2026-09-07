@@ -25,7 +25,7 @@ public class CreateMovie(ITestOutputHelper output, AdminWebApplicationFactory fa
     {
         var context = new TestContext();
 
-        var movieRequest = new MovieCreateRequestJsonBuilder()
+        var movieRequest = new MovieRequestJsonBuilder()
             .Build();
 
         var request = new MovieCreateRequestApi
@@ -59,7 +59,7 @@ public class CreateMovie(ITestOutputHelper output, AdminWebApplicationFactory fa
     {
         var context = new TestContext();
 
-        var movieRequest = new MovieCreateRequestJsonBuilder()
+        var movieRequest = new MovieRequestJsonBuilder()
             .Build();
 
         var request = new MovieCreateRequestApi
@@ -96,7 +96,7 @@ public class CreateMovie(ITestOutputHelper output, AdminWebApplicationFactory fa
     {
         var context = new TestContext();
 
-        var movieRequest = new MovieCreateRequestJsonBuilder()
+        var movieRequest = new MovieRequestJsonBuilder()
             .Build();
 
         var request = new MovieCreateRequestApi

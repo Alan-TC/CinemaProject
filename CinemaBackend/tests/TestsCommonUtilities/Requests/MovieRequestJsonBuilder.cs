@@ -4,11 +4,11 @@ using CinemaBackend.Communication.Requests;
 
 namespace TestsCommonUtilities.Requests;
 
-public class MovieCreateRequestJsonBuilder
+public class MovieRequestJsonBuilder
 {
-    private readonly Faker<MovieCreateRequestJson> _faker = new();
+    private readonly Faker<MovieRequestJson> _faker = new();
 
-    public MovieCreateRequestJsonBuilder()
+    public MovieRequestJsonBuilder()
     {
         _faker.RuleFor(x => x.Title, f => f.Lorem.Sentence(3));
         _faker.RuleFor(x => x.Sinopse, f => f.Lorem.Sentence(10));
@@ -18,17 +18,29 @@ public class MovieCreateRequestJsonBuilder
         _faker.RuleFor(x => x.FilmGenres, f => [.. f.Make(2, () => f.PickRandom<Genres>()).Distinct()]);
     }
 
-    public MovieCreateRequestJsonBuilder WithTitle(string title)
+    public MovieRequestJsonBuilder WithTitle(string title)
     {
         _faker.RuleFor(x => x.Title, title);
         return this;
     }
 
-    public MovieCreateRequestJsonBuilder WithSinopse(string sinopse)
+    public MovieRequestJsonBuilder WithSinopse(string sinopse)
     {
         _faker.RuleFor(x => x.Sinopse, sinopse);
         return this;
     }
 
-    public MovieCreateRequestJson Build() => _faker.Generate();
+    public MovieRequestJsonBuilder WithClassInd(ClassInd classInd)
+    {
+        _faker.RuleFor(x => x.ClassInd, classInd);
+        return this;
+    }
+
+    public MovieRequestJsonBuilder WithFilmGenres(List<Genres> genres)
+    {
+        _faker.RuleFor(x => x.FilmGenres, genres);
+        return this;
+    }
+
+    public MovieRequestJson Build() => _faker.Generate();
 }

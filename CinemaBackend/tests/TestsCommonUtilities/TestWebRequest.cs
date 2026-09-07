@@ -37,6 +37,13 @@ internal class TestWebRequest<TEntryPoint> where TEntryPoint : class
         return await _httpClient.PostAsync(requestUri, multipartRequest);
     }
 
+    public async Task<HttpResponseMessage> Put(string requestUri, object request, string? token = null)
+    {
+        AddAccessToken(token);
+
+        return await _httpClient.PutAsJsonAsync(requestUri, request);
+    }
+
     private void AddAccessToken(string? token)
     {
         if (token.IsNotEmpty())

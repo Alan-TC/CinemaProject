@@ -4,9 +4,9 @@ using CinemaBackend.Domain.Enums;
 
 namespace CinemaBackend.Admin.Application.Mappings;
 
-internal static class MovieCreateRequestJsonExtensions
+internal static class MovieRequestJsonExtensions
 {
-    internal static Movie MapToMovie(this MovieCreateRequestJson request)
+    internal static Movie MapToMovie(this MovieRequestJson request)
     {
         return new Movie
         {

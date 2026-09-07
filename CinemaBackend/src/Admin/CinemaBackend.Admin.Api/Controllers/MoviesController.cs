@@ -1,5 +1,6 @@
 using CinemaBackend.Admin.Api.Requests;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
@@ -15,6 +16,7 @@ public class MoviesController : ControllerBase
 {
     [HttpPost("create")]
     [Consumes("multipart/form-data")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create(
         [FromServices] ICreateMovieUseCase useCase,
@@ -26,7 +28,23 @@ public class MoviesController : ControllerBase
         return Created();
     }
 
-    [HttpPost("{id:guid}/update/poster-image")]
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateMovie(
+        [FromServices] IUpdateMovieDetailsUseCase useCase,
+        [FromRoute] Guid id,
+        [FromBody] MovieRequestJson request)
+    {
+        await useCase.Execute(id, request);
+
+        return NoContent();
+    }
+
+    [HttpPut("{id:guid}/poster-image")]
+    [Consumes("multipart/form-data")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdatePoster(
@@ -45,7 +63,9 @@ public class MoviesController : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("{id:guid}/update/featured-banner-image")]
+    [HttpPut("{id:guid}/featured-banner-image")]
+    [Consumes("multipart/form-data")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateFeaturedBanner(
@@ -64,8 +84,9 @@ public class MoviesController : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("{id:guid}/update/standard-banner-image")]
+    [HttpPut("{id:guid}/standard-banner-image")]
     [Consumes("multipart/form-data")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateStandardBanner(

@@ -1,12 +1,13 @@
 using Bogus;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Communication.Enums;
 
 namespace TestsCommonUtilities.Requests;
 
 public class CreateMovieUseCaseRequestBuilder
 {
     private readonly Faker<CreateMovieUseCaseRequest> _faker = new();
-    private readonly MovieCreateRequestJsonBuilder _movieRequestJsonBuilder = new();
+    private readonly MovieRequestJsonBuilder _movieRequestJsonBuilder = new();
 
     public CreateMovieUseCaseRequestBuilder WithTitle(string title)
     {
@@ -17,6 +18,18 @@ public class CreateMovieUseCaseRequestBuilder
     public CreateMovieUseCaseRequestBuilder WithSinopse(string sinopse)
     {
         _movieRequestJsonBuilder.WithSinopse(sinopse);
+        return this;
+    }
+
+    public CreateMovieUseCaseRequestBuilder WithFilmGenres(List<Genres> genres)
+    {
+        _movieRequestJsonBuilder.WithFilmGenres(genres);
+        return this;
+    }
+
+    public CreateMovieUseCaseRequestBuilder WithClassInd(ClassInd classInd)
+    {
+        _movieRequestJsonBuilder.WithClassInd(classInd);
         return this;
     }
 
