@@ -61,6 +61,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resource not found..
+        /// </summary>
+        public static string RESOURCE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("RESOURCE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown error..
         /// </summary>
         public static string UNKNOWN_ERROR {
@@ -142,7 +151,7 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Movie ClassInd is invelid..
+        ///   Looks up a localized string similar to Movie ClassInd is invalid..
         /// </summary>
         public static string VALIDATION_MOVIE_CLASS_IND_INVALID {
             get {

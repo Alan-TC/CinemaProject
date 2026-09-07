@@ -1,6 +1,5 @@
 using Bogus;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
-using TestsCommonUtilities.Files;
 
 namespace TestsCommonUtilities.Requests;
 
@@ -23,19 +22,19 @@ public class CreateMovieUseCaseRequestBuilder
 
     public CreateMovieUseCaseRequestBuilder WithPoster(string fileType)
     {
-        _faker.RuleFor(x => x.Poster, GetStream(fileType));
+        _faker.RuleFor(x => x.Poster, FileType.GetStream(fileType));
         return this;
     }
 
     public CreateMovieUseCaseRequestBuilder WithFeaturedBanner(string fileType)
     {
-        _faker.RuleFor(x => x.FeaturedBanner, GetStream(fileType));
+        _faker.RuleFor(x => x.FeaturedBanner, FileType.GetStream(fileType));
         return this;
     }
 
     public CreateMovieUseCaseRequestBuilder WithStandardBanner(string fileType)
     {
-        _faker.RuleFor(x => x.StandardBanner, GetStream(fileType));
+        _faker.RuleFor(x => x.StandardBanner, FileType.GetStream(fileType));
         return this;
     }
 
@@ -47,24 +46,4 @@ public class CreateMovieUseCaseRequestBuilder
 
         return _faker.Generate();
     }
-
-    private static Stream? GetStream(string fileType)
-    {
-        return fileType switch
-        {
-            FileType.PNG => FileFactory.GetPNG(),
-            FileType.JPEG => FileFactory.GetJPEG(),
-            FileType.BMP => FileFactory.GetBMP(),
-            FileType.TXT => FileFactory.GetTXT(),
-            _ => null
-        };
-    }
-}
-
-public static class FileType
-{
-    public const string PNG = "png";
-    public const string JPEG = "jpeg";
-    public const string BMP = "bmp";
-    public const string TXT = "txt";
 }

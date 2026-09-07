@@ -103,6 +103,7 @@ public class CreateMovieUseCaseRequestValidatorTests(ITestOutputHelper output)
             var result = validator.Validate(request);
 
             result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
             result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_MOVIE_TITLE_REQUIRED));
         });
     }
@@ -128,6 +129,7 @@ public class CreateMovieUseCaseRequestValidatorTests(ITestOutputHelper output)
             var result = validator.Validate(request);
 
             result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
             result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_MOVIE_SINOPSE_REQUIRED));
         });
     }
@@ -153,6 +155,7 @@ public class CreateMovieUseCaseRequestValidatorTests(ITestOutputHelper output)
             var result = validator.Validate(request);
 
             result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
             result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_INVALID_IMAGE));
         });
     }
@@ -178,6 +181,7 @@ public class CreateMovieUseCaseRequestValidatorTests(ITestOutputHelper output)
             var result = validator.Validate(request);
 
             result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
             result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_INVALID_IMAGE));
         });
     }

@@ -13,24 +13,21 @@ public class MovieImageStorage(IHostInfoProvider hostProvider) : IMovieImageStor
 
     public MovieImagesUrlDto GetMovieImagesUrl(Guid movieId)
     {
-        var fileExtensionPattern = ".*";
         string? posterUrl = null;
         string? featuredBannerUrl = null;
         string? standardBannerUrl = null;
 
-        string movieImagesRootPath = Path.Combine(_hostProvider.GetStorageRootPath(), MOVIE_STORAGE_PATH, movieId.ToString());
-
-        string? post = MovieImageFind(movieImagesRootPath, MOVIE_POSTER_NAME + fileExtensionPattern);
+        string[]? post = MovieImageFind(movieId, MOVIE_POSTER_NAME);
         if (post != null)
-            posterUrl = GetImageUrl(post, movieId);
+            posterUrl = GetImageUrl(post[0], movieId);
         
-        string? featured = MovieImageFind(movieImagesRootPath, MOVIE_FEATURED_BANNER_NAME + fileExtensionPattern);
+        string[]? featured = MovieImageFind(movieId, MOVIE_FEATURED_BANNER_NAME);
         if (featured != null)
-            featuredBannerUrl = GetImageUrl(featured, movieId);
+            featuredBannerUrl = GetImageUrl(featured[0], movieId);
 
-        string? standard = MovieImageFind(movieImagesRootPath, MOVIE_STANDARD_BANNER_NAME + fileExtensionPattern);
+        string[]? standard = MovieImageFind(movieId, MOVIE_STANDARD_BANNER_NAME);
         if (standard != null)
-            standardBannerUrl = GetImageUrl(standard, movieId);
+            standardBannerUrl = GetImageUrl(standard[0], movieId);
 
         return new MovieImagesUrlDto(
             PosterUrl: posterUrl,
@@ -44,13 +41,16 @@ public class MovieImageStorage(IHostInfoProvider hostProvider) : IMovieImageStor
             + MOVIE_STORAGE_PATH + "/" + movieId.ToString() + "/" + Path.GetFileName(imageFullPath);
     }
 
-    private static string? MovieImageFind(string path, string pattern)
+    private string[]? MovieImageFind(Guid movieId, string imageName)
     {
         try
         {
-            string[] paths = Directory.GetFiles(path, pattern);
+            var rootPath = MovieImagesRootPath(movieId);
+            var fileExtensionPattern = ".*";
 
-            return paths.Length > 0 ? paths[0] : null;
+            string[] paths = Directory.GetFiles(rootPath, imageName + fileExtensionPattern);
+
+            return paths.Length > 0 ? paths : null;
         }
         catch (Exception)
         {
@@ -78,9 +78,24 @@ public class MovieImageStorage(IHostInfoProvider hostProvider) : IMovieImageStor
         return movieFullPath;
     }
 
+    private string MovieImagesRootPath(Guid movieId)
+    {
+        return Path.Combine(_hostProvider.GetStorageRootPath(), MOVIE_STORAGE_PATH, movieId.ToString());
+    }
+
     private async Task UploadImage(Guid movieId, string imageName, ImageInfo imageInfo)
     {
         var imageFullPath = CreateImageFullPath(movieId, imageName, imageInfo.ContentType);
+
+        var removeImages = MovieImageFind(movieId, imageName);
+
+        if (removeImages != null)
+        {
+            foreach (var removeImage in removeImages)
+            {
+                File.Delete(removeImage);
+            }
+        }
 
         var file = new FileInfo(imageFullPath);
 

@@ -29,6 +29,7 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IMovieImageStorage, MovieImageStorage>();
         services.AddScoped<IMovieWriteOnlyRepository, MovieRepository>();
+        services.AddScoped<IMovieReadOnlyRepository, MovieRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)

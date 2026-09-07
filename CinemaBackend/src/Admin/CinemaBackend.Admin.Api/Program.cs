@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CinemaBackend.Admin.Api.Exceptions;
 using CinemaBackend.Admin.Api.Extensions;
 using CinemaBackend.Admin.Api.Extensions.WebApplicationExtensions;
@@ -7,12 +9,25 @@ using CinemaBackend.Infrastructure;
 using CinemaBackend.Infrastructure.Security.Tokens;
 using CinemaBackend.Infrastructure.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.FileProviders;
 using Scalar.AspNetCore;
 
+void configureJson(JsonSerializerOptions options)
+{
+    options.Converters.Add(new JsonStringEnumConverter());
+}
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => configureJson(options.JsonSerializerOptions));
+
+// Para o OpenApi pegar as conversões. Ele se baseia na configuração das MinimalAPIs
+builder.Services.Configure<JsonOptions>(options =>
+    configureJson(options.SerializerOptions));
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
