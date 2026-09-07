@@ -1,9 +1,12 @@
 using CinemaBackend.Admin.Api.Requests;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
+using CinemaBackend.Domain.DTOs;
+using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +17,20 @@ namespace CinemaBackend.Admin.Api.Controllers;
 [Authorize]
 public class MoviesController : ControllerBase
 {
-    [HttpPost("create")]
+
+    [HttpGet]
+    [ProducesResponseType(typeof(PaginationReturn<MovieInfoDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Get(
+        [FromServices] IMoviesGetFilteredPagedUseCase useCase,
+        [FromQuery] PaginationQueryRequest query)
+    {
+        var result = await useCase.Execute(query);
+
+        return Ok(result);
+    }
+
+    [HttpPost]
     [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]

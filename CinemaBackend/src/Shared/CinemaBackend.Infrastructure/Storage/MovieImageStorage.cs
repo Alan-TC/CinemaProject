@@ -13,21 +13,16 @@ public class MovieImageStorage(IHostInfoProvider hostProvider) : IMovieImageStor
 
     public MovieImagesUrlDto GetMovieImagesUrl(Guid movieId)
     {
-        string? posterUrl = null;
-        string? featuredBannerUrl = null;
-        string? standardBannerUrl = null;
+        var rootPath = MovieImagesRootPath(movieId);
 
-        string[]? post = MovieImageFind(movieId, MOVIE_POSTER_NAME);
-        if (post != null)
-            posterUrl = GetImageUrl(post[0], movieId);
+        if (!Directory.Exists(rootPath))
+            return new MovieImagesUrlDto(null, null, null);
         
-        string[]? featured = MovieImageFind(movieId, MOVIE_FEATURED_BANNER_NAME);
-        if (featured != null)
-            featuredBannerUrl = GetImageUrl(featured[0], movieId);
+        var files = Directory.EnumerateFiles(rootPath).ToList();
 
-        string[]? standard = MovieImageFind(movieId, MOVIE_STANDARD_BANNER_NAME);
-        if (standard != null)
-            standardBannerUrl = GetImageUrl(standard[0], movieId);
+        string? posterUrl = FindAndBuildUrl(files, MOVIE_POSTER_NAME, movieId);
+        string? featuredBannerUrl = FindAndBuildUrl(files, MOVIE_FEATURED_BANNER_NAME, movieId);
+        string? standardBannerUrl = FindAndBuildUrl(files, MOVIE_STANDARD_BANNER_NAME, movieId);
 
         return new MovieImagesUrlDto(
             PosterUrl: posterUrl,
@@ -35,10 +30,12 @@ public class MovieImageStorage(IHostInfoProvider hostProvider) : IMovieImageStor
             StandardBanner: standardBannerUrl);
     }
 
-    private string GetImageUrl(string imageFullPath, Guid movieId)
+    private string? FindAndBuildUrl(IEnumerable<string> files, string targetName, Guid movieId)
     {
-        return _hostProvider.GetRootUrl() + _hostProvider.GetStorageRequestPath() + "/"
-            + MOVIE_STORAGE_PATH + "/" + movieId.ToString() + "/" + Path.GetFileName(imageFullPath);
+        var file = files.FirstOrDefault(f => Path.GetFileNameWithoutExtension(f).Equals(targetName, StringComparison.OrdinalIgnoreCase));
+        if (file == null) return null;
+
+        return $"{_hostProvider.GetRootUrl()}{_hostProvider.GetStorageRequestPath()}/{MOVIE_STORAGE_PATH}/{movieId}/{Path.GetFileName(file)}";
     }
 
     private string[]? MovieImageFind(Guid movieId, string imageName)
