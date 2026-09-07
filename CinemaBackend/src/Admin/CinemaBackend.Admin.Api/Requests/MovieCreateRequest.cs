@@ -5,7 +5,7 @@ namespace CinemaBackend.Admin.Api.Requests;
 
 public class MovieCreateRequest
 {
-    public MovieCreateRequestJson MovieDetails { get; set; } = default!;
+    public MovieRequestJson MovieDetails { get; set; } = default!;
     public IFormFile? Poster { get; set; }
     public IFormFile? FeaturedBanner { get; set; }
     public IFormFile? StandardBanner { get; set; }

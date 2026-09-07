@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Communication.Enums;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using Shouldly;
 using TestsCommonUtilities;
@@ -131,6 +132,52 @@ public class CreateMovieUseCaseRequestValidatorTests(ITestOutputHelper output)
             result.IsValid.ShouldBeFalse();
             result.Errors.Count.ShouldBe(1);
             result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_MOVIE_SINOPSE_REQUIRED));
+        });
+    }
+
+    [Fact]
+    public async Task Validate_ShouldHaveAnError_WhenClasIndIsInvalid()
+    {
+        var context = new TestContext();
+
+        var request = new CreateMovieUseCaseRequestBuilder()
+            .WithClassInd((ClassInd)1000)
+            .Build();
+
+        context.Add(request);
+
+        var validator = new CreateMovieUseCaseRequestValidator();
+
+        _testLogger.ExecuteWithContext(context, () =>
+        {
+            var result = validator.Validate(request);
+
+            result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_MOVIE_CLASS_IND_INVALID));
+        });
+    }
+
+    [Fact]
+    public async Task Validate_ShouldHaveAnError_WhenGenreIsInvalid()
+    {
+        var context = new TestContext();
+
+        var request = new CreateMovieUseCaseRequestBuilder()
+            .WithFilmGenres([(Genres)1000])
+            .Build();
+
+        context.Add(request);
+
+        var validator = new CreateMovieUseCaseRequestValidator();
+
+        _testLogger.ExecuteWithContext(context, () =>
+        {
+            var result = validator.Validate(request);
+
+            result.IsValid.ShouldBeFalse();
+            result.Errors.Count.ShouldBe(1);
+            result.Errors.ShouldContain(error => error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_MOVIE_GENRES_INVALID));
         });
     }
 

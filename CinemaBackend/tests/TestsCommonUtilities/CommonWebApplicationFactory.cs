@@ -1,3 +1,4 @@
+using CinemaBackend.Domain.Entities;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
@@ -15,6 +16,8 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
     WebApplicationFactory<TEntryPoint>, IAsyncLifetime where TEntryPoint : class
 {
     public AdminUserIdentityManager AdminUser { get; private set; } = default!;
+    public Movie Movie { get; private set; } = default!;
+    public Movie Movie2 { get; private set; } = default!;
 
     private readonly PostgreSqlContainer _postgreSqlContainer;
     private readonly string _storagePath;
@@ -42,6 +45,18 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
         var adminRefresTokenGenerator = scope.ServiceProvider.GetRequiredService<IAdminRefreshTokenGenerator>();
 
         AdminUser = await CreateAdminUser(dbContext, passwordHasher, adminAccessTokenGenerator, adminRefresTokenGenerator);
+        Movie = await CreateMovie(dbContext);
+        Movie2 = await CreateMovie(dbContext);
+    }
+
+    private static async Task<Movie> CreateMovie(CinemaDbContext dbContext)
+    {
+        var movie = new MovieBuilder().Build();
+
+        await dbContext.Movies.AddAsync(movie);
+        await dbContext.SaveChangesAsync();
+
+        return movie;
     }
 
     private static async Task<AdminUserIdentityManager> CreateAdminUser(CinemaDbContext dbContext, 
