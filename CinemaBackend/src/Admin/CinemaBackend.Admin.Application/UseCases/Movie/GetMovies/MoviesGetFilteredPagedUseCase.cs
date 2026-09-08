@@ -1,10 +1,11 @@
+using CinemaBackend.Admin.Application.Mappings;
 using CinemaBackend.Communication.Requests;
+using CinemaBackend.Communication.Responses;
 using CinemaBackend.Domain.DTOs;
 using CinemaBackend.Domain.Enums;
 using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Storage.Movie;
 using CinemaBackend.SharedKernel.Pagination;
-using FluentValidation.Validators;
 
 namespace CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 
@@ -16,7 +17,7 @@ public class MoviesGetFilteredPagedUseCase(
     private readonly IMovieReadOnlyRepository _movieReadOnlyRepository = movieReadOnlyRepository;
     private readonly IMovieImageStorage _movieImageStorage = movieImageStorage;
 
-    public async Task<PaginationReturn<MovieInfoDto>> Execute(PaginationQueryRequest query, MovieFilterRequestJson? filter)
+    public async Task<PaginationReturn<MovieResponseJson>> Execute(PaginationQueryRequest query, MovieFilterRequestJson? filter)
     {
         var pageQuery = new PaginationQuery(Math.Max(1, query.CurrentPage), query.PageSize);
 
@@ -37,7 +38,8 @@ public class MoviesGetFilteredPagedUseCase(
             movie.ImagesUrl = _movieImageStorage.GetMovieImagesUrl(movie.Id);
         }
 
-        return totalList;
-    }
+        var responseItems = totalList.Items.Select(x => x.MapToMovieResponseJson()).ToList();
 
+        return new PaginationReturn<MovieResponseJson>(responseItems, totalList.CurrentPage, totalList.PageSize, totalList.TotalCount);
+    }
 }

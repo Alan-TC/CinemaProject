@@ -21,6 +21,13 @@ internal class TestWebRequest<TEntryPoint> where TEntryPoint : class
         DbContext = scope.ServiceProvider.GetRequiredService<CinemaDbContext>();
     }
 
+    public async Task<HttpResponseMessage> Get(string requestUri, string? token = null)
+    {
+        AddAccessToken(token);
+
+        return await _httpClient.GetAsync(requestUri);
+    }
+
     public async Task<HttpResponseMessage> Post(string requestUri, object request, string? token = null)
     {
         AddAccessToken(token);
