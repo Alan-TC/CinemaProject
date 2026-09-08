@@ -1,5 +1,6 @@
 using CinemaBackend.Admin.Api.Requests;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Admin.Application.UseCases.Movie.GetById;
 using CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
@@ -19,7 +20,7 @@ public class MoviesController : ControllerBase
 {
 
     [HttpPost("filter")]
-    [ProducesResponseType(typeof(PaginationReturn<MovieInfoDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PaginationReturn<MovieResponseJson>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(
         [FromServices] IMoviesGetFilteredPagedUseCase useCase,
@@ -27,6 +28,18 @@ public class MoviesController : ControllerBase
         [FromBody] MovieFilterRequestJson? filter)
     {
         var result = await useCase.Execute(query, filter);
+
+        return Ok(result);
+    }
+
+    [HttpGet("{movieId:guid}")]
+    [ProducesResponseType(typeof(MovieInfoDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Get(
+        [FromServices] IMovieGetByIdUseCase useCase,
+        [FromRoute] Guid movieId)
+    {
+        var result = await useCase.Execute(movieId);
 
         return Ok(result);
     }
