@@ -192,4 +192,31 @@
   <data name="RESOURCE_NOT_FOUND" xml:space="preserve">
     <value>Resource not found.</value>
   </data>
+  <data name="VALIDATION_THEATER_LAYOUT_TAG_REQUIRED" xml:space="preserve">
+    <value>Tag is required.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_LAYOUT_REQUIRED" xml:space="preserve">
+    <value>Layout is required.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_WIDTH_MIN_VALUE" xml:space="preserve">
+    <value>Width must be greather than zero.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_HEIGHT_MIN_VALUE" xml:space="preserve">
+    <value>Height must be greather than zero.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_GRID_REQUIRED" xml:space="preserve">
+    <value>Grid is required.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_INVALID_CELL_TYPE" xml:space="preserve">
+    <value>Invalid cell type.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE" xml:space="preserve">
+    <value>Grid cell y position must be greater than zero and less than layout heigth.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE" xml:space="preserve">
+    <value>Grid cell x position must be greater than zero and less than layout heigth.</value>
+  </data>
+  <data name="VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS" xml:space="preserve">
+    <value>This tag already exists.</value>
+  </data>
 </root>
