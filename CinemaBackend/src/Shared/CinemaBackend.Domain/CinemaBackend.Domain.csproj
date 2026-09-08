@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaBackend.SharedKernel\CinemaBackend.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

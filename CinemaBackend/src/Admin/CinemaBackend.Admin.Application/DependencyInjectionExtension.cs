@@ -2,6 +2,7 @@ using CinemaBackend.Admin.Application.UseCases.AdminUser.Register;
 using CinemaBackend.Admin.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using CinemaBackend.Admin.Application.UseCases.Authentication.RefreshToken;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
+using CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,5 +26,6 @@ public static class DependencyInjectionExtensions
         services.AddScoped<ICreateMovieUseCase, CreateMovieUseCase>();
         services.AddScoped<IMovieUpdateImagesUseCase, MovieUpdateImagesUseCase>();
         services.AddScoped<IUpdateMovieDetailsUseCase, UpdateMovieDetailsUseCase>();
+        services.AddScoped<IMoviesGetFilteredPagedUseCase, MoviesGetFilteredPagedUseCase>();
     }
 }

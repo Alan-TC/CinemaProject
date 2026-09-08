@@ -14,7 +14,7 @@ namespace Admin.WebApi.Tests.Movie.Create;
 
 public class CreateMovie(ITestOutputHelper output, AdminWebApplicationFactory factory) : IClassFixture<AdminWebApplicationFactory>
 {
-    private const string REQUEST_URI = "/movies/create";
+    private const string REQUEST_URI = "/movies";
     private readonly TestLoggingClass _testLogger = new(output);
 
     private readonly TestWebRequest<Program> _testRequest = new(factory);
