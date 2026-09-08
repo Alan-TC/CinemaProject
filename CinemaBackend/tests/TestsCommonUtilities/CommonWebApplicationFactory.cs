@@ -18,6 +18,7 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
     public AdminUserIdentityManager AdminUser { get; private set; } = default!;
     public Movie Movie { get; private set; } = default!;
     public Movie Movie2 { get; private set; } = default!;
+    public TheaterLayout TheaterLayout { get; private set; } = default!;
 
     private readonly PostgreSqlContainer _postgreSqlContainer;
     private readonly string _storagePath;
@@ -47,6 +48,17 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
         AdminUser = await CreateAdminUser(dbContext, passwordHasher, adminAccessTokenGenerator, adminRefresTokenGenerator);
         Movie = await CreateMovie(dbContext);
         Movie2 = await CreateMovie(dbContext);
+        TheaterLayout = await CreateTheaterLayout(dbContext);
+    }
+
+    private static async Task<TheaterLayout> CreateTheaterLayout(CinemaDbContext dbContext)
+    {
+        var theaterLayout = new TheaterLayoutBuilder().Build();
+
+        await dbContext.TheaterLayouts.AddAsync(theaterLayout);
+        await dbContext.SaveChangesAsync();
+
+        return theaterLayout;
     }
 
     private static async Task<Movie> CreateMovie(CinemaDbContext dbContext)

@@ -18,6 +18,7 @@ public sealed class Version_000003 : ForwardOnlyMigration
             .WithColumn("id").AsGuid().PrimaryKey().NotNullable()
             .WithColumn("width").AsInt32().NotNullable()
             .WithColumn("height").AsInt32().NotNullable()
+            .WithColumn("grid").AsCustom("jsonb").NotNullable()
             .WithColumn("theater_layout_id").AsGuid().NotNullable()
                 .ForeignKey("FK_layout_grid_theater_layouts", "theater_layouts", "id")
                 .OnDelete(Rule.Cascade);
