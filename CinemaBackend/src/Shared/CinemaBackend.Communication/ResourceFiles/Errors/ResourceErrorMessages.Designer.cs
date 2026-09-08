@@ -284,5 +284,86 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
                 return ResourceManager.GetString("VALIDATION_RESOURCE_ACCESS_DENIED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid cell x position must be greater than zero and less than layout heigth..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid cell y position must be greater than zero and less than layout heigth..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid is required..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_GRID_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_GRID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height must be greather than zero..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_HEIGHT_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_HEIGHT_MIN_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid cell type..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_INVALID_CELL_TYPE {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_INVALID_CELL_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout is required..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_LAYOUT_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_LAYOUT_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This tag already exists..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag is required..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_TAG_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_TAG_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width must be greather than zero..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_WIDTH_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_WIDTH_MIN_VALUE", resourceCulture);
+            }
+        }
     }
 }
