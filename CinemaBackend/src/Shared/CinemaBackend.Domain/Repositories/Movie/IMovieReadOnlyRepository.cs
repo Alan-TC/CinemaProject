@@ -7,5 +7,5 @@ public interface IMovieReadOnlyRepository
 {
     Task<Entities.Movie?> GetMovieById(Guid id);
 
-    Task<PaginationReturn<MovieInfoDto>> GetFilteredPagedMovies(PaginationQuery query);
+    Task<PaginationReturn<MovieInfoDto>> GetFilteredPagedMovies(PaginationQuery query, MovieFilterDto filter);
 }

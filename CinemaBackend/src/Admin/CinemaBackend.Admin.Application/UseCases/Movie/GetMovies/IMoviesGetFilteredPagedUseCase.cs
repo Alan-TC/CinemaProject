@@ -6,5 +6,5 @@ namespace CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 
 public interface IMoviesGetFilteredPagedUseCase
 {
-    Task<PaginationReturn<MovieInfoDto>> Execute(PaginationQueryRequest query);
+    Task<PaginationReturn<MovieInfoDto>> Execute(PaginationQueryRequest query, MovieFilterRequestJson? filter);
 }

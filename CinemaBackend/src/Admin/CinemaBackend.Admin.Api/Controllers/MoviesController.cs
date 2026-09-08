@@ -18,14 +18,15 @@ namespace CinemaBackend.Admin.Api.Controllers;
 public class MoviesController : ControllerBase
 {
 
-    [HttpGet]
+    [HttpPost("filter")]
     [ProducesResponseType(typeof(PaginationReturn<MovieInfoDto>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(
         [FromServices] IMoviesGetFilteredPagedUseCase useCase,
-        [FromQuery] PaginationQueryRequest query)
+        [FromQuery] PaginationQueryRequest query,
+        [FromBody] MovieFilterRequestJson? filter)
     {
-        var result = await useCase.Execute(query);
+        var result = await useCase.Execute(query, filter);
 
         return Ok(result);
     }

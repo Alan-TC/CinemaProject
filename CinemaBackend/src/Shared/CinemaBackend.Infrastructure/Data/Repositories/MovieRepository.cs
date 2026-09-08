@@ -12,11 +12,37 @@ internal class MovieRepository(CinemaDbContext dbContext) : IMovieWriteOnlyRepos
 
     public async Task Add(Movie movie) => await _dbContext.Movies.AddAsync(movie);
 
-    public async Task<PaginationReturn<MovieInfoDto>> GetFilteredPagedMovies(PaginationQuery query)
+    public async Task<PaginationReturn<MovieInfoDto>> GetFilteredPagedMovies(PaginationQuery query, MovieFilterDto filter)
     {
-        var resultList = await _dbContext.Movies
+        var filteredQuery = _dbContext.Movies
             .AsNoTracking()
-            .OrderByDescending(m => m.CreatedAt)
+            .Where(m => m.DeactivatedAt == null);
+        
+        if (filter.ClassInd != null)
+            filteredQuery = filteredQuery.Where(m => m.ClassInd == filter.ClassInd);
+
+        if (filter.ReleaseDate != null)
+            filteredQuery = filteredQuery
+                .Where(m => m.ReleaseDate >= filter.ReleaseDate.From && 
+                    m.ReleaseDate <= filter.ReleaseDate.To);
+
+        if (filter.SearchTerm != null)
+        {
+            var searchTerms = filter.SearchTerm.ToLower().Split(", ").Select(s => s.Trim());
+
+            foreach (var searchTerm in searchTerms)
+            {
+                filteredQuery = filteredQuery
+                    .Where(m => 
+                        m.Title.ToLower().Contains(searchTerm) ||
+                        m.Sinopse.ToLower().Contains(searchTerm));
+            }
+        }
+
+        if (filter.Genres.Any())
+            filteredQuery = filteredQuery.Where(m => m.FilmGenres.Any(g => filter.Genres.Contains(g.Genre)));
+        
+        var resultList = await filteredQuery.OrderByDescending(m => m.CreatedAt)
             .Select(m => new MovieInfoDto
             {
                 Id  = m.Id,
@@ -30,8 +56,8 @@ internal class MovieRepository(CinemaDbContext dbContext) : IMovieWriteOnlyRepos
             .Skip((query.CurrentPage - 1) * query.PageSize)
             .Take(query.PageSize)
             .ToListAsync();
-        
-        var totalCount = await _dbContext.Movies.CountAsync();
+
+        var totalCount = await filteredQuery.CountAsync();
         
         return new(resultList, query.CurrentPage, query.PageSize, totalCount);
     }
