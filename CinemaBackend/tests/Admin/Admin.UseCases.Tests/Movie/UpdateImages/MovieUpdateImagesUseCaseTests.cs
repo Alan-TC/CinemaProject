@@ -1,8 +1,8 @@
-﻿using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
+﻿using System.Net;
+using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using Shouldly;
-using System.Net;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Entities;
 using TestsCommonUtilities.Repositories.Movie;

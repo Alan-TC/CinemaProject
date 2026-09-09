@@ -15,7 +15,7 @@ public class TheaterLayoutRequestJsonBuilder
     private int hStart = 1;
     private int hEnd = 10;
 
-    private GridCell? gridCell = null;
+    private List<GridCell>? GridCells = null;
 
     public TheaterLayoutRequestJsonBuilder()
     {
@@ -45,14 +45,9 @@ public class TheaterLayoutRequestJsonBuilder
         return this;
     }
 
-    public TheaterLayoutRequestJsonBuilder WithGridCell(int x, int y, CellType type = CellType.Seat)
+    public TheaterLayoutRequestJsonBuilder WithGridCell(List<GridCell> gridCells)
     {
-        gridCell = new GridCell
-        {
-            PosX = x,
-            PosY = y,
-            Type = type
-        };
+        GridCells = gridCells;
 
         return this;
     }
@@ -65,7 +60,7 @@ public class TheaterLayoutRequestJsonBuilder
 
         var grid = new List<GridCell>();
 
-        if (gridCell is null)
+        if (GridCells is null)
         {
             for(int x = 0; x < width; x++)
             {
@@ -77,7 +72,7 @@ public class TheaterLayoutRequestJsonBuilder
                 
         }
         else {
-            grid.Add(gridCell);
+            grid = GridCells;
         }
 
         return new LayoutGridJson

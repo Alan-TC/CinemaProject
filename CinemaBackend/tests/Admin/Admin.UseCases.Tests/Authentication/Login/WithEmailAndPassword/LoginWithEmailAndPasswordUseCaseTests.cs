@@ -10,7 +10,7 @@ using TestsCommonUtilities.Requests;
 using TestsCommonUtilities.Security;
 using Xunit.Abstractions;
 
-namespace UseCases.Tests.Authentication.Login.WithEmailAndPassword;
+namespace Admin.UseCases.Tests.Authentication.Login.WithEmailAndPassword;
 
 public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
 {
