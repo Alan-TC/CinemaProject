@@ -3,8 +3,6 @@ using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Domain.Enums;
-using CinemaBackend.Domain.Repositories.Movie;
-using Org.BouncyCastle.Asn1.X9;
 using Shouldly;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Entities;

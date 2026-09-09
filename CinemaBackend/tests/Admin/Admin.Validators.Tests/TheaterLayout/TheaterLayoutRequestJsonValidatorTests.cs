@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout;
+using CinemaBackend.Communication.Enums;
 using CinemaBackend.Communication.ResourceFiles.Errors;
+using CinemaBackend.Communication.SharedRequestResponse;
 using Shouldly;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Requests;
@@ -112,10 +114,16 @@ public class TheaterLayoutRequestJsonValidatorTests(ITestOutputHelper output)
     {
         var context = new TestContext();
 
+        var gridCells = new List<GridCell> { new() {
+           PosX =  pos,
+           PosY = 8,
+           Type = CellType.Seat
+        }};
+
         var request = new TheaterLayoutRequestJsonBuilder()
             .WithWidth(1, 10)
             .WithHeight(1, 10)
-            .WithGridCell(pos, 8)
+            .WithGridCell(gridCells)
             .Build();
         context.Add(request);
 
@@ -140,10 +148,53 @@ public class TheaterLayoutRequestJsonValidatorTests(ITestOutputHelper output)
     {
         var context = new TestContext();
 
+        var gridCells = new List<GridCell> { new() {
+           PosX =  8,
+           PosY = pos,
+           Type = CellType.Seat
+        }};
+
         var request = new TheaterLayoutRequestJsonBuilder()
             .WithWidth(1, 10)
             .WithHeight(1, 10)
-            .WithGridCell(8, pos)
+            .WithGridCell(gridCells)
+            .Build();
+        context.Add(request);
+
+        var validator = new TheaterLayoutRequestJsonValidator();
+
+        _testLogger.ExecuteWithContext(context, () =>
+        {
+            var result = validator.Validate(request);
+
+            result.IsValid.ShouldBeFalse();
+            result.Errors.ShouldContain(error => 
+                error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE));
+        });
+    }
+
+    [Fact]
+    public void Validate_ShouldHaveAnError_WhenGridCellNotUnique()
+    {
+        var context = new TestContext();
+
+        var gridCells = new List<GridCell> { 
+            new() {
+                PosX =  8,
+                PosY = 8,
+                Type = CellType.Seat
+            },
+            new() {
+                PosX =  8,
+                PosY = 8,
+                Type = CellType.Seat
+            }
+        };
+
+        var request = new TheaterLayoutRequestJsonBuilder()
+            .WithWidth(1, 10)
+            .WithHeight(1, 10)
+            .WithGridCell(gridCells)
             .Build();
         context.Add(request);
 

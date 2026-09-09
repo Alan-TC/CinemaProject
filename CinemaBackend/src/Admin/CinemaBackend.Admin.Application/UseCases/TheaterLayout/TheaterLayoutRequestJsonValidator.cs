@@ -39,5 +39,9 @@ public class TheaterLayoutRequestJsonValidator : AbstractValidator<TheaterLayout
         RuleForEach(x => x.Layout.Grid)
             .Must((x, v) => v.PosX >= 0 && v.PosX < x.Layout.Width)
             .WithMessage(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE);
+        
+        RuleFor(x => x.Layout.Grid)
+            .Must(x => x.DistinctBy(gc => (gc.PosX, gc.PosY)).Count() == x.Count)
+            .WithMessage(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION);
     }
 }

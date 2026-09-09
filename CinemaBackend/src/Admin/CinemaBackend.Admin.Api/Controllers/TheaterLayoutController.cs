@@ -1,6 +1,8 @@
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.Create;
+using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetTheaterLayouts;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
+using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,5 +25,18 @@ public class TheaterLayoutController : ControllerBase
         var result = await useCase.Execute(request);
 
         return Created("", result);
+    }
+
+    [HttpPost("filter")]
+    [ProducesResponseType(typeof(PaginationReturn<TheaterLayoutResponseJson>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Create(
+        [FromServices] IGetFilteredTheaterLayoutsUseCase useCase,
+        [FromQuery] PaginationQueryRequest query,
+        [FromBody] TheaterLayoutFilterRequestJson? filter
+    )
+    {
+        var result = await useCase.Execute(query, filter);
+
+        return Ok(result);
     }
 }
