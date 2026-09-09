@@ -286,6 +286,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiple cells can&apos;t be at the same position..
+        /// </summary>
+        public static string VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION {
+            get {
+                return ResourceManager.GetString("VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grid cell x position must be greater than zero and less than layout heigth..
         /// </summary>
         public static string VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE {

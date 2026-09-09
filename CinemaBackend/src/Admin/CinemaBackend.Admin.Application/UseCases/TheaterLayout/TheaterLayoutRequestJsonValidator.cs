@@ -42,6 +42,6 @@ public class TheaterLayoutRequestJsonValidator : AbstractValidator<TheaterLayout
         
         RuleFor(x => x.Layout.Grid)
             .Must(x => x.DistinctBy(gc => (gc.PosX, gc.PosY)).Count() == x.Count)
-            .WithMessage("Diferente");
+            .WithMessage(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION);
     }
 }

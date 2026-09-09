@@ -219,4 +219,7 @@
   <data name="VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS" xml:space="preserve">
     <value>This tag already exists.</value>
   </data>
+  <data name="VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION" xml:space="preserve">
+    <value>Multiple cells can't be at the same position.</value>
+  </data>
 </root>
