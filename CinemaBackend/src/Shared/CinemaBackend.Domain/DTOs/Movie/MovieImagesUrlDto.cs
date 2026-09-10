@@ -1,4 +1,4 @@
-namespace CinemaBackend.Domain.DTOs;
+namespace CinemaBackend.Domain.DTOs.Movie;
 
 public record MovieImagesUrlDto(
     string? PosterUrl,

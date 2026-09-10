@@ -1,5 +1,5 @@
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.Movie;
 using CinemaBackend.SharedKernel.Extensions;
 
 namespace CinemaBackend.Admin.Application.Mappings;

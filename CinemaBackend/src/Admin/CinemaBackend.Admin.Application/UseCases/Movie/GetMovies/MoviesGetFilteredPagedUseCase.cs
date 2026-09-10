@@ -1,7 +1,8 @@
 using CinemaBackend.Admin.Application.Mappings;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.Movie;
+using CinemaBackend.Domain.DTOs.Shared;
 using CinemaBackend.Domain.Enums;
 using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Storage.Movie;

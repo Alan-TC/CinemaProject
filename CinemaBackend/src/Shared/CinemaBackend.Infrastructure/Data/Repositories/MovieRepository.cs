@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.Movie;
 using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.SharedKernel.Pagination;
