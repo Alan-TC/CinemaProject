@@ -1,6 +1,6 @@
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Enums;
 using CinemaBackend.Domain.Repositories.Movie;
 

@@ -1,6 +1,6 @@
 using CinemaBackend.Domain.Enums;
 
-namespace CinemaBackend.Domain.Entities;
+namespace CinemaBackend.Domain.Entities.MovieEntities;
 
 public class Movie : EntityBase
 {

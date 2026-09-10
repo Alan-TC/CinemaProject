@@ -81,7 +81,7 @@ public class MovieUpdateImagesUseCaseTests(ITestOutputHelper output)
         });
     }
 
-    private static MovieUpdateImagesUseCase CreateUseCase(CinemaBackend.Domain.Entities.Movie? movie = null)
+    private static MovieUpdateImagesUseCase CreateUseCase(CinemaBackend.Domain.Entities.MovieEntities.Movie? movie = null)
     {
         var movieReadOnlyRepositoryBuilder = new IMovieReadOnlyRepositoryBuilder();
         var movieImageStorage = new IMovieImageStorageBuilder()

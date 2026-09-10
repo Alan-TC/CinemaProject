@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.MovieEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,7 +17,7 @@ public class FilmGenreMapping : IEntityTypeConfiguration<FilmGenre>
         builder.Property(x => x.Genre)
             .HasConversion<string>();
 
-        builder.HasOne<Domain.Entities.Movie>()
+        builder.HasOne<Domain.Entities.MovieEntities.Movie>()
             .WithMany(m => m.FilmGenres)
             .HasForeignKey(x => x.MovieId)
             .OnDelete(DeleteBehavior.Cascade);

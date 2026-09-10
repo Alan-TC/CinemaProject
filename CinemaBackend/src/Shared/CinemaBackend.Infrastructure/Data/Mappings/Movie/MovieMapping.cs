@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CinemaBackend.Infrastructure.Data.Mappings.Movie;
 
-public class MovieMapping : IEntityTypeConfiguration<Domain.Entities.Movie>
+public class MovieMapping : IEntityTypeConfiguration<Domain.Entities.MovieEntities.Movie>
 {
-    public void Configure(EntityTypeBuilder<Domain.Entities.Movie> builder)
+    public void Configure(EntityTypeBuilder<Domain.Entities.MovieEntities.Movie> builder)
     {
         builder.ToTable("movies");
 

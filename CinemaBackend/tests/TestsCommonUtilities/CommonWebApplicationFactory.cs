@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;

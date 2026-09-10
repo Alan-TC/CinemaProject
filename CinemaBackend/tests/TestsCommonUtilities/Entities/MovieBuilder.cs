@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Enums;
 
 namespace TestsCommonUtilities.Entities;

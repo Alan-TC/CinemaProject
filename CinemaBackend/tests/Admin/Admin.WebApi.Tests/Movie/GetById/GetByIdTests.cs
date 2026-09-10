@@ -16,7 +16,7 @@ public class GetByIdTests(ITestOutputHelper output, AdminWebApplicationFactory f
 
     private readonly TestWebRequest<Program> _testRequest = new(factory);
     private readonly AdminUserIdentityManager _admin = factory.AdminUser;
-    private readonly CinemaBackend.Domain.Entities.Movie _movie = factory.Movie;
+    private readonly CinemaBackend.Domain.Entities.MovieEntities.Movie _movie = factory.Movie;
 
     [Fact]
     public async Task Success()
