@@ -1,5 +1,5 @@
 using CinemaBackend.Communication.Responses;
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.Movie;
 
 namespace CinemaBackend.Admin.Application.Mappings;
 

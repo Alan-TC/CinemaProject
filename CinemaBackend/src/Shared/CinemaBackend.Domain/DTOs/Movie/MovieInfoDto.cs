@@ -1,6 +1,6 @@
 using CinemaBackend.Domain.Enums;
 
-namespace CinemaBackend.Domain.DTOs;
+namespace CinemaBackend.Domain.DTOs.Movie;
 
 public class MovieInfoDto
 {

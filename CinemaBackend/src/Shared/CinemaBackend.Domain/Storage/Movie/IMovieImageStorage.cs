@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.Movie;
 
 namespace CinemaBackend.Domain.Storage.Movie;
 

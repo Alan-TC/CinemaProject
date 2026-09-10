@@ -1,6 +1,7 @@
+using CinemaBackend.Domain.DTOs.Shared;
 using CinemaBackend.Domain.Enums;
 
-namespace CinemaBackend.Domain.DTOs;
+namespace CinemaBackend.Domain.DTOs.Movie;
 
 public record MovieFilterDto
 {

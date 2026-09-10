@@ -1,5 +1,5 @@
-using CinemaBackend.Domain.DTOs;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.DTOs.TheaterLayout;
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using CinemaBackend.Domain.Repositories.TheaterLayout;
 using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.EntityFrameworkCore;

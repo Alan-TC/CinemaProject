@@ -1,6 +1,4 @@
-using CinemaBackend.Domain.Enums;
-
-namespace CinemaBackend.Domain.DTOs;
+namespace CinemaBackend.Domain.DTOs.TheaterLayout;
 
 public record TheaterLayoutFilterDto
 {

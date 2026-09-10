@@ -90,7 +90,7 @@ public class LoginWithEmailAndPasswordUseCaseTests(ITestOutputHelper output)
         });
     }
 
-    private static LoginWithEmailAndPasswordUseCase CreateUseCase(CinemaBackend.Domain.Entities.AdminUser? adminUser = null, string? password = null)
+    private static LoginWithEmailAndPasswordUseCase CreateUseCase(CinemaBackend.Domain.Entities.AdminUserEntities.AdminUser? adminUser = null, string? password = null)
     {
         var adminUserReadOnlyRepositoryBuilder = new IAdminUserReadOnlyRepositoryBuilder();
         if (adminUser != null)

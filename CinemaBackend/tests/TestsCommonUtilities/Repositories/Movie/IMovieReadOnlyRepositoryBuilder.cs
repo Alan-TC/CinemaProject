@@ -7,7 +7,7 @@ public class IMovieReadOnlyRepositoryBuilder
 {
     private readonly Mock<IMovieReadOnlyRepository> _mock = new();
 
-    public IMovieReadOnlyRepositoryBuilder GetMovieById(CinemaBackend.Domain.Entities.Movie movie)
+    public IMovieReadOnlyRepositoryBuilder GetMovieById(CinemaBackend.Domain.Entities.MovieEntities.Movie movie)
     {
         _mock.Setup(r => r.GetMovieById(movie.Id)).ReturnsAsync(movie);
 

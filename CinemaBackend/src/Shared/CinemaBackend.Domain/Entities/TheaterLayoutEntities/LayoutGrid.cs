@@ -1,6 +1,4 @@
-using CinemaBackend.Domain.Enums;
-
-namespace CinemaBackend.Domain.Entities;
+namespace CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 
 public class LayoutGrid
 {
@@ -10,11 +8,4 @@ public class LayoutGrid
 
     public Guid TheaterLayoutId { get; set; }
     public List<GridCell> Grid { get; set; } = [];
-}
-
-public class GridCell
-{
-    public int PosX { get; set; }
-    public int PosY { get; set; }
-    public CellType Type { get; set; }
 }

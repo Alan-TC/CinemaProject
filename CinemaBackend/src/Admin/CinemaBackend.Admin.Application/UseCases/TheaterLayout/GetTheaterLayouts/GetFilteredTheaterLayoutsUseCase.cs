@@ -1,7 +1,7 @@
 using CinemaBackend.Admin.Application.Mappings;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
-using CinemaBackend.Domain.DTOs;
+using CinemaBackend.Domain.DTOs.TheaterLayout;
 using CinemaBackend.Domain.Repositories.TheaterLayout;
 using CinemaBackend.SharedKernel.Pagination;
 

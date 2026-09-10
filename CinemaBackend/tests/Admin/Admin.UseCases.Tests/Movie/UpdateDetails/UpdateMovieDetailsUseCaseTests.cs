@@ -66,7 +66,7 @@ public class UpdateMovieDetailsUseCaseTests(ITestOutputHelper output)
         });
     }
 
-    private static UpdateMovieDetailsUseCase CreateUseCase(CinemaBackend.Domain.Entities.Movie? movie = null)
+    private static UpdateMovieDetailsUseCase CreateUseCase(CinemaBackend.Domain.Entities.MovieEntities.Movie? movie = null)
     {
         var movieUpdateOnlyRepositoryBuilder = new IMovieUpdateOnlyRepositoryBuilder();
         var unitOfWork = new IUnitOfWorkBuilder().Build();

@@ -1,4 +1,4 @@
-namespace CinemaBackend.Domain.Entities;
+namespace CinemaBackend.Domain.Entities.AdminUserEntities;
 
 public class AdminUser : EntityBase
 {

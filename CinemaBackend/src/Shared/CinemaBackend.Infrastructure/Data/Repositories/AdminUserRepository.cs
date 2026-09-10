@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.AdminUserEntities;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.AdminUserEntities;
 
 namespace CinemaBackend.Domain.Security.Tokens.Admin;
 

@@ -14,7 +14,7 @@ public class IAdminUserReadOnlyRepositoryBuilder
         return this;
     }
 
-    public IAdminUserReadOnlyRepositoryBuilder GetAdminUserByEmail(CinemaBackend.Domain.Entities.AdminUser adminUser)
+    public IAdminUserReadOnlyRepositoryBuilder GetAdminUserByEmail(CinemaBackend.Domain.Entities.AdminUserEntities.AdminUser adminUser)
     {
         _mock.Setup(repository => repository.GetAdminUserByEmail(adminUser.Email)).ReturnsAsync(adminUser);
 

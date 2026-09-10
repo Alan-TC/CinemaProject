@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.AdminUserEntities;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;

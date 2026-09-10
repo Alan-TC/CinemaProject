@@ -1,5 +1,5 @@
 using Bogus;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.AdminUserEntities;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using Moq;
 

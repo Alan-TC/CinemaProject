@@ -23,7 +23,7 @@ public class RegisterUserAdminUseCase(
 
         var passwordHash = _passwordHasher.HashPassword(request.Password);
 
-        var adminUser = new Domain.Entities.AdminUser
+        var adminUser = new Domain.Entities.AdminUserEntities.AdminUser
         {
             Email = request.Email,
             PasswordHash = passwordHash

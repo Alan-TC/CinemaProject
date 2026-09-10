@@ -20,8 +20,8 @@ public class UpdateDetails(ITestOutputHelper output, AdminWebApplicationFactory 
 
     private readonly TestWebRequest<Program> _testRequest = new(factory);
     private readonly AdminUserIdentityManager _admin = factory.AdminUser;
-    private readonly CinemaBackend.Domain.Entities.Movie _movieSuccessUpdate = factory.Movie;
-    private readonly CinemaBackend.Domain.Entities.Movie _movieErrorUpdate = factory.Movie;
+    private readonly CinemaBackend.Domain.Entities.MovieEntities.Movie _movieSuccessUpdate = factory.Movie;
+    private readonly CinemaBackend.Domain.Entities.MovieEntities.Movie _movieErrorUpdate = factory.Movie;
 
     [Fact]
     public async Task Success()
