@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CinemaBackend.Infrastructure.Data.Mappings.AdminUser;
 
-public class AdminUserMapping : IEntityTypeConfiguration<Domain.Entities.AdminUser>
+public class AdminUserMapping : IEntityTypeConfiguration<Domain.Entities.AdminUserEntities.AdminUser>
 {
-    public void Configure(EntityTypeBuilder<Domain.Entities.AdminUser> builder)
+    public void Configure(EntityTypeBuilder<Domain.Entities.AdminUserEntities.AdminUser> builder)
     {
         builder.ToTable("admin_users");
         
