@@ -1,6 +1,6 @@
 using Bogus;
 using Bogus.Extensions;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using CinemaBackend.Domain.Enums;
 
 namespace TestsCommonUtilities.Entities;

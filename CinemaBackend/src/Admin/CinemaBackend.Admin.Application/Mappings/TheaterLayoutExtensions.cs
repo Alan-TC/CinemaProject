@@ -1,7 +1,7 @@
 using CinemaBackend.Communication.Enums;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Communication.SharedRequestResponse;
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 
 namespace CinemaBackend.Admin.Application.Mappings;
 

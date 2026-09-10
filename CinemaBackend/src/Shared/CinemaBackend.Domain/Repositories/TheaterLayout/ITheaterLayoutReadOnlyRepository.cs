@@ -7,5 +7,5 @@ public interface ITheaterLayoutReadOnlyRepository
 {
     Task<bool> HasTheaterWithTag(string tag);
 
-    Task<PaginationReturn<Entities.TheaterLayout>> GetFilteredPagedMovies(PaginationQuery query, TheaterLayoutFilterDto filter);
+    Task<PaginationReturn<Entities.TheaterLayoutEntities.TheaterLayout>> GetFilteredPagedMovies(PaginationQuery query, TheaterLayoutFilterDto filter);
 }

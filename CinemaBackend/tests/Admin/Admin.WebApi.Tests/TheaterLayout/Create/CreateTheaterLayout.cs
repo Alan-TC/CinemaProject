@@ -18,7 +18,7 @@ public class CreateTheaterLayout(ITestOutputHelper output, AdminWebApplicationFa
 
     private readonly TestWebRequest<Program> _testRequest = new(factory);
     private readonly AdminUserIdentityManager _admin = factory.AdminUser;
-    private readonly CinemaBackend.Domain.Entities.TheaterLayout _theaterLayout = factory.TheaterLayout;
+    private readonly CinemaBackend.Domain.Entities.TheaterLayoutEntities.TheaterLayout _theaterLayout = factory.TheaterLayout;
 
     [Fact]
     public async Task Success()

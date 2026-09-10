@@ -1,4 +1,4 @@
-namespace CinemaBackend.Domain.Entities;
+namespace CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 
 public class TheaterLayout : EntityBase
 {

@@ -1,8 +1,9 @@
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaBackend.Infrastructure.Data;
 
 internal partial class CinemaDbContext
 {
-    public DbSet<Domain.Entities.TheaterLayout> TheaterLayouts { get; set; }
+    public DbSet<TheaterLayout> TheaterLayouts { get; set; }
 }

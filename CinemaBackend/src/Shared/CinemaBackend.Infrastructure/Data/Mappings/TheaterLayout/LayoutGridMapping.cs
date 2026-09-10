@@ -1,4 +1,4 @@
-using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,7 +14,7 @@ public class LayoutGridMapping : IEntityTypeConfiguration<LayoutGrid>
         builder.Property(x => x.Id)
             .ValueGeneratedNever();
 
-        builder.HasOne<Domain.Entities.TheaterLayout>()
+        builder.HasOne<Domain.Entities.TheaterLayoutEntities.TheaterLayout>()
             .WithOne(t => t.Layout)
             .HasForeignKey<LayoutGrid>(x => x.TheaterLayoutId)
             .OnDelete(DeleteBehavior.Cascade);

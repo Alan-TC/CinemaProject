@@ -1,5 +1,6 @@
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Domain.Entities;
+using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
 using CinemaBackend.Domain.Enums;
 
 namespace CinemaBackend.Admin.Application.Mappings;
