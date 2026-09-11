@@ -1,3 +1,4 @@
+using CinemaBackend.Admin.Application.Mappings;
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Domain.Repositories.Movie;
@@ -21,23 +22,6 @@ public class MovieGetByIdUseCase(
         if (movie == null)
             throw new NotFoundException();
 
-        var movieUrls = _movieImageStorage.GetMovieImagesUrl(movieId);
-
-        return new MovieResponseJson
-        {
-            Id = movie.Id,
-            Title = movie.Title,
-            Sinopse = movie.Sinopse,
-            Duration = movie.Duration,
-            ReleaseDate = movie.ReleaseDate,
-            ClassInd = (Communication.Enums.ClassInd)movie.ClassInd,
-            FilmGenres = [.. movie.FilmGenres.Select(g => (Communication.Enums.Genres)g.Genre)],
-            ImagesUrl = new MovieImagesUrlResponseJson
-            {
-                PosterUrl = movieUrls.PosterUrl,
-                FeaturedBanner = movieUrls.FeaturedBanner,
-                StandardBanner = movieUrls.StandardBanner,
-            }
-        };
+        return movie.MapToMovieResponseJson(_movieImageStorage);
     }
 }

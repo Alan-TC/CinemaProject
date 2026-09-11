@@ -3,9 +3,9 @@ using CinemaBackend.Domain.DTOs.Movie;
 
 namespace CinemaBackend.Admin.Application.Mappings;
 
-public static class MovieInfoDtoExtensions
+internal static class MovieInfoDtoExtensions
 {
-    public static MovieResponseJson MapToMovieResponseJson(this MovieInfoDto dto)
+    internal static MovieResponseJson MapToMovieResponseJson(this MovieInfoDto dto)
     {
         return new MovieResponseJson
         {

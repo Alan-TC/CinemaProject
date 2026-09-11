@@ -1,6 +1,7 @@
 using System.Reflection;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Repositories.Movie;
+using CinemaBackend.Domain.Repositories.Session;
 using CinemaBackend.Domain.Repositories.TheaterLayout;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
@@ -35,6 +36,9 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<ITheaterLayoutReadOnlyRepository, TheaterLayoutRepository>();
         services.AddScoped<ITheaterLayoutWriteOnlyRepository, TheaterLayoutRepository>();
+
+        services.AddScoped<ISessionReadOnlyRepository, SessionRepository>();
+        services.AddScoped<ISessionWriteOnlyRepository, SessionRepository>();
     }
 
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)

@@ -62,6 +62,9 @@ internal class MovieRepository(CinemaDbContext dbContext) : IMovieWriteOnlyRepos
         return new(resultList, query.CurrentPage, query.PageSize, totalCount);
     }
 
+    public async Task<bool> HasMovieWithId(Guid id) =>
+        await _dbContext.Movies.AnyAsync(m => m.Id == id);
+
     async Task<Movie?> IMovieReadOnlyRepository.GetMovieById(Guid id) => 
         await _dbContext.Movies
             .AsNoTracking()

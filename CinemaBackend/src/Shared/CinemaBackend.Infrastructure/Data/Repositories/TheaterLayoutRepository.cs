@@ -12,6 +12,12 @@ internal class TheaterLayoutRepository(CinemaDbContext dbContext) : ITheaterLayo
     public async Task Add(TheaterLayout theaterLayout) => 
         await _dbContext.TheaterLayouts.AddAsync(theaterLayout);
 
+    public async Task<TheaterLayout?> GetById(Guid id) => 
+        await _dbContext.TheaterLayouts
+            .AsNoTracking()
+            .Include(tl => tl.Layout)
+            .FirstOrDefaultAsync(tl => tl.Id == id);
+
     public async Task<PaginationReturn<TheaterLayout>> GetFilteredPagedMovies(PaginationQuery query, TheaterLayoutFilterDto filter)
     {
         var filteredQuery = _dbContext.TheaterLayouts
