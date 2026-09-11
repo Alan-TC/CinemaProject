@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 
 namespace Admin.WebApi.Tests.Movie.Create;
 
-public class CreateMovie(ITestOutputHelper output, AdminWebApplicationFactory factory) : IClassFixture<AdminWebApplicationFactory>
+public class CreateMovieTests(ITestOutputHelper output, AdminWebApplicationFactory factory) : IClassFixture<AdminWebApplicationFactory>
 {
     private const string REQUEST_URI = "/movies";
     private readonly TestLoggingClass _testLogger = new(output);

@@ -222,10 +222,10 @@
   <data name="VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION" xml:space="preserve">
     <value>Multiple cells can't be at the same position.</value>
   </data>
-  <data name="VALIDATION_SESSION_INVALID_START" xml:space="preserve">
+  <data name="VALIDATION_SESSION_INVALID_END_TIME" xml:space="preserve">
     <value>The session must start berfore the end.</value>
   </data>
-  <data name="VALIDATION_SESSION_INVALID_TICKET_SALES" xml:space="preserve">
+  <data name="VALIDATION_SESSION_INVALID_TICKET_SALES_TIME" xml:space="preserve">
     <value>The tickets must be in sale before the session starts.</value>
   </data>
   <data name="VALIDATION_SESSION_INVALID_PRICE" xml:space="preserve">

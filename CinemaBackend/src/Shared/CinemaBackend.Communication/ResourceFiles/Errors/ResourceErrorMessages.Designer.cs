@@ -286,6 +286,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The session must start berfore the end..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_END_TIME {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_END_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Movie doesn&apos;t exists..
         /// </summary>
         public static string VALIDATION_SESSION_INVALID_MOVIE {
@@ -304,15 +313,6 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The session must start berfore the end..
-        /// </summary>
-        public static string VALIDATION_SESSION_INVALID_START {
-            get {
-                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_START", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Theater Layout doesn&apos;t exists..
         /// </summary>
         public static string VALIDATION_SESSION_INVALID_THEATER_LAYOUT {
@@ -324,9 +324,9 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         /// <summary>
         ///   Looks up a localized string similar to The tickets must be in sale before the session starts..
         /// </summary>
-        public static string VALIDATION_SESSION_INVALID_TICKET_SALES {
+        public static string VALIDATION_SESSION_INVALID_TICKET_SALES_TIME {
             get {
-                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_TICKET_SALES", resourceCulture);
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_TICKET_SALES_TIME", resourceCulture);
             }
         }
         

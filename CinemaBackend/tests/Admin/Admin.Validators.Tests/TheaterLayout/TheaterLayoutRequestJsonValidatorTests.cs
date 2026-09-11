@@ -206,7 +206,7 @@ public class TheaterLayoutRequestJsonValidatorTests(ITestOutputHelper output)
 
             result.IsValid.ShouldBeFalse();
             result.Errors.ShouldContain(error => 
-                error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE));
+                error.ErrorMessage.Equals(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION));
         });
     }
 }

@@ -12,5 +12,11 @@ public class ITheaterLayoutReadOnlyRepositoryBuilder
         _mock.Setup(r => r.HasTheaterWithTag(tag)).ReturnsAsync(true);
         return this;
     }
+
+    public ITheaterLayoutReadOnlyRepositoryBuilder GetById(CinemaBackend.Domain.Entities.TheaterLayoutEntities.TheaterLayout theater)
+    {
+        _mock.Setup(r => r.GetById(theater.Id)).ReturnsAsync(theater);
+        return this;
+    }
     public ITheaterLayoutReadOnlyRepository Build() => _mock.Object;
 }

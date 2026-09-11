@@ -11,6 +11,7 @@ internal static class SessionExtensions
     {
         return new SessionResponseJson
         {
+            Id = entity.Id,
             Code = entity.Code,
             StartsAt = entity.StartsAt,
             EndsAt = entity.EndsAt,
