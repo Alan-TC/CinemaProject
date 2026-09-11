@@ -6,4 +6,5 @@ internal abstract class MigrationVersions
     public const uint MovieRelatedTablesAndImageTable = 2;
     public const uint TheaterLayoutRelatedTables = 3;
     public const uint SessionRelatedTables = 4;
+    public const uint FixUniqueConstraintSessionRelatedTables = 5;
 }

@@ -29,7 +29,7 @@ public sealed class Version_000004 : ForwardOnlyMigration
         
         Create.Table("session_rooms")
             .WithColumn("id").AsGuid().PrimaryKey().NotNullable()
-            .WithColumn("tag").AsString(8).Unique().NotNullable()
+            .WithColumn("tag").AsString(8).Unique("IX_session_rooms_tag").NotNullable()
             .WithColumn("width").AsInt32().NotNullable()
             .WithColumn("height").AsInt32().NotNullable()
             .WithColumn("session_id").AsGuid().NotNullable()
@@ -38,7 +38,7 @@ public sealed class Version_000004 : ForwardOnlyMigration
         
         Create.Table("session_room_seats")
             .WithColumn("id").AsGuid().PrimaryKey().NotNullable()
-            .WithColumn("code").AsString(8).Unique().NotNullable()
+            .WithColumn("code").AsString(8).Unique("IX_session_room_seats_code").NotNullable()
             .WithColumn("pos_x").AsInt32().NotNullable()
             .WithColumn("pos_y").AsInt32().NotNullable()
             .WithColumn("status").AsString(64).NotNullable()
