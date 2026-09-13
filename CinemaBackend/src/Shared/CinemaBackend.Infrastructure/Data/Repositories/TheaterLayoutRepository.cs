@@ -18,7 +18,7 @@ internal class TheaterLayoutRepository(CinemaDbContext dbContext) : ITheaterLayo
             .Include(tl => tl.Layout)
             .FirstOrDefaultAsync(tl => tl.Id == id);
 
-    public async Task<PaginationReturn<TheaterLayout>> GetFilteredPagedMovies(PaginationQuery query, TheaterLayoutFilterDto filter)
+    public async Task<PaginationReturn<TheaterLayout>> GetFilteredPagedTheaterLayouts(PaginationQuery query, TheaterLayoutFilterDto filter)
     {
         var filteredQuery = _dbContext.TheaterLayouts
             .AsNoTracking()
@@ -45,6 +45,34 @@ internal class TheaterLayoutRepository(CinemaDbContext dbContext) : ITheaterLayo
         var totalCount = await filteredQuery.CountAsync();
         
         return new(resultList, query.CurrentPage, query.PageSize, totalCount);
+    }
+
+    public async Task<PaginationReturn<TheaterLayoutSelectorItemDto>> GetSelectorTheaterLayouts(PaginationQuery query, TheaterLayoutSelectorFilterDto filter)
+    {
+        var filteredQuery = _dbContext.TheaterLayouts
+            .AsNoTracking()
+            .Where(t => t.DeactivatedAt == null);
+        
+        if (filter.Tag != null)
+            filteredQuery = filteredQuery
+                .Where(t => t.Tag.ToLower().Contains(filter.Tag.ToLower().Trim()));
+        
+        var items = await filteredQuery
+            .OrderByDescending(d => d.CreatedAt)
+            .Select(t => new TheaterLayoutSelectorItemDto
+            {
+                Id = t.Id,
+                Tag = t.Tag
+            })
+            .Skip((query.CurrentPage - 1) * query.PageSize)
+            .Take(query.PageSize)
+            .ToListAsync();
+        
+        var totalCount = await filteredQuery
+            .Select(m => m.Id)
+            .CountAsync();
+        
+        return new(items, query.CurrentPage, query.PageSize, totalCount);
     }
 
     public async Task<bool> HasTheaterWithTag(string tag) => 
