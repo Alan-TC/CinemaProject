@@ -2,7 +2,7 @@ namespace CinemaBackend.Domain.Entities.SessionEntities;
 
 public class SessionRoom
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     public string Tag { get; set; } = string.Empty;
     public int Width { get; set; }
     public int Height { get; set; }

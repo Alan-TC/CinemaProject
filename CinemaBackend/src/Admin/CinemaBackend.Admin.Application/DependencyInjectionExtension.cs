@@ -6,6 +6,7 @@ using CinemaBackend.Admin.Application.UseCases.Movie.GetById;
 using CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
+using CinemaBackend.Admin.Application.UseCases.Session.Create;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.Create;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetTheaterLayouts;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,5 +35,7 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<ICreateTheaterLayoutUseCase, CreateTheaterLayoutUseCase>();
         services.AddScoped<IGetFilteredTheaterLayoutsUseCase, GetFilteredTheaterLayoutsUseCase>();
+
+        services.AddScoped<ISessionCreateUseCase, SessionCreateUseCase>();
     }
 }

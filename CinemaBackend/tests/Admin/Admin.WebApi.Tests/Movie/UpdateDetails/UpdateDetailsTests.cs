@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace WebApi.Tests.Movie.UpdateDetails;
 
-public class UpdateDetails(ITestOutputHelper output, AdminWebApplicationFactory factory) : IClassFixture<AdminWebApplicationFactory>
+public class UpdateDetailsTests(ITestOutputHelper output, AdminWebApplicationFactory factory) : IClassFixture<AdminWebApplicationFactory>
 {
     private const string REQUEST_URI = "/movies";
     private readonly TestLoggingClass _testLogger = new(output);

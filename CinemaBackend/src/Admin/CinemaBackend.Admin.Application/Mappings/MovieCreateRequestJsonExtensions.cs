@@ -6,9 +6,9 @@ namespace CinemaBackend.Admin.Application.Mappings;
 
 internal static class MovieRequestJsonExtensions
 {
-    internal static Movie MapToMovie(this MovieRequestJson request)
+    internal static Domain.Entities.MovieEntities.Movie MapToMovie(this MovieRequestJson request)
     {
-        return new Movie
+        return new Domain.Entities.MovieEntities.Movie
         {
           Title = request.Title,
           Sinopse = request.Sinopse,

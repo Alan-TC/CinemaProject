@@ -4,7 +4,7 @@ namespace CinemaBackend.Domain.Entities.SessionEntities;
 
 public class SessionRoomSeat
 {
-    public Guid Id { get; set;}
+    public Guid Id { get; set;} = Guid.NewGuid();
     public string Code { get; set; } = string.Empty;
     public int PosX { get; set; }
     public int PosY { get; set;}

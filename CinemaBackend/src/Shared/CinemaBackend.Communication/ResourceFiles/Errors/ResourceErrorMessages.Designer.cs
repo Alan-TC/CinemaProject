@@ -286,6 +286,51 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The session must start berfore the end..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_END_TIME {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_END_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie doesn&apos;t exists..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_MOVIE {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_MOVIE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session ticket price must be greater than 0..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_PRICE {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_PRICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theater Layout doesn&apos;t exists..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_THEATER_LAYOUT {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_THEATER_LAYOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The tickets must be in sale before the session starts..
+        /// </summary>
+        public static string VALIDATION_SESSION_INVALID_TICKET_SALES_TIME {
+            get {
+                return ResourceManager.GetString("VALIDATION_SESSION_INVALID_TICKET_SALES_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple cells can&apos;t be at the same position..
         /// </summary>
         public static string VALIDATION_THEATER_LAYOUT_CELL_SAME_POSITION {
