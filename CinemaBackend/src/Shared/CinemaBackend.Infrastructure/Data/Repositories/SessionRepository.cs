@@ -21,6 +21,16 @@ internal class SessionRepository(CinemaDbContext dbContext) : ISessionWriteOnlyR
             .Include(s => s.Pricing)
             .FirstOrDefaultAsync(s => s.Code == code);
 
+    public async Task<Session?> GetById(Guid id) =>
+        await _dbContext.Sessions
+            .AsNoTracking()
+            .AsSplitQuery()
+            .Include(s => s.SessionRoom)
+                .ThenInclude(sr => sr.Seats)
+            .Include(s => s.Movie)
+            .Include(s => s.Pricing)
+            .FirstOrDefaultAsync(s => s.Id == id);
+
     public async Task<bool> HasSessionWithCode(string code) =>
         await _dbContext.Sessions.AnyAsync(s => s.Code == code);
 }
