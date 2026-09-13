@@ -46,16 +46,16 @@ public class MoviesController : ControllerBase
 
     [HttpPost]
     [Consumes("multipart/form-data")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(MovieResponseJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create(
         [FromServices] ICreateMovieUseCase useCase,
         [FromForm] MovieCreateRequest request)
     {
         var useCaseRequest = request.MapToCreateMovieUseCaseRequest();
-        await useCase.Execute(useCaseRequest);
+        var result = await useCase.Execute(useCaseRequest);
 
-        return Created();
+        return Created("", result);
     }
 
     [HttpPut("{id:guid}")]

@@ -1,6 +1,8 @@
+using CinemaBackend.Communication.Responses;
+
 namespace CinemaBackend.Admin.Application.UseCases.Movie.Create;
 
 public interface ICreateMovieUseCase
 {
-    Task Execute(CreateMovieUseCaseRequest request);
+    Task<MovieResponseJson> Execute(CreateMovieUseCaseRequest request);
 }
