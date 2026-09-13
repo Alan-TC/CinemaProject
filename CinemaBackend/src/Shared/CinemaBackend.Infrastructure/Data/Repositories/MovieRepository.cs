@@ -42,7 +42,8 @@ internal class MovieRepository(CinemaDbContext dbContext) : IMovieWriteOnlyRepos
         if (filter.Genres.Any())
             filteredQuery = filteredQuery.Where(m => m.FilmGenres.Any(g => filter.Genres.Contains(g.Genre)));
         
-        var resultList = await filteredQuery.OrderByDescending(m => m.CreatedAt)
+        var resultList = await filteredQuery
+            .OrderByDescending(m => m.CreatedAt)
             .Select(m => new MovieInfoDto
             {
                 Id  = m.Id,
