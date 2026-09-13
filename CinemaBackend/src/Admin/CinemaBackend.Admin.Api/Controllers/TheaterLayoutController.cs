@@ -1,4 +1,5 @@
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.Create;
+using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetById;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetSelector;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetTheaterLayouts;
 using CinemaBackend.Communication.Requests;
@@ -14,6 +15,20 @@ namespace CinemaBackend.Admin.Api.Controllers;
 [Authorize]
 public class TheaterLayoutController : ControllerBase
 {
+
+    [HttpGet("{theaterId:guid}")]
+    [ProducesResponseType(typeof(TheaterLayoutResponseJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Create(
+        [FromServices] IGetTheaterLayoutByIdUseCase useCase,
+        [FromRoute] Guid theaterId
+    )
+    {
+        var result = await useCase.Execute(theaterId);
+
+        return Ok(result);
+    }
+
     [HttpPost]
     [ProducesResponseType(typeof(TheaterLayoutResponseJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
