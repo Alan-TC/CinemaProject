@@ -85,6 +85,7 @@ public class CreateMovieUseCaseTests(ITestOutputHelper output)
             .Build();
 
         var movieImageStorageBuilder = new IMovieImageStorageBuilder()
+            .GetMovieImagesUrl()
             .Build();
 
         var unitOfWork = new IUnitOfWorkBuilder()

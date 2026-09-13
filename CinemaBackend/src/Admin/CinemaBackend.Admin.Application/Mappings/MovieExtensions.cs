@@ -1,24 +1,23 @@
 using CinemaBackend.Communication.Responses;
-using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Storage.Movie;
 
 namespace CinemaBackend.Admin.Application.Mappings;
 
 public static class MovieExtensions
 {
-    public static MovieResponseJson MapToMovieResponseJson(this Movie entity, IMovieImageStorage movieImageStorage)
+    public static MovieResponseJson MapToMovieResponseJson(this Domain.Entities.MovieEntities.Movie movie, IMovieImageStorage movieImageStorage)
     {
-        var movieUrls = movieImageStorage.GetMovieImagesUrl(entity.Id);
+        var movieUrls = movieImageStorage.GetMovieImagesUrl(movie.Id);
 
         return new MovieResponseJson
         {
-            Id = entity.Id,
-            Title = entity.Title,
-            Sinopse = entity.Sinopse,
-            Duration = entity.Duration,
-            ReleaseDate = entity.ReleaseDate,
-            ClassInd = (Communication.Enums.ClassInd)entity.ClassInd,
-            FilmGenres = [.. entity.FilmGenres.Select(g => (Communication.Enums.Genres)g.Genre)],
+            Id = movie.Id,
+            Title = movie.Title,
+            Sinopse = movie.Sinopse,
+            Duration = movie.Duration,
+            ReleaseDate = movie.ReleaseDate,
+            ClassInd = (Communication.Enums.ClassInd)movie.ClassInd,
+            FilmGenres = [.. movie.FilmGenres.Select(g => (Communication.Enums.Genres)g.Genre)],
             ImagesUrl = new MovieImagesUrlResponseJson
             {
                 PosterUrl = movieUrls.PosterUrl,
