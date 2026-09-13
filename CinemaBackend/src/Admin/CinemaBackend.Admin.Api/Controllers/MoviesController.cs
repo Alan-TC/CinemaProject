@@ -2,6 +2,7 @@ using CinemaBackend.Admin.Api.Requests;
 using CinemaBackend.Admin.Application.UseCases.Movie.Create;
 using CinemaBackend.Admin.Application.UseCases.Movie.GetById;
 using CinemaBackend.Admin.Application.UseCases.Movie.GetMovies;
+using CinemaBackend.Admin.Application.UseCases.Movie.GetMovieSelector;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using CinemaBackend.Communication.Requests;
@@ -20,7 +21,7 @@ public class MoviesController : ControllerBase
 {
 
     [HttpPost("filter")]
-    [ProducesResponseType(typeof(PaginationReturn<MovieResponseJson>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PaginationReturn<MovieResponseJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(
         [FromServices] IMoviesGetFilteredPagedUseCase useCase,
@@ -32,8 +33,20 @@ public class MoviesController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("selector")]
+    [ProducesResponseType(typeof(PaginationReturn<MovieSelectorItemResponseJson>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Selector(
+        [FromServices] IGetMovieSelectorUseCase useCase,
+        [FromQuery] PaginationQueryRequest query,
+        [FromBody] MovieSelectorRequestJson? filter)
+    {
+        var result = await useCase.Execute(query, filter);
+
+        return Ok(result);
+    }
+
     [HttpGet("{movieId:guid}")]
-    [ProducesResponseType(typeof(MovieInfoDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(MovieInfoDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(
         [FromServices] IMovieGetByIdUseCase useCase,

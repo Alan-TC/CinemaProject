@@ -18,7 +18,7 @@ public class GetFilteredTheaterLayoutsUseCase(
         var pageQuery = new PaginationQuery(Math.Max(1, query.CurrentPage), query.PageSize);
         var tlFilterDto = filter is null ? new TheaterLayoutFilterDto() : new TheaterLayoutFilterDto { SearchTerm = filter.SearchTerm};
 
-        var result = await _theaterLayoutReadOnlyRepository.GetFilteredPagedMovies(pageQuery, tlFilterDto);
+        var result = await _theaterLayoutReadOnlyRepository.GetFilteredPagedTheaterLayouts(pageQuery, tlFilterDto);
 
         var items = result.Items.Select(x => x.MapToTheaterLayoutResponseJson()).ToList();
 
