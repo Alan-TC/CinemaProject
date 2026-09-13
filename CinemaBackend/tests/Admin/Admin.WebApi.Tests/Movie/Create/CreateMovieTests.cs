@@ -39,13 +39,20 @@ public class CreateMovieTests(ITestOutputHelper output, AdminWebApplicationFacto
         {
             var response = await _testRequest.PostMultipartForm(REQUEST_URI, request, _admin.GetAccessToken());
 
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            responseBody.ShouldBeEmpty();
-
             response.StatusCode.ShouldBe(HttpStatusCode.Created);
 
-            var dbResult = await _testRequest.DbContext.Movies.AnyAsync(m => 
+            await using var responseBody = await response.Content.ReadAsStreamAsync();
+            var responseData = await JsonDocument.ParseAsync(responseBody);
+
+            var movieId = responseData.RootElement.GetProperty("id").ToString();
+            var movieTitle = responseData.RootElement.GetProperty("title").ToString();
+            var movieSinopse = responseData.RootElement.GetProperty("sinopse").ToString();
+
+            movieTitle.ShouldBe(request.MovieDetails.Title);
+            movieSinopse.ShouldBe(request.MovieDetails.Sinopse);
+
+            var dbResult = await _testRequest.DbContext.Movies.AnyAsync(m =>
+                m.Id == Guid.Parse(movieId) &&
                 m.Title == request.MovieDetails.Title &&
                 m.Sinopse == request.MovieDetails.Sinopse &&
                 m.Duration == request.MovieDetails.Duration);
@@ -76,13 +83,20 @@ public class CreateMovieTests(ITestOutputHelper output, AdminWebApplicationFacto
         {
             var response = await _testRequest.PostMultipartForm(REQUEST_URI, request, _admin.GetAccessToken());
 
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            responseBody.ShouldBeEmpty();
-
             response.StatusCode.ShouldBe(HttpStatusCode.Created);
 
-            var dbResult = await _testRequest.DbContext.Movies.AnyAsync(m => 
+            await using var responseBody = await response.Content.ReadAsStreamAsync();
+            var responseData = await JsonDocument.ParseAsync(responseBody);
+
+            var movieId = responseData.RootElement.GetProperty("id").ToString();
+            var movieTitle = responseData.RootElement.GetProperty("title").ToString();
+            var movieSinopse = responseData.RootElement.GetProperty("sinopse").ToString();
+
+            movieTitle.ShouldBe(request.MovieDetails.Title);
+            movieSinopse.ShouldBe(request.MovieDetails.Sinopse);
+
+            var dbResult = await _testRequest.DbContext.Movies.AnyAsync(m =>
+                m.Id == Guid.Parse(movieId) &&
                 m.Title == request.MovieDetails.Title &&
                 m.Sinopse == request.MovieDetails.Sinopse &&
                 m.Duration == request.MovieDetails.Duration);

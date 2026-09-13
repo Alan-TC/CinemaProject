@@ -1,5 +1,6 @@
 using CinemaBackend.Admin.Application.Mappings;
 using CinemaBackend.Communication.Exceptions;
+using CinemaBackend.Communication.Responses;
 using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Storage.Movie;
 
@@ -14,7 +15,7 @@ public class CreateMovieUseCase(
     private readonly IMovieImageStorage _movieStorage = movieStorage;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task Execute(CreateMovieUseCaseRequest request)
+    public async Task<MovieResponseJson> Execute(CreateMovieUseCaseRequest request)
     {
         ValidateAndThrowOnFailures(request);
 
@@ -27,6 +28,8 @@ public class CreateMovieUseCase(
         await _unitOfWork.Commit();
 
         await _movieStorage.UploadMovieImagesAsync(movie.Id, uploadMovieDto);
+
+        return movie.MapToMovieResponseJson(_movieStorage);
     }
 
     private static void ValidateAndThrowOnFailures(CreateMovieUseCaseRequest request)

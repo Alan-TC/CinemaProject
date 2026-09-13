@@ -29,7 +29,10 @@ public class CreateMovieUseCaseTests(ITestOutputHelper output)
 
         await _testLogger.ExecuteWithContext(context, async () =>
         {
-            await useCase.Execute(request).ShouldNotThrowAsync();
+            var result = await useCase.Execute(request);
+
+            result.Title.ShouldBe(request.MovieDetails.Title);
+            result.Sinopse.ShouldBe(request.MovieDetails.Sinopse);
         });
     }
 
@@ -47,7 +50,10 @@ public class CreateMovieUseCaseTests(ITestOutputHelper output)
 
         await _testLogger.ExecuteWithContext(context, async () =>
         {
-            await useCase.Execute(request).ShouldNotThrowAsync();
+            var result = await useCase.Execute(request);
+
+            result.Title.ShouldBe(request.MovieDetails.Title);
+            result.Sinopse.ShouldBe(request.MovieDetails.Sinopse);
         });
     }
 
@@ -79,6 +85,7 @@ public class CreateMovieUseCaseTests(ITestOutputHelper output)
             .Build();
 
         var movieImageStorageBuilder = new IMovieImageStorageBuilder()
+            .GetMovieImagesUrl()
             .Build();
 
         var unitOfWork = new IUnitOfWorkBuilder()
