@@ -12,6 +12,7 @@ using CinemaBackend.Admin.Application.UseCases.Session.Create;
 using CinemaBackend.Admin.Application.UseCases.Session.GetById;
 using CinemaBackend.Admin.Application.UseCases.Session.GetSessions;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.Create;
+using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetById;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetSelector;
 using CinemaBackend.Admin.Application.UseCases.TheaterLayout.GetTheaterLayouts;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,14 +38,15 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IUpdateMovieDetailsUseCase, UpdateMovieDetailsUseCase>();
         services.AddScoped<IMoviesGetFilteredPagedUseCase, MoviesGetFilteredPagedUseCase>();
         services.AddScoped<IMovieGetByIdUseCase, MovieGetByIdUseCase>();
+        services.AddScoped<IGetMovieSelectorUseCase, GetMovieSelectorUseCase>();
 
         services.AddScoped<ICreateTheaterLayoutUseCase, CreateTheaterLayoutUseCase>();
         services.AddScoped<IGetFilteredTheaterLayoutsUseCase, GetFilteredTheaterLayoutsUseCase>();
+        services.AddScoped<IGetTheaterLayoutSelectorUseCase, GetTheaterLayoutSelectorUseCase>();
+        services.AddScoped<IGetTheaterLayoutByIdUseCase, GetTheaterLayoutByIdUseCase>();
 
         services.AddScoped<ISessionCreateUseCase, SessionCreateUseCase>();
         services.AddScoped<ISessionGetByIdUseCase, SessionGetByIdUseCase>();
         services.AddScoped<IGetSessionsFilteredPagedUseCase, GetSessionsFilteredPagedUseCase>();
-        services.AddScoped<IGetMovieSelectorUseCase, GetMovieSelectorUseCase>();
-        services.AddScoped<IGetTheaterLayoutSelectorUseCase, GetTheaterLayoutSelectorUseCase>();
     }
 }
