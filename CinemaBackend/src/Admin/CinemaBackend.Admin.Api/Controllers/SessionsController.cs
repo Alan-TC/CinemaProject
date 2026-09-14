@@ -5,6 +5,7 @@ using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Communication.Responses.Session;
 using CinemaBackend.SharedKernel.Pagination;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaBackend.Admin.Api.Controllers;
