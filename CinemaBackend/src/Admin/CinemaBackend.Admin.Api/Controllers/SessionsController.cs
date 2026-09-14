@@ -11,6 +11,7 @@ namespace CinemaBackend.Admin.Api.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize]
 public class SessionsController : ControllerBase
 {
 
