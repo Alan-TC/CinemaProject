@@ -25,18 +25,6 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/admin-host/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/admin-host/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/client-host/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/client-host/tsconfig.spec.json"
-    },
-    {
       "path": "./projects/admin-app/tsconfig.app.json"
     },
     {

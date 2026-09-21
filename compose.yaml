@@ -1,0 +1,36 @@
+﻿include:
+  - path: ./CinemaBackend/dev-utils/infrastructure/postgres.yaml
+
+services:
+  init-storage:
+    image: alpine:latest
+    user: "0:0"
+    volumes:
+      - cinema_assets:/var/cinema_assets
+    command: >
+      sh -c "mkdir -p /var/cinema_assets && chown -R 1654:1654 /var/cinema_assets && chmod -R 775 /var/cinema_assets"
+
+  cinemabackend.admin.api:
+    image: cinemabackend.admin.api
+    build:
+      context: ./CinemaBackend
+      dockerfile: src/Admin/CinemaBackend.Admin.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DbConnection=Host=postgres-db;Username=sa;Password=Qwe123!@#;Database=cinema_development_db
+      - Host__StorageRootPath=/var/cinema_assets
+      - Host__BaseUrl=http://localhost:5000
+    ports:
+      - 5000:8080
+      - 5001:8081
+    volumes:
+      - cinema_assets:/var/cinema_assets
+
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      init-storage:
+        condition: service_completed_successfully
+
+volumes:
+  cinema_assets:
