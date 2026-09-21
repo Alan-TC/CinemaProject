@@ -20,6 +20,23 @@ void configureJson(JsonSerializerOptions options)
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string defaultCorsPolicy = "DefaultCorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    var allowedOrigins = builder.Configuration
+        .GetSection("Cors:AllowedOrigins")
+        .Get<string[]>() ?? [];
+    
+    options.AddPolicy(defaultCorsPolicy, policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+            .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .WithHeaders("Content-Type", "Authorization", "X-Requested-With")
+            .AllowCredentials();
+    });
+});
+
 builder.Services.AddControllers()
     .AddJsonOptions(options => configureJson(options.JsonSerializerOptions));
 
@@ -74,6 +91,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(defaultCorsPolicy);
 
 app.UseAuthorization();
 
