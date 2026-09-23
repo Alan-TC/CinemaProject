@@ -1,0 +1,9 @@
+@use './themes/theme';
+@use './fonts/inter';
+@use './fonts/besley';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

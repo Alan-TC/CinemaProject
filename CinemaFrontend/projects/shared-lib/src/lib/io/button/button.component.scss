@@ -1,0 +1,29 @@
+.button {
+  cursor: pointer;
+
+  width: 161px;
+  height: 61px;
+
+  border-radius: 10px;
+
+  font-size: 20px;
+  font-family: 'Inter';
+  text-transform: uppercase;
+
+  box-shadow: 0 0 10px var(--interactive-surface-shadow);
+
+  &__confirm {
+    color: var(--interactive-confirm-text);
+    background: var(--interactive-confirm-surface);
+  }
+
+  &__negative {
+    color: var(--interactive-negative-text);
+    background: var(--interactive-negative-surface);
+  }
+
+  &__neutral {
+    color: var(--interactive-neutral-text);
+    background: var(--interactive-neutral-surface);
+  }
+}

@@ -149,6 +149,11 @@
       "root": "projects/shared-lib",
       "sourceRoot": "projects/shared-lib/src",
       "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
