@@ -20,6 +20,8 @@ services:
       - ConnectionStrings__DbConnection=Host=postgres-db;Username=sa;Password=Qwe123!@#;Database=cinema_development_db
       - Host__StorageRootPath=/var/cinema_assets
       - Host__BaseUrl=http://localhost:5000
+      - Jwt__AccessTokenExpirationTimeMinutes=15
+      - Jwt__RefreshTokenExpirationTimeMinutes=260
     ports:
       - 5000:8080
       - 5001:8081

@@ -1,0 +1,8 @@
+<button class="button inter-black"
+        [type]="type()"
+        [class.button__confirm]="styleType() === 'confirm'"
+        [class.button__negative]="styleType() === 'negative'"
+        [class.button__neutral]="styleType() === 'neutral'"
+        >
+        {{ name() }}
+      </button>

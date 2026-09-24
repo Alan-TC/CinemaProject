@@ -1,0 +1,39 @@
+<div class="login-container">
+  <div class="logo">
+    <lib-logo subText="Admin"></lib-logo>
+  </div>
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="login__inputs">
+      <p class="login__title inter-black">LOGIN</p>
+      <div class="inputs-item">
+        <lib-input placeholder="E-mail" formControlName="email"></lib-input>
+        @if(hasRequiredEmailError()) {
+          <p class="login__error-msg inter-black">E-mail é obrigatório.</p>
+        }
+        @if(hasInvalidEmailError()) {
+          <p class="login__error-msg inter-black">E-mail inválido.</p>
+        }
+      </div>
+
+      <div class="inputs-item">
+        <lib-input placeholder="Senha" formControlName="password" type="password"></lib-input>
+        @if(hasRequiredPasswordError()) {
+          <p class="login__error-msg inter-black">Senha é obrigatória.</p>
+        }
+      </div>
+
+      @if(loginForm.invalid) {
+         @if(loginForm.hasError('invalidCredentials')) {
+            <p class="login__error-msg inter-black">E-mail ou senha inválidos.</p>
+        }
+
+        @if(loginForm.hasError('unknownError')) {
+            <p class="login__error-msg inter-black">Ocorreu um erro inesperado.</p>
+        }
+      }
+    </div>
+    <div class="login__buttons">
+      <lib-button type="submit" name="Entrar"></lib-button>
+    </div>
+  </form>
+</div>
