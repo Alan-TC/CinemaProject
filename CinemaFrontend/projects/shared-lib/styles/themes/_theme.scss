@@ -1,8 +1,18 @@
 @use './base-pallete' as *;
 
 :root {
-  --activated-text-color: #{$gold-500};
+  --black: #{$black};
+  --white: #{$white};
+
+
+  --activated-text: #{$gold-500};
+  --negative-text: #{$red-500};
   --default-shadow: color-mix(in srgb, #{$black} 50%, transparent);
+
+  --form-surface: linear-gradient(-45deg, #{$brown-900} 80%, #{$brown-700});
+
+  --input-text: #{$white};
+  --input-surface: #{$black};
 
   --interactive-confirm-text: #{$white};
   --interactive-confirm-surface: linear-gradient(to top, #{$blue-900} 50%, #{$blue-700});

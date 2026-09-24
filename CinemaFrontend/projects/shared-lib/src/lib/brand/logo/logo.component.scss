@@ -1,17 +1,16 @@
 .logo-container {
   position: relative;
 
-  width: 729px;
+  width: 610px;
   height: 166px;
 }
 
 .film {
   position: absolute;
-
   right: 0;
   bottom: 0;
-  width: 514px;
-  height: 163px;
+  width: 414px;
+  height: 131px;
   background-image: url('../../../../assets/cinema-logo.svg');
   background-size: cover;
 
@@ -24,21 +23,21 @@
 
   left: 0;
   top: 0;
-  font-size: 120px;
+  font-size: 100px;
 
-  color: var(--activated-text-color);
+  color: var(--activated-text);
   text-shadow: var(--default-shadow) 0 0 30px;
 }
 
 .sub-text {
   position: absolute;
 
-  right: 0;
+  right: 5%;
   top: 45%;
-  font-size: 40px;
+  font-size: 20px;
   text-transform: uppercase;
 
-  color: var(--activated-text-color);
+  color: var(--activated-text);
 
   text-shadow: var(--default-shadow) 0 0 30px;
 }

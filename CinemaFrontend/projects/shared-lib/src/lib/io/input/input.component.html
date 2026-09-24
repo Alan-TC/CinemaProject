@@ -1,0 +1,8 @@
+<input
+  class="input inter-black"
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [value]="value"
+  [disabled]="disabled"
+  (input)="handleInput($event)"
+  (blur)="handleBlur()">

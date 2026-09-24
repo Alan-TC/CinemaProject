@@ -1,0 +1,74 @@
+.login-container {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-around;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(-45deg,
+      color-mix(in srgb, #201919 97%, transparent),
+      color-mix(in srgb, #271C11 98%, transparent)
+    ),
+    url('../../../../../shared-lib/assets/film-wallpaper.png');
+
+  background-size: cover;
+}
+
+.login {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+
+  margin: 0 34px;
+
+  height: 100%;
+
+  &__title {
+    font-size: 60px;
+    color: var(--activated-text);
+  }
+
+  &__error-msg {
+    padding: 0rem 0.5rem;
+    font-size: 20px;
+    color: var(--negative-text);
+  }
+
+  &__inputs {
+    grid-row: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    background: var(--form-surface);
+    border-radius: 20px;
+
+    padding: 0rem 2rem 3rem 2rem;
+  }
+
+  &__buttons{
+    grid-row: 3;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 1165px) {
+  .login-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .logo {
+    display: none;
+  }
+}
