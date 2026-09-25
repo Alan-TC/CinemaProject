@@ -5,7 +5,18 @@
     subName="Admin"
     [profileNavItems]="profileNavItems"
     (action)="onProfileNavActionHandler($event)"></lib-header>
-  <div class="main__options">
-    <app-options></app-options>
+  <div class="main__content">
+    <lib-options-selector class="main__options"
+    [optionsItems]="optionsItems"
+    (action)="onOptionsItemsActionHandler($event)"
+    ></lib-options-selector>
+
+    <div class="main__menu">
+    @if (isRouteActive('/', true)) {
+      <lib-logo subText="Admin"></lib-logo>
+    } @else {
+      <router-outlet></router-outlet>
+    }
+    </div>
   </div>
 </div>

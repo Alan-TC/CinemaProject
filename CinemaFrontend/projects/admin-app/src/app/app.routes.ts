@@ -11,6 +11,12 @@ export const routes: Routes = [
   { path: '',
     loadComponent: () => import('./pages/main/main.component').then(m => m.MainComponent),
     canActivate: [authGuard()],
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'always',
+    children: [
+      {
+        path: 'sessions',
+        loadComponent: () => import('./pages/sessions/sessions.component').then(m => m.SessionsComponent),
+      }
+    ]
   },
 ];
