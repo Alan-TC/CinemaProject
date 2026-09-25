@@ -1,1 +1,11 @@
-<p>main works!</p>
+<div class="main">
+  <lib-header class="main__header"
+    logoRedirect="/"
+    centerRedirect="/"
+    subName="Admin"
+    [profileNavItems]="profileNavItems"
+    (action)="onProfileNavActionHandler($event)"></lib-header>
+  <div class="main__options">
+    <app-options></app-options>
+  </div>
+</div>

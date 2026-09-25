@@ -1,0 +1,14 @@
+.main{
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--page-surface) fixed;
+
+  &__header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+
+    box-shadow: 0 0 5px 0px black;
+  }
+}

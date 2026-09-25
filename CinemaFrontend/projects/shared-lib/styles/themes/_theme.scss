@@ -24,4 +24,11 @@
   --interactive-neutral-surface: linear-gradient(to top, #{$black}, #{$grey-900});
 
   --interactive-surface-shadow: color-mix(in srgb, #{$black} 50%, transparent);
+
+  --header-surface: linear-gradient(to right, #{$brown-600} 50%, #{$brown-500});
+
+  --profile-nav-surface: #{$black};
+  --profile-interactive-surface: #{$grey-900};
+
+  --page-surface: linear-gradient(-30deg, #{$brown-700} 0%,  #{$brown-900} 30%);
 }

@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="header__logo" [routerLink]="logoRedirect()" [class.redirect]="logoRedirect() !== ''"></div>
+  <div class="header__center inter-black"
+    [routerLink]="centerRedirect()"
+    [class.redirect]="centerRedirect() !== ''">
+    <p class="header__center-name">Cinema
+      @if(subName()) {
+        <span class="header__center-sub-name">{{ subName() }}</span>
+      }
+    </p>
+  </div>
+  <div class="header__user inter-black">
+    <lib-user [profileNavItems]="profileNavItems()" (action)="action.emit($event)"></lib-user>
+  </div>
+</header>
