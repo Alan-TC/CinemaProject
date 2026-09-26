@@ -1,0 +1,41 @@
+.search-input {
+  display: flex;
+  align-items: center;
+
+  &__input {
+    height: 28px;
+
+    border-radius: 4px 0px 0px 4px;
+    border: none;
+
+    padding: 6px;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__search-button {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 0px 4px 4px 0px;
+    border: none;
+
+    background-color: black;
+
+    cursor: pointer;
+  }
+
+  &__search-button svg {
+    fill: white;
+  }
+
+  &__search-button:hover svg {
+    fill: var(--hover-text);
+  }
+
+  &__search-button:active svg {
+    fill: var(--activated-text);
+  }
+}

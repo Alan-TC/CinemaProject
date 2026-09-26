@@ -1,0 +1,51 @@
+.list-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+
+  border-spacing: 0px 10px;
+
+  & th,
+  & td {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  & td {
+    overflow: hidden;
+    white-space: nowrap;
+
+    text-align: center;
+  }
+
+  & tbody td {
+    border-right: 3px solid white;
+    padding: 10px;
+  }
+
+  & tbody td:last-child {
+    border-right: 0px solid white;
+  }
+
+  & tr {
+    height: 60px;
+  }
+
+  & tbody tr {
+    cursor: pointer;
+  }
+
+  & tbody tr {
+    color: white;
+    background: var(--list-table-rows-surface);
+  }
+
+  & thead {
+    position: sticky;
+    top: 0;
+    background: var(--list-table-header-surface);
+    color: white;
+    text-transform: uppercase;
+  }
+}

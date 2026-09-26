@@ -1,8 +1,40 @@
-<lib-options-menu>
-  <lib-options-menu-header>
-    Sessões
+<lib-options-menu class="sessions-menu">
+  <lib-options-menu-header class="sessions-menu__header-container">
+    <div class="sessions-menu__header-right">
+      <p class="inter-black">Sessões</p>
+      <button class="create-button"></button>
+    </div>
+    <lib-search-input
+      placeholder="Código sessão"
+    ></lib-search-input>
   </lib-options-menu-header>
-  <lib-options-menu-content>
-    Sessões...
-  </lib-options-menu-content>
+<lib-options-menu-content class="sessions-menu__content">
+  <div class="sessions-menu__table-container">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Filme</th>
+          <th>Horário</th>
+          <th>Data</th>
+          <th>INÍCIO VENDAS</th>
+          <th>DATA CRIAÇÃO</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(i of [].constructor(100); track $index) {
+          <tr>
+            <td>{{ $index }}</td>
+            <td class="marquee"><span class="marquee__content">Nome Grande Grande {{ $index }}</span></td>
+            <td>20:00h</td>
+            <td>01/01/2024</td>
+            <td>01/01/2024</td>
+            <td>01/01/2024</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</lib-options-menu-content>
 </lib-options-menu>
