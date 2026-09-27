@@ -12,6 +12,10 @@
     max-width: 100px;
   }
 
+  & th {
+    padding: 5px;
+  }
+
   & td {
     overflow: hidden;
     white-space: nowrap;
@@ -20,12 +24,19 @@
   }
 
   & tbody td {
-    border-right: 3px solid white;
+    position: relative;
     padding: 10px;
+    border:none;
   }
 
-  & tbody td:last-child {
-    border-right: 0px solid white;
+  & tbody td:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 3px;
+    height: calc(100% - 6px);
+    width: 1px;
+    background: white;
   }
 
   & tr {
@@ -41,9 +52,22 @@
     background: var(--list-table-rows-surface);
   }
 
-  & thead {
+  & tbody tr:hover {
+    box-shadow: inset 0px 0px 8px 0px color-mix(in srgb, white 30%, transparent);
+  }
+
+  & tbody .loading-row td {
+    animation: shimmer 2s;
+    animation-iteration-count: infinite;
+    background: linear-gradient(to right, var(--list-table-rows-surface) 5%, black 25%, var(--list-table-rows-surface) 35%);
+    background-size: 1000px 100%;
+  }
+
+  & thead th {
     position: sticky;
     top: 0;
+    z-index: 1;
+
     background: var(--list-table-header-surface);
     color: white;
     text-transform: uppercase;
