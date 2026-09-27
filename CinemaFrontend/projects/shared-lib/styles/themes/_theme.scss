@@ -36,4 +36,7 @@
   --page-menu-surface: linear-gradient(-30deg, #{$grey-500} 0%,  #{$grey-700} 30%);
   --page-menu-surface-shadow: inset 0px 0px 5px 0px color-mix(in srgb, var(--black) 20%, transparent);
   --page-menu-item-surface: linear-gradient(to left, #{$grey-900} 0%,  #{$black} 60%);
+
+  --list-table-header-surface: linear-gradient(to top, #{$grey-900},  #{$black} 90%);
+  --list-table-rows-surface: #{$grey-900};
 }

@@ -1,8 +1,50 @@
-<lib-options-menu>
-  <lib-options-menu-header>
-    Sessões
+<lib-options-menu class="sessions-menu">
+  <lib-options-menu-header class="sessions-menu__header-container">
+    <div class="sessions-menu__header-right">
+      <p class="inter-black">Sessões</p>
+      <button class="create-button" (click)="onCreateSessionClick()"></button>
+    </div>
+    <lib-search-input (search)="onSearchClick($event)"
+      placeholder="Código sessão"
+    ></lib-search-input>
   </lib-options-menu-header>
-  <lib-options-menu-content>
-    Sessões...
-  </lib-options-menu-content>
+<lib-options-menu-content class="sessions-menu__content">
+  <div class="sessions-menu__table-container" (scroll)="onScroll($event)">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Filme</th>
+          <th>Horário</th>
+          <th>Data</th>
+          <th>INÍCIO VENDAS</th>
+          <th>DATA CRIAÇÃO</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(session of sessions(); track session.id) {
+          <tr (click)="onSessionClick(session.id)">
+            <td>{{ session.code }}</td>
+            <td class="marquee"><span class="marquee__content">{{ session.movieTitle }}</span></td>
+            <td>{{ session.startsAt | date:'HH:mm' }}</td>
+            <td>{{ session.startsAt | date:'dd/MM/yyyy' }}</td>
+            <td>{{ session.startTicketSalesAt| date:'dd/MM/yyyy' }}</td>
+            <td>{{ session.createdAt | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        }
+        @if(isLoading) {
+          <tr class="loading-row">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</lib-options-menu-content>
 </lib-options-menu>

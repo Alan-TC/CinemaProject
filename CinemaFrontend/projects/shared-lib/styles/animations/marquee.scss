@@ -1,0 +1,30 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  &:hover &__content {
+    display: inline-block;
+    animation: marquee 3s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  50.99% {
+    transform: translateX(-100%);
+  }
+
+  51% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}

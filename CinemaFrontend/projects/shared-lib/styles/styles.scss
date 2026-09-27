@@ -1,6 +1,10 @@
 @use './themes/theme';
 @use './fonts/inter';
 @use './fonts/besley';
+@use './components/inputs.scss';
+@use './animations/marquee.scss';
+@use './components/list-table.scss';
+@use './animations/shimmer.scss';
 
 * {
   margin: 0;

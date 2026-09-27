@@ -1,0 +1,27 @@
+.create-button {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  border: white 2px solid;
+  background-color: black;
+
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--hover-text);
+  }
+
+  &:active {
+    color: var(--activated-text);
+  }
+
+  &::after {
+    content: '+';
+  }
+}
