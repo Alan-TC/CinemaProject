@@ -1,0 +1,81 @@
+<lib-options-menu class="sessions-create-menu">
+  <lib-options-menu-header class="sessions-create-menu__header-container">
+    <div class="sessions-create-menu__header-right">
+      <p class="inter-black">Criar Sessão</p>
+    </div>
+  </lib-options-menu-header>
+<lib-options-menu-content>
+  <form class="sessions-create-menu__content" [formGroup]="createSessionForm" (ngSubmit)="onSubmit()">
+    <div class="sessions-create-menu__content-left-items">
+      <div class="default-input inter-black pricing-ipt">
+        <label for="pricing-ipt">Preço R$</label>
+        <input
+        class="default-input__input"
+        id="pricing-ipt"
+        type="number"
+        formControlName="pricing">
+      </div>
+
+      <div class="default-input inter-black">
+        <label for="calma">Filme</label>
+        <lib-infinite-selector
+          [idProperty]="'id'"
+          [displayProperty]="'title'"
+          [auxDisplayProperty]="'releaseDate'"
+          [paginationFunction]="moviesSelectorPaginationFunction.bind(this)"
+          (selectedOptionChange)="onMovieSelected($event)">
+        </lib-infinite-selector>
+      </div>
+
+      <div class="default-input inter-black">
+        <label for="calma2">Sala</label>
+        <lib-infinite-selector
+          [idProperty]="'id'"
+          [displayProperty]="'tag'"
+          [paginationFunction]="theatersSelectorPaginationFunction.bind(this)"
+          (selectedOptionChange)="onTheaterSelected($event)">
+        </lib-infinite-selector>
+      </div>
+
+      @if(createSessionForm.invalid) {
+        @if(createSessionForm.hasError('unknownError')) {
+          <p class="sessions-create-menu__error-msg inter-black">Ocorreu um erro inesperado.</p>
+        }
+        @else if(createSessionForm.hasError('serverError')) {
+          <p class="sessions-create-menu__error-msg inter-black">Ocorreu um erro no servidor. Tente novamente mais tarde.</p>
+        }
+        @else if(createSessionForm.hasError('validationError')) {
+          <p class="sessions-create-menu__error-msg inter-black">Preencha os campos corretamente.</p>
+        }
+      }
+    </div>
+    <div class="sessions-create-menu__content-right-items">
+      <div class="default-input inter-black">
+        <label for="startSalesAt-ipt">Início das Vendas</label>
+        <input
+        class="default-input__input"
+        id="startSalesAt-ipt"
+        type="datetime-local"
+        formControlName="startSalesAt">
+      </div>
+      <div class="default-input inter-black">
+        <label for="startsAt-ipt">Horário Início</label>
+        <input
+        class="default-input__input"
+        id="startsAt-ipt"
+        type="datetime-local"
+        formControlName="startsAt">
+      </div>
+      <div class="default-input inter-black">
+        <label for="endsAt-ipt">Horário Fim</label>
+        <input
+        class="default-input__input"
+        id="endsAt-ipt"
+        type="datetime-local"
+        formControlName="endsAt">
+      </div>
+      <lib-button name="Criar" type="submit"></lib-button>
+    </div>
+  </form>
+</lib-options-menu-content>
+</lib-options-menu>

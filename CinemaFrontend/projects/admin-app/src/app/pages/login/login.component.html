@@ -23,12 +23,12 @@
       </div>
 
       @if(loginForm.invalid) {
-         @if(loginForm.hasError('invalidCredentials')) {
-            <p class="login__error-msg inter-black">E-mail ou senha inválidos.</p>
+        @if(loginForm.hasError('invalidCredentials')) {
+          <p class="login__error-msg inter-black">E-mail ou senha inválidos.</p>
         }
 
         @if(loginForm.hasError('unknownError')) {
-            <p class="login__error-msg inter-black">Ocorreu um erro inesperado.</p>
+          <p class="login__error-msg inter-black">Ocorreu um erro inesperado.</p>
         }
       }
     </div>

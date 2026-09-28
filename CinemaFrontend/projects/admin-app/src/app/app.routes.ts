@@ -16,6 +16,10 @@ export const routes: Routes = [
       {
         path: 'sessions',
         loadComponent: () => import('./pages/sessions/sessions.component').then(m => m.SessionsComponent),
+      },
+      {
+        path: 'sessions/create',
+        loadComponent: () => import('./pages/sessions-create/sessions-create.component').then(m => m.SessionsCreateComponent),
       }
     ]
   },

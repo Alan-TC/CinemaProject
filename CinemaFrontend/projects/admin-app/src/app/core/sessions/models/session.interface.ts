@@ -1,4 +1,4 @@
-export interface ISessionRequest {
+export interface ISession {
   id: string;
   code: string;
   movieTitle: string;

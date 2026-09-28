@@ -5,9 +5,9 @@
   <div class="options-selector__content inter-black">
     @for(item of optionsItems(); track $index) {
         @if(item.action) {
-          <a class="options-selector__item" (click)="action.emit(item.action)" routerLinkActive="activated"> {{ item.label}} </a>
+          <a class="options-selector__item" (click)="action.emit(item.action)" routerLinkActive="activated" [routerLinkActiveOptions]="{ exact: true }"> {{ item.label}} </a>
         } @else if(item.route) {
-          <a class="options-selector__item" [routerLink]="item.route" routerLinkActive="activated"> {{ item.label}} </a>
+          <a class="options-selector__item" [routerLink]="item.route" routerLinkActive="activated" [routerLinkActiveOptions]="{ exact: true }"> {{ item.label}} </a>
         }
       }
   </div>

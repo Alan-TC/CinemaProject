@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "ngad": "ng --project=admin-app",
+    "startad": "ng serve --project=admin-app",
+    "ngc": "ng --project=client-app",
+    "startc": "ng serve --project=client-app",
+    "ngl": "ng --project=shared-lib"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
