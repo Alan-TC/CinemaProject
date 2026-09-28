@@ -1,0 +1,28 @@
+<div class="infinite-selector">
+  <div class="infinite-selector__search-container">
+    <input
+      class="infinite-selector__search inter-black"
+      type="text"
+      [(ngModel)]="displaySearchTerm"
+      [ngModelOptions]="{ standalone: true }"
+      (input)="searchBySearchTerm()">
+  </div>
+  <div
+    class="infinite-selector__options"
+    (mousedown)="$event.preventDefault()"
+    (scroll)="onScroll($event)">
+    @for(option of options(); track option[idProperty()]) {
+      <div class="infinite-selector__options-option" (click)="onSelectedOption(option)">
+        <span>{{ option[displayProperty()] }} </span>
+        @if(auxDisplayProperty() !== '') {
+          <span>{{ option[auxDisplayProperty()] }}</span>
+        }
+      </div>
+    }
+    @if(options().length === 0) {
+      <div class="infinite-selector__options-no-options inter-black">
+        Nenhum item encontrado
+      </div>
+    }
+  </div>
+</div>
