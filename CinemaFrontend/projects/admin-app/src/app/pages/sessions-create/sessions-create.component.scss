@@ -42,11 +42,14 @@
     display: flex;
     flex-direction: column;
 
+    min-width: 300px;
+
     gap: 16px;
   }
 
   &__content-right-items {
-    width: 180px;
+    min-width: 190px;
+    max-width: 190px;
     display: flex;
 
     flex-direction: column;

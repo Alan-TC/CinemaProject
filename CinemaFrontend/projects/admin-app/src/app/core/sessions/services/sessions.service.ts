@@ -17,6 +17,11 @@ export class SessionsService {
       (`${this.REQUEST_URL}`, session);
   }
 
+  getSessionById(id: string): Observable<ISessionResponse> {
+    return this._httpClient.get<ISessionResponse>
+      (`${this.REQUEST_URL}/${id}`);
+  }
+
   getSessions(page: number, pageSize: number, code: string | null = null): Observable<IPaginationResponse<ISessionSummary>> {
     return this._httpClient.post<IPaginationResponse<ISessionSummary>>
       (`${this.REQUEST_URL}/filter?currentPage=${page}&pageSize=${pageSize}`, { code });
