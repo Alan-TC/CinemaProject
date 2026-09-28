@@ -1,0 +1,70 @@
+<lib-options-menu class="sessions-details-menu">
+  <lib-options-menu-header class="sessions-details-menu__header-container">
+    <div class="sessions-details-menu__header-right">
+      <p class="inter-black">Sessão</p>
+    </div>
+  </lib-options-menu-header>
+<lib-options-menu-content>
+  @if(session$ | async; as session;) {
+    <div class="sessions-details-menu__content">
+      <div class="sessions-details-menu__content-left-items">
+        <div class="sessions-details-menu__group-input">
+          <div class="default-input inter-black">
+            <label>Código</label>
+            <input
+            disabled
+            class="default-input__input inter-black"
+            type="text" [value]="session.code">
+          </div>
+          <div class="default-input inter-black">
+            <label>Preço R$</label>
+            <input
+            disabled
+            class="default-input__input inter-black"
+            type="number" [value]="session.pricing">
+          </div>
+        </div>
+
+        <div class="default-input inter-black">
+          <label>Filme</label>
+          <input
+          disabled
+          class="default-input__input inter-black"
+          type="text" [value]="session.movie.title">
+        </div>
+
+        <div class="default-input inter-black">
+          <label>Sala</label>
+          <input
+          disabled
+          class="default-input__input inter-black"
+          type="text" [value]="session.sessionRoom.tag">
+        </div>
+      </div>
+      <div class="sessions-details-menu__content-right-items">
+        <div class="default-input inter-black">
+          <label>Início das Vendas</label>
+          <input
+          disabled
+          class="default-input__input inter-black"
+          type="datetime-local" [value]="session.startTicketSalesAt| date:'yyyy-MM-ddTHH:mm'">
+        </div>
+        <div class="default-input inter-black">
+          <label>Horário Início</label>
+          <input
+          disabled
+          class="default-input__input inter-black"
+          type="datetime-local" [value]="session.startsAt | date:'yyyy-MM-ddTHH:mm'">
+        </div>
+        <div class="default-input inter-black">
+          <label>Horário Fim</label>
+          <input
+          disabled
+          class="default-input__input inter-black"
+          type="datetime-local" [value]="session.endsAt | date:'yyyy-MM-ddTHH:mm'">
+        </div>
+      </div>
+    </div>
+  }
+</lib-options-menu-content>
+</lib-options-menu>

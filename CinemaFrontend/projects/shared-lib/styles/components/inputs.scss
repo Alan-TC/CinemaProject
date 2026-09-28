@@ -34,6 +34,8 @@
   & label {
     font-size: 20px;
     color: white;
+
+    margin-bottom: 3px;
   }
 
   &__input {
@@ -45,7 +47,8 @@
     border-radius: 4px;
     border: 1px solid var(--color-gray-300);
 
-    font-size: 14px;
+    font-size: 15px;
+
     color: var(--color-gray-900);
   }
 }

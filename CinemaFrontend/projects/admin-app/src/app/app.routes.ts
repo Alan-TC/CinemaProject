@@ -20,6 +20,10 @@ export const routes: Routes = [
       {
         path: 'sessions/create',
         loadComponent: () => import('./pages/sessions-create/sessions-create.component').then(m => m.SessionsCreateComponent),
+      },
+      {
+        path: 'sessions/:id',
+        loadComponent: () => import('./pages/sessions-details/sessions-details.component').then(m => m.SessionsDetailsComponent),
       }
     ]
   },
