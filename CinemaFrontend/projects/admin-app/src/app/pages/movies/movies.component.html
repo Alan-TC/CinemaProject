@@ -1,0 +1,44 @@
+<lib-options-menu class="movies-menu">
+  <lib-options-menu-header class="movies-menu__header-container">
+    <div class="movies-menu__header-right">
+      <p class="inter-black">Filmes</p>
+      <button class="create-button" (click)="onCreateMovieClick()"></button>
+    </div>
+    <lib-search-input (search)="onSearchClick($event)"
+      placeholder="Pesquisar filme"
+    ></lib-search-input>
+  </lib-options-menu-header>
+<lib-options-menu-content class="movies-menu__content">
+  <div class="movies-menu__table-container" (scroll)="onScroll($event)">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th class="inter-black">Nome</th>
+          <th class="inter-black">Categorias</th>
+          <th class="inter-black">Duração</th>
+          <th class="inter-black">Data de Lançamento</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(movie of movies(); track movie.id) {
+          <tr (click)="onMovieClick(movie.id)">
+            <td class="inter-regular">{{ movie.title }}</td>
+            <td class="marquee inter-regular"><span class="marquee__content">{{ movie.filmGenres | join }}</span></td>
+            <td class="inter-regular">{{ movie.duration }}</td>
+            <td class="inter-regular">{{ movie.releaseDate| date:'dd/MM/yyyy' }}</td>
+          </tr>
+        }
+        @if(isLoading) {
+          <tr class="loading-row">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</lib-options-menu-content>
+</lib-options-menu>
