@@ -1,0 +1,25 @@
+<label
+  #imageDropArea
+  [for]="inputId()"
+  class="image-drop-input"
+  [class.image-drop-input__active]="isActive"
+  (dragenter)="onEnterArea()"
+  (drop)="onLeaveArea()"
+  (dragend)="onLeaveArea()"
+  (dragleave)="onLeaveArea()">
+  <div class="image-drop-input__drop-zone-image">
+    <p>{{ placeholder() }}</p>
+    <img
+      [class.image-drop-input__inactive]="!imagePreviewUrl()"
+      [src]="imagePreviewUrl()"
+      alt="Preview">
+  </div>
+  <input
+    class="image-drop-input__input"
+    type="file"
+    [id]="inputId()"
+    [accept]="formats.join(', ')"
+    [disabled]="disabled"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"/>
+</label>
