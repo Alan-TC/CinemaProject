@@ -1,0 +1,78 @@
+.mutiple-selector {
+  width: inherit;
+  height: inherit;
+
+  position: relative;
+
+  &__placeholder {
+    width: inherit;
+    min-width: 190px;
+    height: inherit;
+
+    padding: 0 30px 0px 4px;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  &__placeholder-container {
+    width: inherit;
+    height: inherit;
+  }
+
+  &__placeholder-container::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+    background-image: url('../../../../assets/down-arrow-selector.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    pointer-events: none;
+  }
+
+  &__placeholder-container:focus-within:after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &__options {
+    background-color: black;
+    width: inherit;
+    height: 80px;
+
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 4px;
+    overflow-y: auto;
+  }
+
+  &__options-option {
+    width: inherit;
+    height: 20px;
+
+    display: flex;
+    align-items: center;;
+    gap: 4px;
+  }
+
+  &__options-option input {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__options-option label {
+    font-size: 15px;
+  }
+
+  &:focus-within &__options {
+    display: flex;
+  }
+}

@@ -42,7 +42,7 @@
           <p class="sessions-create-menu__error-msg inter-black">Ocorreu um erro inesperado.</p>
         }
         @else if(createSessionForm.hasError('serverError')) {
-          <p class="sessions-create-menu__error-msg inter-black">Ocorreu um erro no servidor. Tente novamente mais tarde.</p>
+          <p class="sessions-create-menu__error-msg inter-black">{{ createSessionForm.getError('serverError') }}</p>
         }
         @else if(createSessionForm.hasError('validationError')) {
           <p class="sessions-create-menu__error-msg inter-black">Preencha os campos corretamente.</p>

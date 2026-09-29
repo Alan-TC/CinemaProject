@@ -23,7 +23,7 @@
       <tbody>
         @for(movie of movies(); track movie.id) {
           <tr (click)="onMovieClick(movie.id)">
-            <td class="inter-regular">{{ movie.title }}</td>
+            <td class="marquee inter-regular"><span class="marquee__content">{{ movie.title }}</span></td>
             <td class="marquee inter-regular"><span class="marquee__content">{{ movie.filmGenres | join }}</span></td>
             <td class="inter-regular">{{ movie.duration }}</td>
             <td class="inter-regular">{{ movie.releaseDate| date:'dd/MM/yyyy' }}</td>

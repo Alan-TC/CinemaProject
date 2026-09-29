@@ -75,13 +75,13 @@ export class SessionsCreateComponent {
           this._router.navigate(['/sessions', response.id]);
         },
         error: (error) => {
-          if (error.status === 404) {
-            this.createSessionForm.setErrors({serverError: true});
-            console.log(error);
+          if (error.status === 400) {
+            if (error.error) {
+              this.createSessionForm.setErrors({serverError: error.error.errorMessages.join(', ')});
+              return;
+            }
           }
-          else {
-            this.createSessionForm.setErrors({unknownError: true});
-          }
+          this.createSessionForm.setErrors({unknownError: true});
         }
       })
   }

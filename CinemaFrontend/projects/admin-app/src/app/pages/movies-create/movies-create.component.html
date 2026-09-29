@@ -1,0 +1,133 @@
+<lib-options-menu class="movies-create-menu">
+  <lib-options-menu-header class="movies-create-menu__header-container">
+    <div class="movies-create-menu__header-right">
+      <p class="inter-black">Criar Filme</p>
+
+      <p class="inter-black">|</p>
+
+      <p
+        class="inter-black movies-create-menu__header-options"
+        [class.movies-create-menu__deactivated]="activatedMenu === 'right'"
+        (click)="selectMenu('left')"
+        >SOBRE</p>
+
+      <p
+        class="inter-black movies-create-menu__header-options"
+        [class.movies-create-menu__deactivated]="activatedMenu === 'left'"
+        (click)="selectMenu('right')"
+        >IMAGENS</p>
+    </div>
+  </lib-options-menu-header>
+<lib-options-menu-content>
+  <form
+    class="movies-create-menu__content"
+    [formGroup]="createMovieForm"
+    (ngSubmit)="onSubmit()">
+    <div class="movies-create-menu__content" [class.movies-create-menu__invisible]="activatedMenu === 'right'">
+      <div class="movies-create-menu__content-left-items">
+        <div class="default-input inter-black">
+          <label for="movie-title-ipt">Título</label>
+          <input
+          class="default-input__input inter-black"
+          id="movie-title-ipt"
+          type="text"
+          formControlName="title">
+        </div>
+        <div class="default-input inter-black">
+          <label for="movie-sinopse-ipt">Sinopse</label>
+          <textarea
+          class="default-input__input inter-black"
+          id="movie-sinopse-ipt"
+          type="text"
+          formControlName="sinopse">
+          </textarea>
+        </div>
+        <div class="movies-create-menu__rrtimes">
+          <div class="default-input inter-black">
+            <label for="movie-runtime-ipt">Duração</label>
+            <input
+            class="default-input__input inter-black"
+            id="movie-runtime-ipt"
+            type="time"
+            formControlName="runtime" step="1">
+          </div>
+          <div class="default-input inter-black">
+            <label for="movie-release-date-ipt">Data de Lançamento</label>
+            <input
+            class="default-input__input inter-black"
+            id="movie-release-date-ipt"
+            type="datetime-local"
+            formControlName="releaseDate">
+          </div>
+        </div>
+      </div>
+      <div class="movies-create-menu__content-right-items">
+        <div class="default-input inter-black">
+          <label for="movie-categories-slct">Categorias</label>
+          <lib-multiple-selector
+            class="default-input__input inter-black movies-create-menu__padding-zero"
+            placeholder="Selecione as categorias"
+            formControlName="categories"
+            inputId="movie-categories-slct"
+            [options]="categoriesOptions">
+          </lib-multiple-selector>
+        </div>
+        <div class="default-input inter-black">
+          <label for="movie-classInd-slct">Classificação Indicativa</label>
+          <select
+            class="default-input__input inter-black movies-create-menu__padding-zero"
+            formControlName="classInd"
+            inputId="movie-classInd-slct">
+            <option value="">Selecione a classificação</option>
+            <option value="All">Livre</option>
+            <option value="Rated6Plus">6 anos</option>
+            <option value="Rated10Plus">10 anos</option>
+            <option value="Rated12Plus">12 anos</option>
+            <option value="Rated14Plus">14 anos</option>
+            <option value="Rated16Plus">16 anos</option>
+            <option value="Rated18Plus">18 anos</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="movies-create-menu__content" [class.movies-create-menu__invisible]="activatedMenu === 'left'">
+      <div class="movies-create-menu__image-drop-container">
+        <lib-image-drop
+          class="movies-create-menu__poster"
+          inputId="movie-poster-ipt"
+          formControlName="poster"
+        ></lib-image-drop>
+        <label class="inter-black" for="movie-poster-ipt">Poster</label>
+      </div>
+      <div class="movies-create-menu__image-drop-container">
+        <lib-image-drop
+          class="movies-create-menu__banner"
+          inputId="movie-featured-ipt"
+          formControlName="featured"
+        ></lib-image-drop>
+        <label class="inter-black" for="movie-featured-ipt">Banner Destaque</label>
+      </div>
+      <div class="movies-create-menu__image-drop-container">
+        <lib-image-drop
+          class="movies-create-menu__banner"
+          inputId="movie-standard-ipt"
+          formControlName="standard"
+        ></lib-image-drop>
+        <label class="inter-black" for="movie-standard-ipt">Banner Padrão</label>
+      </div>
+    </div>
+    @if(createMovieForm.invalid) {
+      @if(createMovieForm.hasError('unknownError')) {
+        <p class="movies-create-menu__error-msg inter-black">Ocorreu um erro inesperado.</p>
+      }
+      @else if(createMovieForm.hasError('serverError')) {
+        <p class="movies-create-menu__error-msg inter-black">{{ createMovieForm.getError('serverError') }}</p>
+      }
+      @else if(createMovieForm.hasError('validationError')) {
+        <p class="movies-create-menu__error-msg inter-black">Preencha os campos corretamente.</p>
+      }
+    }
+    <lib-button name="Criar" type="submit"></lib-button>
+  </form>
+</lib-options-menu-content>
+</lib-options-menu>
