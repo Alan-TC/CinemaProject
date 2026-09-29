@@ -8,7 +8,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
     canActivate: [guestGuard()],
   },
-  { path: '',
+  {
+    path: '',
     loadComponent: () => import('./pages/main/main.component').then(m => m.MainComponent),
     canActivate: [authGuard()],
     runGuardsAndResolvers: 'always',
@@ -24,6 +25,10 @@ export const routes: Routes = [
       {
         path: 'sessions/:id',
         loadComponent: () => import('./pages/sessions-details/sessions-details.component').then(m => m.SessionsDetailsComponent),
+      },
+      {
+        path: 'movies',
+        loadComponent: () => import('./pages/movies/movies.component').then(m => m.MoviesComponent),
       }
     ]
   },

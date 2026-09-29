@@ -13,24 +13,24 @@
     <table class="list-table">
       <thead>
         <tr>
-          <th>Código</th>
-          <th>Filme</th>
-          <th>Horário</th>
-          <th>Data</th>
-          <th>INÍCIO VENDAS</th>
-          <th>DATA CRIAÇÃO</th>
+          <th class="inter-black">Código</th>
+          <th class="inter-black">Filme</th>
+          <th class="inter-black">Horário</th>
+          <th class="inter-black">Data</th>
+          <th class="inter-black">INÍCIO VENDAS</th>
+          <th class="inter-black">DATA CRIAÇÃO</th>
         </tr>
       </thead>
 
       <tbody>
         @for(session of sessions(); track session.id) {
           <tr (click)="onSessionClick(session.id)">
-            <td>{{ session.code }}</td>
-            <td class="marquee"><span class="marquee__content">{{ session.movieTitle }}</span></td>
-            <td>{{ session.startsAt | date:'HH:mm' }}</td>
-            <td>{{ session.startsAt | date:'dd/MM/yyyy' }}</td>
-            <td>{{ session.startTicketSalesAt| date:'dd/MM/yyyy' }}</td>
-            <td>{{ session.createdAt | date:'dd/MM/yyyy' }}</td>
+            <td class="inter-regular">{{ session.code }}</td>
+            <td class="marquee inter-regular"><span class="marquee__content">{{ session.movieTitle }}</span></td>
+            <td class="inter-regular">{{ session.startsAt | date:'HH:mm' }}</td>
+            <td class="inter-regular">{{ session.startsAt | date:'dd/MM/yyyy' }}</td>
+            <td class="inter-regular">{{ session.startTicketSalesAt| date:'dd/MM/yyyy' }}</td>
+            <td class="inter-regular">{{ session.createdAt | date:'dd/MM/yyyy' }}</td>
           </tr>
         }
         @if(isLoading) {
