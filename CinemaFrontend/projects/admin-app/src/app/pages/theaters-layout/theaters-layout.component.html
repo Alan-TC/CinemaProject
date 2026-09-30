@@ -1,0 +1,41 @@
+<lib-options-menu class="theaters-layout-menu">
+  <lib-options-menu-header class="theaters-layout-menu__header-container">
+    <div class="theaters-layout-menu__header-right">
+      <p class="inter-black">Salas</p>
+      <button class="create-button" (click)="onCreateTheatersLayoutClick()"></button>
+    </div>
+    <lib-search-input (search)="onSearchClick($event)"
+      placeholder="Tag da sala"
+    ></lib-search-input>
+  </lib-options-menu-header>
+<lib-options-menu-content class="theaters-layout-menu__content">
+  <div class="theaters-layout-menu__table-container" (scroll)="onScroll($event)">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th class="inter-black">Tag</th>
+          <th class="inter-black">Data Criação</th>
+          <th class="inter-black">Layout</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(theatersLayout of theatersLayout(); track theatersLayout.id) {
+          <tr (click)="onTheatersLayoutClick(theatersLayout.id)">
+            <td class="inter-regular">{{ theatersLayout.tag }}</td>
+            <td class="inter-regular">{{ theatersLayout.createdAt | date:'dd/MM/yyyy' }}</td>
+            <td><app-layout-preview [theaterLayout]="theatersLayout.layout"></app-layout-preview></td>
+          </tr>
+        }
+        @if(isLoading) {
+          <tr class="loading-row">
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</lib-options-menu-content>
+</lib-options-menu>

@@ -3,11 +3,11 @@ import { OptionsMenuComponent, OptionsMenuContentDirective, OptionsMenuHeaderDir
 import { InfiniteSelectorComponent } from '../../../../../shared-lib/src/lib/io/infinite-selector/infinite-selector.component';
 import { MoviesService } from '../../core/movies/services/movies.service';
 import { map, Observable } from 'rxjs';
-import { TheatersService } from '../../core/theater/services/theaters.service';
+import { TheatersLayoutService } from '../../core/theaters-layout/services/theaters-layout.service';
 import { ButtonComponent } from '../../../../../shared-lib/src/lib/io/button/button.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IMovieSelector } from '../../core/movies/models/movie-selector.interface';
-import { ITheaterSelector } from '../../core/theater/models/theater-selector.interface';
+import { ITheaterLayoutSelector } from '../../core/theaters-layout/models/theater-layout-selector.interface';
 import { ISessionRequest } from '../../core/sessions/models/session-request.interface';
 import { SessionsService } from '../../core/sessions/services/sessions.service';
 import { Router } from '@angular/router';
@@ -30,10 +30,10 @@ export class SessionsCreateComponent {
 
   private readonly _sessionsService = inject(SessionsService);
   private readonly _moviesService = inject(MoviesService);
-  private readonly _theatersService = inject(TheatersService);
+  private readonly _theatersLayoutService = inject(TheatersLayoutService);
 
   thisSelectedMovie: IMovieSelector | null = null;
-  thisSelectedTheater: ITheaterSelector | null = null;
+  thisSelectedTheater: ITheaterLayoutSelector | null = null;
 
   createSessionForm = new FormGroup({
     startSalesAt: new FormControl(null, [Validators.required]),
@@ -46,7 +46,7 @@ export class SessionsCreateComponent {
     this.thisSelectedMovie = movie;
   }
 
-  onTheaterSelected(theater: ITheaterSelector) {
+  onTheaterSelected(theater: ITheaterLayoutSelector) {
     this.thisSelectedTheater = theater;
   }
 
@@ -101,7 +101,7 @@ export class SessionsCreateComponent {
     theatersSelectorPaginationFunction(
       page: number, pageSize: number, searchByDisplayId: string | null)
       : Observable<{hasNext: boolean, itemsOptions: any[]}>{
-        return this._theatersService.getTheaterSelectors(page, pageSize, searchByDisplayId)
+        return this._theatersLayoutService.getTheaterSelectors(page, pageSize, searchByDisplayId)
           .pipe(
             map((response) => ({
               hasNext: response.hasNext,
