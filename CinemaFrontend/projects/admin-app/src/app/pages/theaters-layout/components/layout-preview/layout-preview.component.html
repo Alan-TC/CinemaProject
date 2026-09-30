@@ -1,0 +1,19 @@
+<div class="layout-preview">
+  <div class="layout-preview__icon">
+  </div>
+  <div class="layout-preview__grid-container">
+    @for(row of theaterGridFormated(); track $index) {
+      <div class="layout-preview__grid-row">
+      @for(seat of row; track $index) {
+        <div
+          class="layout-preview__grid-cell"
+          [class.layout-preview__grid-seat]="seat === 'Seat'">
+        </div>
+      }
+      </div>
+    }
+    <div class="layout-preview__screen inter-black">
+      Tela
+    </div>
+  </div>
+</div>

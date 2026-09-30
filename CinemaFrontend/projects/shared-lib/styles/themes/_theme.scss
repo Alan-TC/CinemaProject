@@ -39,4 +39,7 @@
 
   --list-table-header-surface: linear-gradient(to top, #{$grey-900},  #{$black} 90%);
   --list-table-rows-surface: #{$grey-900};
+
+  --room-background: #{$grey-900};
+  --room-background-shadow: inset 0px 0px 10px 0px color-mix(in srgb, var(--black) 80%, transparent);
 }
