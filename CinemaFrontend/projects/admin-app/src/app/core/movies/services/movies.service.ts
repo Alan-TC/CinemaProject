@@ -26,6 +26,12 @@ export class MoviesService {
     );
   }
 
+  getMovieById(id: string):
+    Observable<IMovie>
+  {
+    return this._httpClient.get<IMovie>(`${this.REQUEST_URL}/${id}`);
+  }
+
   getMovieSelectors(page: number, pageSize: number, title: string | null = null):
     Observable<IPaginationResponse<IMovieSelector>>
   {

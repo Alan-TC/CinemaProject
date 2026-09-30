@@ -1,0 +1,131 @@
+<lib-options-menu class="movies-details-menu">
+  <lib-options-menu-header class="movies-details-menu__header-container">
+    <div class="movies-details-menu__header-right">
+      <p class="inter-black">Criar Filme</p>
+
+      <p class="inter-black">|</p>
+
+      <p
+        class="inter-black movies-details-menu__header-options"
+        [class.movies-details-menu__deactivated]="activatedMenu === 'right'"
+        (click)="selectMenu('left')"
+        >SOBRE</p>
+
+      <p
+        class="inter-black movies-details-menu__header-options"
+        [class.movies-details-menu__deactivated]="activatedMenu === 'left'"
+        (click)="selectMenu('right')"
+        >IMAGENS</p>
+    </div>
+  </lib-options-menu-header>
+<lib-options-menu-content>
+  <div class="movies-details-menu__content">
+    @if(movie$ | async; as movie;) {
+      <div class="movies-details-menu__content" [class.movies-details-menu__invisible]="activatedMenu === 'right'">
+        <div class="movies-details-menu__content-left-items">
+          <div class="default-input inter-black">
+            <label for="movie-title-ipt">Título</label>
+            <input
+            disabled
+            [value]="movie.title"
+            class="default-input__input inter-black"
+            id="movie-title-ipt"
+            type="text"
+            formControlName="title">
+          </div>
+          <div class="default-input inter-black">
+            <label for="movie-sinopse-ipt">Sinopse</label>
+            <textarea
+            disabled
+            [value]="movie.sinopse"
+            class="default-input__input inter-black"
+            id="movie-sinopse-ipt"
+            type="text"
+            formControlName="sinopse">
+            </textarea>
+          </div>
+          <div class="movies-details-menu__rrtimes">
+            <div class="default-input inter-black">
+              <label for="movie-runtime-ipt">Duração</label>
+              <input
+              disabled
+              [value]="movie.duration"
+              class="default-input__input inter-black"
+              id="movie-runtime-ipt"
+              type="time"
+              formControlName="runtime" step="1">
+            </div>
+            <div class="default-input inter-black">
+              <label for="movie-release-date-ipt">Data de Lançamento</label>
+              <input
+              disabled
+              [value]="movie.releaseDate | date: 'yyyy-MM-dd'"
+              class="default-input__input inter-black"
+              id="movie-release-date-ipt"
+              type="text"
+              formControlName="releaseDate">
+            </div>
+          </div>
+        </div>
+        <div class="movies-details-menu__content-right-items">
+          <div class="default-input inter-black">
+            <label for="movie-categories-slct">Categorias</label>
+            <input
+              class="default-input__input inter-black"
+              type="text"
+              [value]="movie.filmGenres| join">
+          </div>
+          <div class="default-input inter-black">
+            <label for="movie-classInd-slct">Classificação Indicativa</label>
+            <input
+              class="default-input__input inter-black"
+              type="text"
+              [value]="classIndTranslateMap[movie.classInd]">
+          </div>
+        </div>
+      </div>
+      <div class="movies-details-menu__content" [class.movies-details-menu__invisible]="activatedMenu === 'left'">
+        <div class="movies-details-menu__image-container">
+          <div class="movies-details-menu__image-zone-container movies-details-menu__poster">
+            <div class="movies-details-menu__image-zone">
+              @if(movie.imagesUrl.posterUrl) {
+               <img [src]="movie.imagesUrl.posterUrl"
+                  inputId="movie-poster-ipt"
+                  formControlName="poster"
+                >
+              }
+            </div>
+          </div>
+          <label class="inter-black">Poster</label>
+        </div>
+        <div class="movies-details-menu__image-container">
+          <div class="movies-details-menu__image-zone-container movies-details-menu__banner">
+            <div class="movies-details-menu__image-zone">
+              @if(movie.imagesUrl.featuredBanner) {
+               <img [src]="movie.imagesUrl.featuredBanner"
+                  inputId="movie-feature-ipt"
+                  formControlName="featured"
+                >
+              }
+            </div>
+          </div>
+          <label class="inter-black">Banner Destaque</label>
+        </div>
+        <div class="movies-details-menu__image-container">
+          <div class="movies-details-menu__image-zone-container movies-details-menu__banner">
+            <div class="movies-details-menu__image-zone">
+              @if(movie.imagesUrl.standardBanner) {
+               <img [src]="movie.imagesUrl.standardBanner"
+                  inputId="movie-standard-ipt"
+                  formControlName="standard"
+                >
+              }
+            </div>
+          </div>
+          <label class="inter-black">Banner Padrão</label>
+        </div>
+      </div>
+    }
+  </div>
+</lib-options-menu-content>
+</lib-options-menu>

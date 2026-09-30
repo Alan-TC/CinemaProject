@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { SessionsService } from '../../core/sessions/services/sessions.service';
 import { OptionsMenuComponent, OptionsMenuContentDirective, OptionsMenuHeaderDirective } from '../../../../../shared-lib/src/lib/pages/options/options-menu/options-menu.component';
 import { ISessionResponse } from '../../core/sessions/models/session-response.interface';
@@ -26,5 +26,5 @@ export class SessionsDetailsComponent {
   session$: Observable<ISessionResponse> = toObservable(this.id)
     .pipe(
       switchMap(id => this._sessionsService.getSessionById(id))
-    )
+    );
 }
