@@ -33,6 +33,10 @@ export const routes: Routes = [
       {
         path: 'movies/create',
         loadComponent: () => import('./pages/movies-create/movies-create.component').then(m => m.MoviesCreateComponent),
+      },
+      {
+        path: 'movies/:id',
+        loadComponent: () => import('./pages/movies-details/movies-details.component').then(m => m.MoviesDetailsComponent),
       }
     ]
   },

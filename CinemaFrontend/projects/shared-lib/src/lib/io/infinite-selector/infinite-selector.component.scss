@@ -82,6 +82,10 @@
     color: white;
   }
 
+  &__options-option span {
+    white-space: nowrap;
+  }
+
   &__options-option:hover {
     background: #e0e0e0;
   }

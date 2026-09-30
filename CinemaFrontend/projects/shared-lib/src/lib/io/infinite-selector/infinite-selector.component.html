@@ -13,7 +13,9 @@
     (scroll)="onScroll($event)">
     @for(option of options(); track option[idProperty()]) {
       <div class="infinite-selector__options-option" (click)="onSelectedOption(option)">
-        <span>{{ option[displayProperty()] }} </span>
+        <div class="marquee">
+          <span class="marquee__content">{{ option[displayProperty()] }} </span>
+        </div>
         @if(auxDisplayProperty() !== '') {
           <span>{{ option[auxDisplayProperty()] }}</span>
         }
