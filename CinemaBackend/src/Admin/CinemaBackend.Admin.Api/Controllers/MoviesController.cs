@@ -47,7 +47,7 @@ public class MoviesController : ControllerBase
 
     [HttpGet("{movieId:guid}")]
     [ProducesResponseType(typeof(MovieInfoDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Get(
         [FromServices] IMovieGetByIdUseCase useCase,
         [FromRoute] Guid movieId)

@@ -211,10 +211,10 @@
     <value>Invalid cell type.</value>
   </data>
   <data name="VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE" xml:space="preserve">
-    <value>Grid cell y position must be greater than zero and less than layout heigth.</value>
+    <value>Grid cell y position must be greater or equal to zero and less than layout heigth.</value>
   </data>
   <data name="VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE" xml:space="preserve">
-    <value>Grid cell x position must be greater than zero and less than layout heigth.</value>
+    <value>Grid cell x position must be greater or equal to zero and less than layout width.</value>
   </data>
   <data name="VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS" xml:space="preserve">
     <value>This tag already exists.</value>

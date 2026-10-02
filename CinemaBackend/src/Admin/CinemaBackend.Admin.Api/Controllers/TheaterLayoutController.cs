@@ -18,8 +18,8 @@ public class TheaterLayoutController : ControllerBase
 
     [HttpGet("{theaterId:guid}")]
     [ProducesResponseType(typeof(TheaterLayoutResponseJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Create(
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Get(
         [FromServices] IGetTheaterLayoutByIdUseCase useCase,
         [FromRoute] Guid theaterId
     )
