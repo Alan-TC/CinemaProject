@@ -108,10 +108,7 @@ export class TheaterLayoutEditorComponent {
   }
 
   fitToScreen() {
-    if (!this.layoutContainer || !this.layoutElement) {
-      console.warn('Layout container or layout element is not available yet.');
-      return;
-    }
+    if (!this.layoutContainer || !this.layoutElement) return;
 
     const container = this.layoutContainer.nativeElement;
     const layout = this.layoutElement.nativeElement;
