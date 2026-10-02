@@ -42,4 +42,10 @@
 
   --room-background: #{$grey-900};
   --room-background-shadow: inset 0px 0px 10px 0px color-mix(in srgb, var(--black) 80%, transparent);
+
+  --room-sub-background: #{$grey-500};
+  --room-sub-background-shadow: inset 0px 0px 10px 0px color-mix(in srgb, var(--black) 80%, transparent);
+
+  --slider-track-surface: #{$grey-900};
+  --slider-thumb-surface: #{$brown-500};
 }

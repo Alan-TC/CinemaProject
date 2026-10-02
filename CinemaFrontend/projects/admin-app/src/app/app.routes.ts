@@ -41,6 +41,10 @@ export const routes: Routes = [
       {
         path: 'theaters-layout',
         loadComponent: () => import('./pages/theaters-layout/theaters-layout.component').then(m => m.TheatersLayoutComponent),
+      },
+      {
+        path: 'theaters-layout/create',
+        loadComponent: () => import('./pages/theaters-layout-create/theaters-layout-create.component').then(m => m.TheatersLayoutCreateComponent),
       }
     ]
   },

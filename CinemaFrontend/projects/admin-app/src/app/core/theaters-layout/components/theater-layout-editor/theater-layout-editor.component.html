@@ -1,0 +1,105 @@
+<div class="editor">
+  <div class="editor__grid-container">
+    <div class="editor__grid-layout-container">
+      <div
+        #layoutContainer
+        class="layout-container"
+        (wheel)="onWheel($event)"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+        (pointercancel)="onPointerUp($event)"
+        (pointerleave)="onPointerUp($event)"
+        >
+        <div
+          #layoutElement
+          class="layout"
+          [class.layout__disabled]="disabled()"
+          [class.layout__no-grid]="gridDisabled"
+          [style.scale]="scale()"
+          [style.transform]="'translate(' + translateX + 'px, ' + translateY + 'px)'"
+          (click)="onLayoutClick($event)"
+          >
+          @for(row of gridLayout().cells; track $index; let rowIndex = $index){
+            <div class="layout__row">
+              @for(col of row; track $index; let colIndex = $index){
+                <div
+                  style="color: white; font-size: 5px;"
+                  class="layout__cell"
+                  [class.layout__seat]="col.type === 'Seat'"
+                  [attr.data-row]="rowIndex"
+                  [attr.data-col]="colIndex"
+                  >
+                  </div>
+              }
+            </div>
+          }
+          <div class="layout__screen inter-black unselectable">
+            Tela
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <input class="slider" (input)="onSliderChange($event)" type="range" [min]="minZoom() * 100" [max]="maxZoom() * 100" [value]="scale() * 100" step="any" class="slider" id="myRange">
+      </div>
+    </div>
+    <div class="editor__grid-legend">
+      <div class="editor__grid-legend-item">
+        <div class="layout__cell layout__seat">
+        </div>
+        <p class="editor__legend-text inter-black">Assento</p>
+      </div>
+      <div class="editor__grid-legend-item">
+        <div class="layout__cell"></div>
+        <p class="editor__legend-text inter-black">Vazio</p>
+      </div>
+    </div>
+  </div>
+  <div class="properties-container">
+    <div class="properties-container__item">
+      <label class="properties-container__label inter-black">Tag da Sala</label>
+      <input
+      class="properties-container__input inter-black"
+      type="text"
+      [disabled]="disabled()"
+      [(ngModel)]="tagInitialValue"
+      [ngModelOptions]="{standalone: true}"
+      (focusout)="confirmTag()"
+      placeholder="Tag">
+    </div>
+
+    <div class="properties-container__item-group">
+      <div class="properties-container__item">
+        <label class="properties-container__label inter-black">L</label>
+        <input
+          class="properties-container__input inter-black"
+          type="number"
+          [disabled]="disabled()"
+          [(ngModel)]="widthInitialValue"
+          [ngModelOptions]="{standalone: true}"
+          (focusout)="confirmWidth()"
+          placeholder="Largura">
+      </div>
+      <span class="inter-black" style="color: white;">X</span>
+      <div class="properties-container__item">
+        <label class="properties-container__label inter-black">A</label>
+        <input
+          class="properties-container__input inter-black"
+          type="number"
+          [disabled]="disabled()"
+          [(ngModel)]="heightInitialValue"
+          [ngModelOptions]="{standalone: true}"
+          (focusout)="confirmHeight()"
+          placeholder="Altura">
+      </div>
+    </div>
+    <div class="properties-container__item">
+      <span class="properties-container__label inter-black">Grid</span>
+      <label class="switch">
+        <input (change)="switchGrid()" type="checkbox">
+        <span class="switch__slider round"></span>
+      </label>
+    </div>
+  </div>
+</div>

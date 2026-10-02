@@ -1,0 +1,292 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  gap: 1rem;
+
+  &__grid-container {
+    width: 65%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+  }
+
+  &__grid-layout-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border-radius: 20px;
+
+    background-color: var(--room-sub-background);
+    box-shadow: var(--room-sub-background-shadow);
+  }
+
+  &__grid-legend {
+    width: min-content;
+    height: min-content;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    padding: clamp(2px, 3.5%, 15px);
+
+    border-radius: 10px;
+
+    gap: clamp(2px, 6.5%, 15px);
+
+    background: var(--room-background);
+  }
+
+  &__grid-legend-item {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(1px, 2vw, 4px);
+  }
+
+  &__legend-text {
+    line-height: 0;
+    color: white;
+
+    text-transform: uppercase;
+
+    font-size: clamp(0px, 1vw, 15px);
+  }
+}
+
+.properties-container {
+  width: 35%;
+  height: 100%;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border-radius: 20px;
+
+  background-color: var(--room-background);
+
+  &__item {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item &__input {
+    height: 30px;
+
+    border-radius: 5px;
+    padding: 0 5px;
+  }
+
+  &__item-group {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    gap: 10px;
+  }
+
+  &__item-group &__item {
+    align-items: center;
+  }
+
+  &__item-group &__item &__input {
+    max-width: 50px;
+
+    text-align: center;
+  }
+
+  &__label {
+    width: fit-content;
+    height: fit-content;
+
+    color: white;
+  }
+}
+
+input:disabled {
+  color: white;
+}
+
+.layout-container {
+  width: 80%;
+  height: 80%;
+
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: var(--room-background);
+  box-shadow: var(--room-background-shadow);
+
+  touch-action: none;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.layout {
+  width: fit-content;
+  height: fit-content;
+
+  padding: 20px 20px 10px 20px;
+
+  background: var(--room-background);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__row {
+    width: fit-content;
+    height: fit-content;
+
+    border-bottom: 1px solid white;
+
+    display: flex;
+  }
+
+  & &__row:first-child {
+    border-top:  1px solid white;
+  }
+
+  &__cell {
+    width: 12px;
+    height: 12px;
+    position: relative;
+
+    border-left: 1px solid white;
+    padding: 1px;
+
+    cursor: pointer;
+  }
+
+  & &__cell:last-child {
+    border-right: 1px solid white;
+  }
+
+  &__no-grid &__cell,
+  &__no-grid &__cell:last-child,
+  &__no-grid &__row,
+  &__no-grid &__row:first-child
+  {
+    border: none;
+  }
+
+  &__disabled &__cell {
+    cursor: grab;
+  }
+
+  &__disabled &__cell:active {
+    cursor: grabbing;
+  }
+
+  &__seat::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    top: 50%;
+    left: 50%;
+
+    border-radius: 50%;
+
+    background: white;
+  }
+
+  &__screen {
+    width: 100%;
+    height: 20px;
+    margin-top: 14px;
+    background-color: white;
+
+    padding: 0 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    touch-action: none;
+
+    color: black;
+    text-transform: uppercase;
+  }
+}
+
+.editor__grid-legend .layout__cell {
+  width: clamp(0px, 1vw, 15px);
+  height: clamp(0px, 1vw, 15px);
+
+  border: 1px solid white;
+
+  cursor: default;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100px;
+}
+
+.slider-container .slider {
+  writing-mode: vertical-lr;
+  direction: rtl;
+
+  width: 8px;
+  height: 100%;
+}
+
+
+
+.slider-container input::-webkit-outer-spin-button,
+.slider-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.slider-container input[type=number] {
+  appearance: textfield;
+}
