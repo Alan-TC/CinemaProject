@@ -94,7 +94,10 @@
           placeholder="Altura">
       </div>
     </div>
-    <div class="properties-container__item">
+    <div
+      class="properties-container__item"
+      [class.disabled]="disabled()"
+      >
       <span class="properties-container__label inter-black">Grid</span>
       <label class="switch">
         <input (change)="switchGrid()" type="checkbox">

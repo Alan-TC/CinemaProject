@@ -12,6 +12,10 @@ export class TheatersLayoutService {
   private readonly _httpClient = inject(HttpClient);
   private readonly REQUEST_URL = `${environment.apiUrl}/theaterlayout`;
 
+  getTheaterLayoutById(id: string): Observable<ITheaterLayout> {
+    return this._httpClient.get<ITheaterLayout>(`${this.REQUEST_URL}/${id}`);
+  }
+
   createTheaterLayout(theaterLayout: ITheaterLayoutRequest): Observable<ITheaterLayout> {
     return this._httpClient.post<ITheaterLayout>(this.REQUEST_URL, theaterLayout);
   }

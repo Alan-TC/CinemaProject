@@ -14,7 +14,7 @@ export class TheaterLayoutEditorComponent {
   @ViewChild('layoutElement') layoutElement!: ElementRef<HTMLDivElement>;
 
   disabled = input<boolean>(false);
-  gridLayout = model<IEditorGridLayout>({ tag: '', width: 0, height: 0, cells: [] });
+  gridLayout = model.required<IEditorGridLayout>();
 
   tagInitialValue = '';
   widthInitialValue = 0;
@@ -49,10 +49,8 @@ export class TheaterLayoutEditorComponent {
     });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.fitToScreen();
-    }, 0);
+  ngOnInit() {
+    this.gridDisabled = this.disabled();
   }
 
   switchGrid() {
@@ -110,7 +108,10 @@ export class TheaterLayoutEditorComponent {
   }
 
   fitToScreen() {
-    if (!this.layoutContainer || !this.layoutElement) return;
+    if (!this.layoutContainer || !this.layoutElement) {
+      console.warn('Layout container or layout element is not available yet.');
+      return;
+    }
 
     const container = this.layoutContainer.nativeElement;
     const layout = this.layoutElement.nativeElement;

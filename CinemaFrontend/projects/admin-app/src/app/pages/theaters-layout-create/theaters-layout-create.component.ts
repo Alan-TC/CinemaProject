@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { OptionsMenuComponent, OptionsMenuContentDirective, OptionsMenuHeaderDirective } from '../../../../../shared-lib/src/lib/pages/options/options-menu/options-menu.component';
 import { TheaterLayoutEditorComponent } from '../../core/theaters-layout/components/theater-layout-editor/theater-layout-editor.component';
 import { IEditorGridLayout } from '../../core/theaters-layout/components/theater-layout-editor/models/editor-grid-layout.interface';
@@ -24,48 +24,47 @@ export class TheatersLayoutCreateComponent {
   private readonly _theatersLayoutService = inject(TheatersLayoutService);
   private readonly _router = inject(Router);
 
-  gridLayout: IEditorGridLayout = {
+  gridLayout = signal<IEditorGridLayout>({
     tag: '',
     width: 0,
     height: 0,
     cells: []
-  };
+  });
 
-  errorMessage: string | null = null;
+  errorMessage = signal<string | null>(null);
 
   setErrorMessage(message: string) {
-    this.errorMessage = message;
+    this.errorMessage.set(message);
     setTimeout(() => {
-      this.errorMessage = null;
+      this.errorMessage.set(null);
     }, 5000);
   }
 
   createTheaterLayout() {
-    console.log('Criando layout do teatro com os seguintes dados:', this.gridLayout);
-    if (this.gridLayout.width <= 0 || this.gridLayout.height <= 0) {
+    if (this.gridLayout().width <= 0 || this.gridLayout().height <= 0) {
       this.setErrorMessage('Largura e altura devem ser maiores que 0.');
       return;
     }
-    if (!this.gridLayout.tag || this.gridLayout.tag.trim() === '') {
+    if (!this.gridLayout().tag || this.gridLayout().tag.trim() === '') {
       this.setErrorMessage('A tag do layout não pode estar vazia.');
       return;
     }
 
     const gridCells: IGridCell[] = [];
 
-    for (let y = 0; y < this.gridLayout.height; y++) {
-      for (let x = 0; x < this.gridLayout.width; x++) {
-        if (this.gridLayout.cells[y][x].type === 'Seat') {
-          gridCells.push({ posX: x, posY: this.gridLayout.height - 1 - y, type: 'Seat' });
+    for (let y = 0; y < this.gridLayout().height; y++) {
+      for (let x = 0; x < this.gridLayout().width; x++) {
+        if (this.gridLayout().cells[y][x].type === 'Seat') {
+          gridCells.push({ posX: x, posY: this.gridLayout().height - 1 - y, type: 'Seat' });
         }
       }
     }
 
     const theaterLayoutRequest: ITheaterLayoutRequest = {
-      tag: this.gridLayout.tag,
+      tag: this.gridLayout().tag,
       layout: {
-        width: this.gridLayout.width,
-        height: this.gridLayout.height,
+        width: this.gridLayout().width,
+        height: this.gridLayout().height,
         grid: gridCells
       }
     };
@@ -76,7 +75,9 @@ export class TheatersLayoutCreateComponent {
           this._router.navigate(['/theaters-layout', response.id]);
         },
         error: (error: any) => {
-          this.setErrorMessage('Erro ao criar o layout do teatro: ' + error.message);
+          if(error.error) {
+            this.setErrorMessage(error.error.errorMessages.join(', '));
+          }
         }
       });
   }

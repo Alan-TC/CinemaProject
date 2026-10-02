@@ -279,7 +279,9 @@ input:disabled {
   height: 100%;
 }
 
-
+.disabled {
+  display: none;
+}
 
 .slider-container input::-webkit-outer-spin-button,
 .slider-container input::-webkit-inner-spin-button {

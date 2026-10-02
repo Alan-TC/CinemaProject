@@ -45,6 +45,10 @@ export const routes: Routes = [
       {
         path: 'theaters-layout/create',
         loadComponent: () => import('./pages/theaters-layout-create/theaters-layout-create.component').then(m => m.TheatersLayoutCreateComponent),
+      },
+      {
+        path: 'theaters-layout/:id',
+        loadComponent: () => import('./pages/theaters-layout-details/theaters-layout-details.component').then(m => m.TheatersLayoutDetailsComponent),
       }
     ]
   },
