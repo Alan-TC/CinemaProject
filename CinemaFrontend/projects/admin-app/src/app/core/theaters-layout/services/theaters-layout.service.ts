@@ -5,11 +5,16 @@ import { IPaginationResponse } from '../../shared/models/pagination-response.int
 import { Observable } from 'rxjs';
 import { ITheaterLayoutSelector } from '../models/theater-layout-selector.interface';
 import { ITheaterLayout } from '../models/theater-layout.interface';
+import { ITheaterLayoutRequest } from '../models/theater-layout-request.interface';
 
 @Service()
 export class TheatersLayoutService {
   private readonly _httpClient = inject(HttpClient);
   private readonly REQUEST_URL = `${environment.apiUrl}/theaterlayout`;
+
+  createTheaterLayout(theaterLayout: ITheaterLayoutRequest): Observable<ITheaterLayout> {
+    return this._httpClient.post<ITheaterLayout>(this.REQUEST_URL, theaterLayout);
+  }
 
   getTheatersLayout(
     page: number,

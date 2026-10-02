@@ -16,16 +16,16 @@ export class LayoutPreviewComponent implements OnInit {
     const gridFormated: string[][] = [];
     const gridHeight = this.theaterLayout().height;
 
-    for (let x = 0; x < gridHeight; x++) {
+    for (let y = 0; y < gridHeight; y++) {
       const row: string[] = [];
-      for (let y = 0; y < this.theaterLayout().width; y++) {
+      for (let x = 0; x < this.theaterLayout().width; x++) {
         row.push('Empty');
       }
       gridFormated.push(row);
     }
 
     this.theaterLayout().grid.forEach((cell) => {
-      gridFormated[gridHeight - 1 - cell.posX][cell.posY] = cell.type;
+      gridFormated[gridHeight - 1 - cell.posY][cell.posX] = cell.type;
     });
 
     this.theaterGridFormated.set(gridFormated);

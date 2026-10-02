@@ -6,5 +6,9 @@
   </lib-options-menu-header>
   <lib-options-menu-content class="menu__content">
     <app-theater-layout-editor [(gridLayout)]="gridLayout"></app-theater-layout-editor>
+    @if(errorMessage) {
+      <p class="error-message inter-black">{{ errorMessage }}</p>
+    }
+    <lib-button name="Criar" type="button" (click)="createTheaterLayout()"></lib-button>
   </lib-options-menu-content>
 </lib-options-menu>
