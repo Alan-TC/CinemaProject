@@ -1,12 +1,15 @@
 using System.Security.Claims;
 using CinemaBackend.Domain.Entities.AdminUserEntities;
+using CinemaBackend.Domain.Entities.UserEntities;
 using CinemaBackend.Domain.Security.Tokens.Admin;
+using CinemaBackend.Domain.Security.Tokens.User;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CinemaBackend.Infrastructure.Security.Tokens;
 
-public class JwtTokenHandler : IAdminAccessTokenGenerator, IAdminRefreshTokenGenerator
+public class JwtTokenHandler 
+    : IAdminAccessTokenGenerator, IAdminRefreshTokenGenerator, IUserAccessTokenGenerator, IUserRefreshTokenGenerator
 {
     private readonly string _signingtKey;
     private readonly string _issuer;
@@ -41,11 +44,38 @@ public class JwtTokenHandler : IAdminAccessTokenGenerator, IAdminRefreshTokenGen
         return token;
     }
 
-    string IAdminRefreshTokenGenerator.Generate(AdminUser adminUse)
+    string IAdminRefreshTokenGenerator.Generate(AdminUser adminUser)
     {
         var claims = new List<Claim>
         {
-            new (JwtRegisteredClaimNames.Sub, adminUse.Id.ToString()),
+            new (JwtRegisteredClaimNames.Sub, adminUser.Id.ToString()),
+            new (TokensTypes.TokenTypeClaimName, TokensTypes.Refresh)
+        };
+
+        var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_refreshTokenExpirationMinutes));
+
+        return token;
+    }
+
+    string IUserAccessTokenGenerator.Generate(User user)
+    {
+        var claims = new List<Claim>
+        {
+            new (JwtRegisteredClaimNames.Name, user.Name),
+            new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new (TokensTypes.TokenTypeClaimName, TokensTypes.Access)
+        };
+
+        var token = CreateToken(claims, DateTime.UtcNow.AddMinutes(_accessTokenExpirationMinutes));
+
+        return token;
+    }
+
+    string IUserRefreshTokenGenerator.Generate(User user)
+    {
+        var claims = new List<Claim>
+        {
+            new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new (TokensTypes.TokenTypeClaimName, TokensTypes.Refresh)
         };
 

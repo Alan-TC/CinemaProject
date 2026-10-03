@@ -1,7 +1,7 @@
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using FluentValidation;
 
-namespace CinemaBackend.Admin.Application.Shared;
+namespace CinemaBackend.Client.Application.Shared;
 
 internal static class PasswordValidator
 {

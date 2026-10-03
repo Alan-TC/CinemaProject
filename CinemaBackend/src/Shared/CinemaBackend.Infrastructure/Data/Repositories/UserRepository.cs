@@ -17,4 +17,20 @@ internal class UserRepository(CinemaDbContext dbContext) : IUserReadOnlyReposito
     {
         await _dbContext.Users.AddAsync(user);
     }
+
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        return await _dbContext
+            .Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Email == email && u.DeactivatedAt == null);
+    }
+
+    public async Task<User?> GetUserById(Guid id)
+    {
+        return await _dbContext
+            .Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id && u.DeactivatedAt == null);
+    }
 }

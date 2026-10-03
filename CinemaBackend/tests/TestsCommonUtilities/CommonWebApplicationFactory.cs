@@ -1,6 +1,5 @@
 using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
-using CinemaBackend.Domain.Entities.UserEntities;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
@@ -17,8 +16,6 @@ namespace TestsCommonUtilities;
 public abstract class CommonWebApplicationFactory<TEntryPoint> : 
     WebApplicationFactory<TEntryPoint>, IAsyncLifetime where TEntryPoint : class
 {
-    public AdminUserIdentityManager AdminUser { get; private set; } = default!;
-    public UserIdentityManager User {  get; private set; } = default!;
     public Movie Movie { get; private set; } = default!;
     public Movie Movie2 { get; private set; } = default!;
     public TheaterLayout TheaterLayout { get; private set; } = default!;
@@ -41,31 +38,15 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
 
         Directory.CreateDirectory(_storagePath);
 
+        await InitializeDatabase();
+
         await using var scope = Services.CreateAsyncScope();
 
         var dbContext = scope.ServiceProvider.GetRequiredService<CinemaDbContext>();
-        var passwordHasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
-        var adminAccessTokenGenerator = scope.ServiceProvider.GetRequiredService<IAdminAccessTokenGenerator>();
-        var adminRefresTokenGenerator = scope.ServiceProvider.GetRequiredService<IAdminRefreshTokenGenerator>();
 
-        AdminUser = await CreateAdminUser(dbContext, passwordHasher, adminAccessTokenGenerator, adminRefresTokenGenerator);
         Movie = await CreateMovie(dbContext);
         Movie2 = await CreateMovie(dbContext);
         TheaterLayout = await CreateTheaterLayout(dbContext);
-
-        User = await CreateUser(dbContext, passwordHasher);
-    }
-
-    private static async Task<UserIdentityManager> CreateUser(CinemaDbContext dbContext, IPasswordHasher passwordHasher)
-    {
-        var (user, password) = new UserBuilder()
-            .WithPasswordHasher(passwordHasher)
-            .Build();
-
-        await dbContext.Users.AddAsync(user);
-        await dbContext.SaveChangesAsync();
-
-        return new UserIdentityManager(user, password);
     }
 
     private static async Task<TheaterLayout> CreateTheaterLayout(CinemaDbContext dbContext)
@@ -88,23 +69,6 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
         return movie;
     }
 
-    private static async Task<AdminUserIdentityManager> CreateAdminUser(CinemaDbContext dbContext, 
-        IPasswordHasher passwordHasher, IAdminAccessTokenGenerator adminAccessTokenGenerator,
-        IAdminRefreshTokenGenerator adminRefreshTokenGenerator)
-    {
-        var (adminUser, password) = new AdminUserBuilder()
-            .WithPasswordHasher(passwordHasher)
-            .Build();
-
-        var accessToken = adminAccessTokenGenerator.Generate(adminUser);
-        var refreshToken = adminRefreshTokenGenerator.Generate(adminUser);
-
-        await dbContext.AdminUsers.AddAsync(adminUser);
-        await dbContext.SaveChangesAsync();
-
-        return new AdminUserIdentityManager(adminUser, password, accessToken, refreshToken);
-    }
-
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseConfiguration(GetConfiguration())
@@ -120,6 +84,8 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
                 configuration.AddInMemoryCollection(parameters);
             });
     }
+
+    protected abstract Task InitializeDatabase();
 
     protected abstract IConfiguration GetConfiguration();
 

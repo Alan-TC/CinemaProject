@@ -3,7 +3,7 @@ using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Communication.Responses;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace CinemaBackend.Admin.Api.Exceptions;
+namespace CinemaBackend.Client.Api.Exceptions;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {

@@ -1,4 +1,4 @@
-﻿using CinemaBackend.Admin.Application.Shared;
+﻿using CinemaBackend.Client.Application.Shared;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using FluentValidation;
