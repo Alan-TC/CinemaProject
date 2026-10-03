@@ -14,5 +14,12 @@ public class IUserReadOnlyRepositoryBuilder
         return this;
     }
 
+    public IUserReadOnlyRepositoryBuilder GetUserByEmail(CinemaBackend.Domain.Entities.UserEntities.User user)
+    {
+        _mock.Setup(repository => repository.GetUserByEmail(user.Email)).ReturnsAsync(user);
+
+        return this;
+    }
+
     public IUserReadOnlyRepository Build() => _mock.Object;
 }

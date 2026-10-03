@@ -1,7 +1,7 @@
 using FluentValidation;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 
-namespace CinemaBackend.Admin.Application.Shared;
+namespace CinemaBackend.Client.Application.Shared;
 
 internal static class EmailValidator
 {

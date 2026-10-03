@@ -6,6 +6,7 @@ using CinemaBackend.Domain.Repositories.TheaterLayout;
 using CinemaBackend.Domain.Repositories.User;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
+using CinemaBackend.Domain.Security.Tokens.User;
 using CinemaBackend.Domain.Storage.Movie;
 using CinemaBackend.Infrastructure.Data;
 using CinemaBackend.Infrastructure.Data.Repositories;
@@ -26,6 +27,7 @@ public static class DependencyInjectionExtensions
     public static void AddAdminInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddCommonInfrastructure(services, configuration);
+        AddAdminJwtTokenHandler(services, configuration);
 
         services.AddScoped<IAdminUserReadOnlyRepository, AdminUserRepository>();
         services.AddScoped<IAdminUserWriteOnlyRepository, AdminUserRepository>();
@@ -45,6 +47,7 @@ public static class DependencyInjectionExtensions
     public static void AddClientInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddCommonInfrastructure(services, configuration);
+        AddClientJwtTokenHandler(services, configuration);
 
         services.AddScoped<IUserReadOnlyRepository,  UserRepository>();
         services.AddScoped<IUserWriteOnlyRepository,  UserRepository>();
@@ -56,12 +59,11 @@ public static class DependencyInjectionExtensions
         AddMigrations(services, configuration);
 
         services.AddScoped<IPasswordHasher, PasswordHasherArgon2id>();
-        AddJwtTokenHandler(services, configuration);
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
-    private static void AddJwtTokenHandler(this IServiceCollection services, IConfiguration configuration)
+    private static void AddAdminJwtTokenHandler(this IServiceCollection services, IConfiguration configuration)
     {
         var signingKey = configuration["Jwt:SigningKey"]!;
         var issuer = configuration["Jwt:Issuer"]!;
@@ -73,6 +75,21 @@ public static class DependencyInjectionExtensions
             new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
 
         services.AddScoped<IAdminRefreshTokenGenerator>(provider =>
+            new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
+    }
+
+    private static void AddClientJwtTokenHandler(this IServiceCollection services, IConfiguration configuration)
+    {
+        var signingKey = configuration["Jwt:SigningKey"]!;
+        var issuer = configuration["Jwt:Issuer"]!;
+        var audience = configuration["Jwt:Audience"]!;
+        var accessTokenExpirationMinutes = uint.Parse(configuration["Jwt:AccessTokenExpirationTimeMinutes"]!);
+        var refreshTokenExpirationMinutes = uint.Parse(configuration["Jwt:RefreshTokenExpirationTimeMinutes"]!);
+
+        services.AddScoped<IUserAccessTokenGenerator>(provider =>
+            new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
+
+        services.AddScoped<IUserRefreshTokenGenerator>(provider =>
             new JwtTokenHandler(signingKey, issuer, audience, accessTokenExpirationMinutes, refreshTokenExpirationMinutes));
     }
 

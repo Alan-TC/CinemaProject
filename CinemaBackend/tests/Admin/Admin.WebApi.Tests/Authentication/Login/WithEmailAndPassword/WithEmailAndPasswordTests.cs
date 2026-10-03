@@ -51,8 +51,13 @@ public class WithEmailAndPasswordTests : IClassFixture<AdminWebApplicationFactor
             var responseData = await JsonDocument.ParseAsync(responseBody);
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
-            responseData.RootElement.GetProperty("accessToken").GetString().ShouldNotBeNullOrEmpty();
-            responseData.RootElement.GetProperty("refreshToken").GetString().ShouldNotBeNullOrEmpty();
+            var accessToken = responseData.RootElement.GetProperty("accessToken").GetString();
+            accessToken.ShouldNotBeNullOrEmpty();
+
+            var refreshToken = responseData.RootElement.GetProperty("refreshToken").GetString();
+            refreshToken.ShouldNotBeNullOrEmpty();
+
+            accessToken.ShouldNotBe(refreshToken);
         });
     }
 
