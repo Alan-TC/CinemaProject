@@ -1,47 +1,49 @@
-using Scalar.AspNetCore;
+using CinemaBackend.Admin.Api.Exceptions;
+using CinemaBackend.Client.Application;
 using CinemaBackend.Infrastructure;
+using Microsoft.AspNetCore.Http.Json;
+using Scalar.AspNetCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+void configureJson(JsonSerializerOptions options)
+{
+    options.Converters.Add(new JsonStringEnumConverter());
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options => configureJson(options.JsonSerializerOptions));
+
+// Para o OpenApi pegar as conversões. Ele se baseia na configuração das MinimalAPIs
+builder.Services.Configure<JsonOptions>(options =>
+    configureJson(options.SerializerOptions));
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+builder.Services.AddApplication();
 builder.Services.AddClientInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseExceptionHandler(_ => { });
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
 
+
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.MapControllers();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+await app.Services.ApplyMigrations();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

@@ -8,4 +8,5 @@ internal abstract class MigrationVersions
     public const uint SessionRelatedTables = 4;
     public const uint FixUniqueConstraintSessionRelatedTables = 5;
     public const uint AlterColumnsFromTimestampToTimestampz = 6;
+    public const uint UserTable = 7;
 }

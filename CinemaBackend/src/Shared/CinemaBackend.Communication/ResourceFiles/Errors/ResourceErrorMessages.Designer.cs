@@ -250,6 +250,15 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name is required..
+        /// </summary>
+        public static string VALIDATION_NAME_REQUIRED {
+            get {
+                return ResourceManager.GetString("VALIDATION_NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password must be at least 6 characters long..
         /// </summary>
         public static string VALIDATION_PASSWORD_LENGHT {
@@ -340,7 +349,7 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grid cell x position must be greater than zero and less than layout heigth..
+        ///   Looks up a localized string similar to Grid cell x position must be greater or equal to zero and less than layout width..
         /// </summary>
         public static string VALIDATION_THEATER_LAYOUT_GRID_POSX_RANGE_VALUE {
             get {
@@ -349,7 +358,7 @@ namespace CinemaBackend.Communication.ResourceFiles.Errors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grid cell y position must be greater than zero and less than layout heigth..
+        ///   Looks up a localized string similar to Grid cell y position must be greater or equal to zero and less than layout heigth..
         /// </summary>
         public static string VALIDATION_THEATER_LAYOUT_GRID_POSY_RANGE_VALUE {
             get {

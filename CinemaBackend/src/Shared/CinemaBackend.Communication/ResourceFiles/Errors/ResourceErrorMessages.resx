@@ -237,4 +237,7 @@
   <data name="VALIDATION_SESSION_INVALID_MOVIE" xml:space="preserve">
     <value>Movie doesn't exists.</value>
   </data>
+  <data name="VALIDATION_NAME_REQUIRED" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
 </root>
