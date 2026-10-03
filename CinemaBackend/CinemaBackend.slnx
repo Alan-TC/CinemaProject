@@ -22,4 +22,9 @@
     <Project Path="tests/Admin/Admin.Validators.Tests/Admin.Validators.Tests.csproj" />
     <Project Path="tests/Admin/Admin.WebApi.Tests/Admin.WebApi.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/Client/">
+    <Project Path="tests/Client/Client.UseCases.Tests/Client.UseCases.Tests.csproj" />
+    <Project Path="tests/Client/Client.Validators.Tests/Client.Validators.Tests.csproj" />
+    <Project Path="tests/Client/Client.WebApi.Tests/Client.WebApi.Tests.csproj" />
+  </Folder>
 </Solution>
