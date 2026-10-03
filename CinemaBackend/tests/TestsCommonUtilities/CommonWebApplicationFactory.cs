@@ -1,5 +1,6 @@
 using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
+using CinemaBackend.Domain.Entities.UserEntities;
 using CinemaBackend.Domain.Security.PasswordHasher;
 using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
@@ -17,6 +18,7 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
     WebApplicationFactory<TEntryPoint>, IAsyncLifetime where TEntryPoint : class
 {
     public AdminUserIdentityManager AdminUser { get; private set; } = default!;
+    public UserIdentityManager User {  get; private set; } = default!;
     public Movie Movie { get; private set; } = default!;
     public Movie Movie2 { get; private set; } = default!;
     public TheaterLayout TheaterLayout { get; private set; } = default!;
@@ -50,6 +52,20 @@ public abstract class CommonWebApplicationFactory<TEntryPoint> :
         Movie = await CreateMovie(dbContext);
         Movie2 = await CreateMovie(dbContext);
         TheaterLayout = await CreateTheaterLayout(dbContext);
+
+        User = await CreateUser(dbContext, passwordHasher);
+    }
+
+    private static async Task<UserIdentityManager> CreateUser(CinemaDbContext dbContext, IPasswordHasher passwordHasher)
+    {
+        var (user, password) = new UserBuilder()
+            .WithPasswordHasher(passwordHasher)
+            .Build();
+
+        await dbContext.Users.AddAsync(user);
+        await dbContext.SaveChangesAsync();
+
+        return new UserIdentityManager(user, password);
     }
 
     private static async Task<TheaterLayout> CreateTheaterLayout(CinemaDbContext dbContext)
