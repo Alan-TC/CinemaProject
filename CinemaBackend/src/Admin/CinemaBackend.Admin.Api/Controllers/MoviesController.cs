@@ -7,7 +7,6 @@ using CinemaBackend.Admin.Application.UseCases.Movie.UpdateDetails;
 using CinemaBackend.Admin.Application.UseCases.Movie.UpdateImages;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
-using CinemaBackend.Domain.DTOs.Movie;
 using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +45,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpGet("{movieId:guid}")]
-    [ProducesResponseType(typeof(MovieInfoDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(MovieResponseJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Get(
         [FromServices] IMovieGetByIdUseCase useCase,
