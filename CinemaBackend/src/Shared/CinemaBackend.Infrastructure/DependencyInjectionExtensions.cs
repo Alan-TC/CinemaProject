@@ -51,6 +51,12 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IUserReadOnlyRepository,  UserRepository>();
         services.AddScoped<IUserWriteOnlyRepository,  UserRepository>();
+
+        services.AddScoped<IMovieImageStorage, MovieImageStorage>();
+        services.AddScoped<IMovieReadOnlyRepository, MovieRepository>();
+
+        services.AddScoped<ISessionReadOnlyRepository, SessionRepository>();
+        services.AddScoped<ISessionWriteOnlyRepository, SessionRepository>();
     }
 
     private static void AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)

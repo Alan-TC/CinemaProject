@@ -63,6 +63,7 @@ internal class SessionRepository(CinemaDbContext dbContext) : ISessionWriteOnlyR
             .Include(s => s.SessionRoom)
                 .ThenInclude(sr => sr.Seats)
             .Include(s => s.Movie)
+                .ThenInclude(m => m.FilmGenres)
             .Include(s => s.Pricing)
             .FirstOrDefaultAsync(s => s.Id == id);
 

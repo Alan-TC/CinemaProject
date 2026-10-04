@@ -21,5 +21,8 @@ public class SessionRoomSeatMapping : IEntityTypeConfiguration<SessionRoomSeat>
             .WithMany(r => r.Seats)
             .HasForeignKey(s => s.SessionRoomId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property<uint>("row_version")
+            .IsRowVersion();
     }
 }
