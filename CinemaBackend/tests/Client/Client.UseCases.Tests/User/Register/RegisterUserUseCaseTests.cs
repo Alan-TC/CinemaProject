@@ -1,5 +1,5 @@
 using System.Net;
-using CinemaBackend.Client.Application.UseCases.User.Register;
+using CinemaBackend.Client.Application.UseCases.Users.Register;
 using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using Shouldly;

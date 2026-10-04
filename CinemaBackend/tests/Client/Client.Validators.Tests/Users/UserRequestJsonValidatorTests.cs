@@ -1,4 +1,4 @@
-using CinemaBackend.Client.Application.UseCases.User;
+using CinemaBackend.Client.Application.UseCases.Users;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using Shouldly;
 using System.Diagnostics.CodeAnalysis;
@@ -6,7 +6,7 @@ using TestsCommonUtilities;
 using TestsCommonUtilities.Requests;
 using Xunit.Abstractions;
 
-namespace Client.Validators.Tests.User;
+namespace Client.Validators.Tests.Users;
 
 public class UserRequestJsonValidatorTests(ITestOutputHelper output)
 {
