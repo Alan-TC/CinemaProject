@@ -9,7 +9,9 @@ public interface ISessionReadOnlyRepository
 
     Task<Entities.SessionEntities.Session?> GetByCode(string code);
 
-    Task<Entities.SessionEntities.Session?> GetById(Guid id);
+    Task<Entities.SessionEntities.Session?> GetById(Guid id, bool onlyAvailableToSale = false);
 
     Task<PaginationReturn<SessionAdminSummaryDto>> GetAdminPagedList(PaginationQuery query, string? code);
+
+    Task<PaginationReturn<SessionClientSummaryDto>> GetClientPagedList(PaginationQuery query, string? searchTerm);
 }
