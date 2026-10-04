@@ -1,6 +1,7 @@
 ﻿using CinemaBackend.Client.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using CinemaBackend.Client.Application.UseCases.Authentication.RefreshToken;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetById;
+using CinemaBackend.Client.Application.UseCases.Sessions.GetSessions;
 using CinemaBackend.Client.Application.UseCases.User.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,5 +22,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<ILoginWithEmailAndPasswordUseCase, LoginWithEmailAndPasswordUseCase>();
 
         services.AddScoped<ISessionGetByIdUseCase, SessionGetByIdUseCase>();
+        services.AddScoped<IGetSessionsFilteredPagedUseCase, GetSessionsFilteredPagedUseCase>();
     }
 }

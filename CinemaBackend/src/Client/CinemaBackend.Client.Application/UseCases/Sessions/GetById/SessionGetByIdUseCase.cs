@@ -17,7 +17,7 @@ public class SessionGetByIdUseCase(
 
     public async Task<SessionResponseJson> Execute(Guid sessionId)
     {
-        var session = await _sessionReadOnlyRepository.GetById(sessionId);
+        var session = await _sessionReadOnlyRepository.GetById(sessionId, true);
 
         if (session is null)
             throw new NotFoundException();
