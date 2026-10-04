@@ -50,6 +50,10 @@ public static class DenpendencyInjectionExtensions
             return new UserRefreshTokenService(configuration);
         });
 
+        services.AddScoped<IUserAccessTokenProvider, UserAccessTokenProvider>();
+
+        services.AddHttpContextAccessor();
+
         services.AddScoped<IHostInfoProvider>(_ =>
         {
             var baseUrl = configuration["Host:BaseUrl"]!;

@@ -1,10 +1,11 @@
-﻿using CinemaBackend.Communication.Exceptions;
+﻿using CinemaBackend.Client.Application.UseCases.Users;
+using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Domain.Repositories.User;
 using CinemaBackend.Domain.Security.PasswordHasher;
 
-namespace CinemaBackend.Client.Application.UseCases.User.Register;
+namespace CinemaBackend.Client.Application.UseCases.Users.Register;
 
 public class RegisterUserUseCase(
     IUserReadOnlyRepository userReadOnlyRepository,

@@ -3,7 +3,7 @@ using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using FluentValidation;
 
-namespace CinemaBackend.Client.Application.UseCases.User;
+namespace CinemaBackend.Client.Application.UseCases.Users;
 
 public class UserRequestJsonValidator : AbstractValidator<UserRequestJson>
 {

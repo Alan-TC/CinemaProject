@@ -1,4 +1,5 @@
 using System.Reflection;
+using CinemaBackend.Domain.Identity.Client;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Repositories.Movie;
 using CinemaBackend.Domain.Repositories.Session;
@@ -10,6 +11,7 @@ using CinemaBackend.Domain.Security.Tokens.User;
 using CinemaBackend.Domain.Storage.Movie;
 using CinemaBackend.Infrastructure.Data;
 using CinemaBackend.Infrastructure.Data.Repositories;
+using CinemaBackend.Infrastructure.Identity;
 using CinemaBackend.Infrastructure.Security.PasswordHasher;
 using CinemaBackend.Infrastructure.Security.Tokens;
 using CinemaBackend.Infrastructure.Storage;
@@ -57,6 +59,8 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<ISessionReadOnlyRepository, SessionRepository>();
         services.AddScoped<ISessionWriteOnlyRepository, SessionRepository>();
+
+        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 
     private static void AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)

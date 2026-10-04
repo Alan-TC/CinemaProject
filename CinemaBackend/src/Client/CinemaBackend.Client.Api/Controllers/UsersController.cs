@@ -1,6 +1,8 @@
-﻿using CinemaBackend.Client.Application.UseCases.User.Register;
+﻿using CinemaBackend.Client.Application.UseCases.Users.GetProfile;
+using CinemaBackend.Client.Application.UseCases.Users.Register;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaBackend.Client.Api.Controllers;
@@ -19,5 +21,16 @@ public class UsersController : ControllerBase
         await useCase.Execute(request);
 
         return Created();
+    }
+
+    [Authorize]
+    [HttpGet("profile")]
+    [ProducesResponseType(typeof(UserProfileJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Get(
+        [FromServices] IGetUserProfileUseCase useCase)
+    {
+        var result = await useCase.Execute();
+
+        return Ok(result);
     }
 }
