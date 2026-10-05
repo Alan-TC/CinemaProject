@@ -32,7 +32,7 @@ public class MoviesGetFilteredPagedUseCase(
                     new DateBetweenDto(filter.ReleaseDate.From, filter.ReleaseDate.To)
             };
 
-        var totalList = await _movieReadOnlyRepository.GetFilteredPagedMovies(pageQuery, movieFilterDto);
+        var totalList = await _movieReadOnlyRepository.GetFilteredPagedMovies(pageQuery, movieFilterDto, onlyInActiveSessions: true);
 
         foreach (var movie in totalList.Items)
         {

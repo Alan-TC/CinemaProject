@@ -110,11 +110,22 @@ internal class MovieRepository(CinemaDbContext dbContext) : IMovieWriteOnlyRepos
     public async Task<bool> HasMovieWithId(Guid id) =>
         await _dbContext.Movies.AnyAsync(m => m.Id == id);
 
-    async Task<Movie?> IMovieReadOnlyRepository.GetMovieById(Guid id) => 
-        await _dbContext.Movies
-            .AsNoTracking()
+    async Task<Movie?> IMovieReadOnlyRepository.GetMovieById(Guid id, bool onlyInActiveSessions)
+    {
+        var query = _dbContext.Movies
+            .AsNoTracking();
+
+        if(onlyInActiveSessions)
+        {
+            var dateNow = DateTime.UtcNow;
+            query = query
+                .Where(m => _dbContext.Sessions.Any(s => s.MovieId == m.Id && s.StartTicketSalesAt <= dateNow && dateNow < s.StartsAt));
+        }
+
+        return await query
             .Include(m => m.FilmGenres)
             .FirstOrDefaultAsync(m => m.Id == id && m.DeactivatedAt == null);
+    }
     
     async Task<Movie?> IMovieUpdateOnlyRepository.GetMovieById(Guid id) => 
         await _dbContext.Movies
