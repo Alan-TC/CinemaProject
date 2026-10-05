@@ -1,7 +1,9 @@
 ﻿using CinemaBackend.Client.Application.UseCases.Movies.GetById;
 using CinemaBackend.Client.Application.UseCases.Movies.GetMovies;
+using CinemaBackend.Client.Application.UseCases.Movies.GetMovieSessions;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
+using CinemaBackend.Communication.Responses.Session;
 using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +34,19 @@ public class MoviesController : ControllerBase
         [FromBody] MovieFilterRequestJson? filter)
     {
         var result = await useCase.Execute(query, filter);
+
+        return Ok(result);
+    }
+
+    [HttpPost("{movieId:Guid}/sessions")]
+    [ProducesResponseType(typeof(PaginationReturn<SessionClientSumaryResponseJson>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Filter(
+        [FromServices] IGetMovieSessionsFilteredPagedUseCase useCase,
+        [FromQuery] PaginationQueryRequest query,
+        [FromRoute] Guid movieId
+    )
+    {
+        var result = await useCase.Execute(query, movieId);
 
         return Ok(result);
     }

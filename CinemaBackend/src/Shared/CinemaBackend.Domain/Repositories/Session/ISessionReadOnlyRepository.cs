@@ -13,5 +13,5 @@ public interface ISessionReadOnlyRepository
 
     Task<PaginationReturn<SessionAdminSummaryDto>> GetAdminPagedList(PaginationQuery query, string? code);
 
-    Task<PaginationReturn<SessionClientSummaryDto>> GetClientPagedList(PaginationQuery query, string? searchTerm);
+    Task<PaginationReturn<SessionClientSummaryDto>> GetClientPagedList(PaginationQuery query, string? searchTerm = null, Guid? movieId = null);
 }

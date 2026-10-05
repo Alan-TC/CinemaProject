@@ -75,13 +75,19 @@ internal class SessionRepository(CinemaDbContext dbContext) : ISessionWriteOnlyR
             .Include(s => s.Pricing)
             .FirstOrDefaultAsync(s => s.Id == id);
     }
-    public async Task<PaginationReturn<SessionClientSummaryDto>> GetClientPagedList(PaginationQuery query, string? searchTerm)
+    public async Task<PaginationReturn<SessionClientSummaryDto>> GetClientPagedList(PaginationQuery query, string? searchTerm = null, Guid? movieId = null)
     {
         var dateNow = DateTime.UtcNow;
         var filteredQuery = _dbContext.Sessions
             .AsNoTracking()
             .AsSplitQuery()
             .Where(s => s.DeactivatedAt == null && s.StartTicketSalesAt <= dateNow && dateNow < s.StartsAt);
+
+        if (movieId != null)
+        {
+            filteredQuery = filteredQuery
+                .Where(s => s.MovieId == movieId);
+        }
 
         if (searchTerm != null)
         {
