@@ -24,7 +24,7 @@ public class CreateTheaterLayoutUseCase(
         var hasTheaterLayout = await _theaterLayoutReadOnlyRepository.HasTheaterWithTag(request.Tag);
 
         if (hasTheaterLayout)
-            throw new ConflicException(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS);
+            throw new ConflictException(ResourceErrorMessages.VALIDATION_THEATER_LAYOUT_TAG_ALREADY_EXISTS);
         
         var theaterLayout = request.MapToTheaterLayout();
 

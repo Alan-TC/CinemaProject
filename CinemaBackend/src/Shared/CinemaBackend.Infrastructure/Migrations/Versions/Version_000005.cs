@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 
 namespace CinemaBackend.Infrastructure.Migrations.Versions;

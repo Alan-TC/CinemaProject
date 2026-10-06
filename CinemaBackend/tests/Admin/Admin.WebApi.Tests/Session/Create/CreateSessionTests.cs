@@ -1,7 +1,6 @@
 ﻿using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.SharedKernel.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Ocsp;
 using Shouldly;
 using System.Net;
 using System.Text.Json;

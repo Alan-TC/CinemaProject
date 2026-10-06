@@ -1,7 +1,5 @@
 using CinemaBackend.Domain.Entities.MovieEntities;
 using CinemaBackend.Domain.Entities.TheaterLayoutEntities;
-using CinemaBackend.Domain.Security.PasswordHasher;
-using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -9,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using TestsCommonUtilities.Entities;
-using TestsCommonUtilities.Identity;
 
 namespace TestsCommonUtilities;
 

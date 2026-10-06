@@ -3,6 +3,7 @@ using CinemaBackend.Client.Application.UseCases.Authentication.RefreshToken;
 using CinemaBackend.Client.Application.UseCases.Movies.GetById;
 using CinemaBackend.Client.Application.UseCases.Movies.GetMovies;
 using CinemaBackend.Client.Application.UseCases.Movies.GetMovieSessions;
+using CinemaBackend.Client.Application.UseCases.Payments.OrderPayment;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetById;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetSessions;
 using CinemaBackend.Client.Application.UseCases.Users.GetProfile;
@@ -32,5 +33,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IMoviesGetFilteredPagedUseCase,  MoviesGetFilteredPagedUseCase>();
         services.AddScoped<IMovieGetByIdUseCase,  MovieGetByIdUseCase>();
         services.AddScoped<IGetMovieSessionsFilteredPagedUseCase, GetMovieSessionsFilteredPagedUseCase>();
+
+        services.AddScoped<IOrderPaymentUseCase, OrderPaymentUseCase>();
     }
 }

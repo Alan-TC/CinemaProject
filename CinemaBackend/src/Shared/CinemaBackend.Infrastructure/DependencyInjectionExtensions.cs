@@ -2,6 +2,7 @@ using System.Reflection;
 using CinemaBackend.Domain.Identity.Client;
 using CinemaBackend.Domain.Repositories.AdminUser;
 using CinemaBackend.Domain.Repositories.Movie;
+using CinemaBackend.Domain.Repositories.Payment;
 using CinemaBackend.Domain.Repositories.Session;
 using CinemaBackend.Domain.Repositories.TheaterLayout;
 using CinemaBackend.Domain.Repositories.User;
@@ -61,6 +62,8 @@ public static class DependencyInjectionExtensions
         services.AddScoped<ISessionWriteOnlyRepository, SessionRepository>();
 
         services.AddScoped<ILoggedUser, LoggedUser>();
+
+        services.AddScoped<IPaymentWriteOnlyRepository, PaymentRepository>();
     }
 
     private static void AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)

@@ -1,5 +1,4 @@
 using CinemaBackend.Domain.Security.PasswordHasher;
-using CinemaBackend.Domain.Security.Tokens.Admin;
 using CinemaBackend.Domain.Security.Tokens.User;
 using CinemaBackend.Infrastructure.Data;
 using Microsoft.Extensions.Configuration;

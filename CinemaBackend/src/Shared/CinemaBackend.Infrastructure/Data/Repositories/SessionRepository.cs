@@ -3,7 +3,6 @@ using CinemaBackend.Domain.Entities.SessionEntities;
 using CinemaBackend.Domain.Repositories.Session;
 using CinemaBackend.SharedKernel.Pagination;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace CinemaBackend.Infrastructure.Data.Repositories;
 
@@ -13,6 +12,15 @@ internal class SessionRepository(CinemaDbContext dbContext) : ISessionWriteOnlyR
 
     public async Task Add(Session session) =>
         await _dbContext.Sessions.AddAsync(session);
+
+    public async Task<Session?> GetById(Guid sessionId)
+    {
+        return await _dbContext.Sessions
+            .Include(s => s.SessionRoom)
+            .ThenInclude(r => r.Seats)
+            .Include(s => s.Pricing)
+            .FirstOrDefaultAsync(s => s.Id == sessionId && s.DeactivatedAt == null);
+    }
 
     public async Task<PaginationReturn<SessionAdminSummaryDto>> GetAdminPagedList(PaginationQuery query, string? code)
     {

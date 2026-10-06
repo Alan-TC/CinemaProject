@@ -2,11 +2,11 @@ using System.Net;
 
 namespace CinemaBackend.Communication.Exceptions;
 
-public class ConflicException : CinemaBackendExceptionBase
+public class ConflictException : CinemaBackendExceptionBase
 {
     private List<string> Messages;
     
-    public ConflicException(string message) => Messages = [message];
+    public ConflictException(string message) => Messages = [message];
     
     public override HttpStatusCode GetErrorCode() => HttpStatusCode.Conflict;
 
