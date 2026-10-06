@@ -12,14 +12,15 @@ namespace CinemaBackend.Client.Api.Controllers;
 public class OrdersController : ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PaymentResponseJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status409Conflict)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Order(
         [FromServices] IOrderPaymentUseCase useCase,
         [FromBody] PaymentRequestJson request)
     {
-        await useCase.Execute(request);
+        var result = await useCase.Execute(request);
 
-        return Created();
+        return Created("", result);
     }
 }

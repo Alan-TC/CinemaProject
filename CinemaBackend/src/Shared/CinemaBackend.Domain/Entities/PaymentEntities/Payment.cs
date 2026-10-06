@@ -7,7 +7,7 @@ public class Payment : EntityBase
 {
     public int FullPriceQuantity { get; set; }
     public int HalfPriceQuantity { get; set; }
-    public Decimal Total {  get; set; }
+    public decimal Total {  get; set; }
     public ICollection<AllocatedSeat> Seats { get; set; } = [];
     public PaymentStatus Status { get; set; }
     public Guid SessionId { get; set; }

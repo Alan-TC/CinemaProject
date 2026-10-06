@@ -1,5 +1,4 @@
 using CinemaBackend.Infrastructure.Migrations;
-using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CinemaBackend.Infrastructure;

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Bogus;
 using CinemaBackend.Communication.Requests;
 

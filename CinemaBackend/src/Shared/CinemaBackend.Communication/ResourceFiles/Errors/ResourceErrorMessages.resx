@@ -240,4 +240,22 @@
   <data name="VALIDATION_NAME_REQUIRED" xml:space="preserve">
     <value>Name is required.</value>
   </data>
+  <data name="VALIDATION_PAYMENT_SEAT_UNAVAILABLE" xml:space="preserve">
+    <value>Chosen seat is unavailable</value>
+  </data>
+  <data name="VALIDATION_PAYMENT_ORDER_FULL_PRICE_QTD_INVALID" xml:space="preserve">
+    <value>Full price quantity must be greater or equals to zero.</value>
+  </data>
+  <data name="VALIDATION_PAYMENT_ORDER_HALF_PRICE_QTD_INVALID" xml:space="preserve">
+    <value>Half price quantity must be greater or equals to zero.</value>
+  </data>
+  <data name="VALIDATION_PAYMENT_ORDER_TOTAL_SEAT_SUM_INVALID" xml:space="preserve">
+    <value>Full price plus half price quantity must be equal to total seats.</value>
+  </data>
+  <data name="VALIDATION_PAYMENT_ORDER_SEAT_QTD_INVALID" xml:space="preserve">
+    <value>At least one seat is required.</value>
+  </data>
+  <data name="VALIDATION_PAYMENT_ORDER_SEAT_MAX_QTD_INVALID" xml:space="preserve">
+    <value>A maximum of 5 seats are accepted per order.</value>
+  </data>
 </root>

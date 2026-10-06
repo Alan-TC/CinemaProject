@@ -31,7 +31,7 @@ public static class InitialAdminUser
         {
             await registerUseAdminUseCase.Execute(request);
         }
-        catch (ConflicException)
+        catch (ConflictException)
         {
             return;
         }

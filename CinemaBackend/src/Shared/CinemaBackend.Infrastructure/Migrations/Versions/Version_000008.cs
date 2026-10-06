@@ -22,6 +22,7 @@ public sealed class Version_000008 : ForwardOnlyMigration
 
         Create.Table("allocated_seats")
             .WithColumn("id").AsGuid().PrimaryKey().NotNullable()
+            .WithColumn("seat_code").AsString(64).NotNullable()
             .WithColumn("seat_id").AsGuid().NotNullable()
             .WithColumn("session_id").AsGuid().NotNullable()
             .WithColumn("payment_id").AsGuid().NotNullable()

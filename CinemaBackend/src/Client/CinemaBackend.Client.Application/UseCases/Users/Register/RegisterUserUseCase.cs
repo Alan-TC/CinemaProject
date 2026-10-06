@@ -1,5 +1,4 @@
-﻿using CinemaBackend.Client.Application.UseCases.Users;
-using CinemaBackend.Communication.Exceptions;
+﻿using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Domain.Repositories.User;
@@ -49,7 +48,7 @@ public class RegisterUserUseCase(
 
         if (userExists == true)
         {
-            throw new ConflicException(ResourceErrorMessages.VALIDATION_EMAIL_EXISTS);
+            throw new ConflictException(ResourceErrorMessages.VALIDATION_EMAIL_EXISTS);
         }
     }
 }

@@ -43,7 +43,7 @@ public class RegisterUserUseCaseTests(ITestOutputHelper output)
 
         await _testLogger.ExecuteWithContext(context, async() =>
         {
-           var result = await useCase.Execute(request).ShouldThrowAsync<ConflicException>();
+           var result = await useCase.Execute(request).ShouldThrowAsync<ConflictException>();
 
             result.GetErrorCode().ShouldBe(HttpStatusCode.Conflict);
             result.GetErrorMessages().Count.ShouldBe(1);
