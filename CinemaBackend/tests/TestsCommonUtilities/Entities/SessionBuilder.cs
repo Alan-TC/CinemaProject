@@ -6,11 +6,6 @@ namespace TestsCommonUtilities.Entities;
 public class SessionBuilder
 {
     private readonly Faker<Session> _faker = new();
-    
-    private int wStart = 1;
-    private int wEnd = 10;
-    private int hStart = 1;
-    private int hEnd = 10;
 
     public SessionBuilder()
     {
@@ -31,6 +26,35 @@ public class SessionBuilder
 
         _faker.RuleFor(e => e.SessionRoom, f => new TheaterLayoutBuilder().Build().MapToSessionRoom());
     }
-    
+
+    public SessionBuilder WithDateUtcNow()
+    {
+        _faker.RuleFor(e => e.StartTicketSalesAt, f => DateTime.UtcNow.AddDays(f.Random.Number(-20, -5)));
+
+        _faker.RuleFor(e => e.StartsAt, (f, c) => DateTime.UtcNow.AddDays(f.Random.Number(5, 20)));
+
+        _faker.RuleFor(e => e.EndsAt, (f, c) => c.StartsAt.AddMinutes(f.Random.Number(120, 240)));
+
+        return this;
+    }
+
+    public SessionBuilder WithStartTicketSalesAt(DateTime date)
+    {
+        _faker.RuleFor(e => e.StartTicketSalesAt, date);
+        return this;
+    }
+
+    public SessionBuilder WithStartsAt(DateTime date)
+    {
+        _faker.RuleFor(e => e.StartsAt, date);
+        return this;
+    }
+
+    public SessionBuilder WithEndsAt(DateTime date)
+    {
+        _faker.RuleFor(e => e.EndsAt, date);
+        return this;
+    }
+
     public Session Build() => _faker.Generate();
 } 

@@ -17,6 +17,8 @@ public sealed class Version_000008 : ForwardOnlyMigration
             .WithColumn("half_price_quantity").AsInt32().NotNullable()
             .WithColumn("total").AsDecimal(19, 4).NotNullable()
             .WithColumn("status").AsString(64).NotNullable()
+            .WithColumn("user_id").AsGuid().NotNullable()
+                .ForeignKey("FK_payments_users", "users", "id").OnDelete(Rule.None)
             .WithColumn("session_id").AsGuid().NotNullable()
                 .ForeignKey("FK_payments_sessions", "sessions", "id").OnDelete(Rule.None);
 

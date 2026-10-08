@@ -4,6 +4,7 @@ using CinemaBackend.Communication.ResourceFiles.Errors;
 using CinemaBackend.Communication.Responses;
 using CinemaBackend.Domain.Entities.PaymentEntities;
 using CinemaBackend.Domain.Enums;
+using CinemaBackend.Domain.Identity.Client;
 using CinemaBackend.Domain.Repositories.Payment;
 using CinemaBackend.Domain.Repositories.Session;
 
@@ -12,10 +13,13 @@ namespace CinemaBackend.Client.Application.UseCases.Payments.OrderPayment;
 public class OrderPaymentUseCase(
     IPaymentWriteOnlyRepository paymentWriteOnlyRepository,
     ISessionWriteOnlyRepository sessionWriteOnlyRepository,
+    ILoggedUser loggedUser,
     IUnitOfWork unitOfWork) : IOrderPaymentUseCase
 {
     private readonly IPaymentWriteOnlyRepository _paymentWriteOnlyRepository = paymentWriteOnlyRepository;
     private readonly ISessionWriteOnlyRepository _sessionWriteOnlyRepository = sessionWriteOnlyRepository;
+
+    private readonly ILoggedUser _loggedUser = loggedUser;
 
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     
@@ -26,6 +30,12 @@ public class OrderPaymentUseCase(
         var session = await _sessionWriteOnlyRepository.GetById(request.SessionId);
 
         if (session is null)
+        {
+            throw new NotFoundException();
+        }
+
+        var dateNow = DateTime.UtcNow;
+        if (session.StartTicketSalesAt > dateNow || dateNow >= session.StartsAt)
         {
             throw new NotFoundException();
         }
@@ -66,6 +76,7 @@ public class OrderPaymentUseCase(
             Total = totalValue,
             Seats = allocatedSeats,
             Status = PaymentStatus.Pending,
+            UserId = _loggedUser.GetUserId(),
             Session = session
         };
         

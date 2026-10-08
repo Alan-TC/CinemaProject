@@ -7,6 +7,7 @@ using CinemaBackend.Domain.Enums;
 using Shouldly;
 using TestsCommonUtilities;
 using TestsCommonUtilities.Entities;
+using TestsCommonUtilities.Identity.Client;
 using TestsCommonUtilities.Repositories;
 using TestsCommonUtilities.Repositories.Payment;
 using TestsCommonUtilities.Repositories.Sessions;
@@ -24,7 +25,9 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
     {
         var context = new TestContext();
 
-        var session = new SessionBuilder().Build();
+        var session = new SessionBuilder()
+            .WithDateUtcNow()
+            .Build();
         context.Add(session);
         
         var request = new PaymentRequestJsonBuilder()
@@ -67,7 +70,9 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
     {
         var context = new TestContext();
         
-        var session = new SessionBuilder().Build();
+        var session = new SessionBuilder()
+            .WithDateUtcNow()
+            .Build();
 
         var request = new PaymentRequestJsonBuilder()
             .WithSessionId(session.Id)
@@ -91,7 +96,9 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
     {
         var context = new TestContext();
         
-        var session = new SessionBuilder().Build();
+        var session = new SessionBuilder()
+            .WithDateUtcNow()
+            .Build();
 
         var seat = session.SessionRoom.Seats.First();
         seat.Status = SeatStatus.Unavailable;
@@ -119,7 +126,9 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
     {
         var context = new TestContext();
         
-        var session = new SessionBuilder().Build();
+        var session = new SessionBuilder()
+            .WithDateUtcNow()
+            .Build();
 
         var seat = session.SessionRoom.Seats.First();
 
@@ -145,6 +154,7 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
     {
         var sessionWriteOnlyRepositoryBuilder = new ISessionWriteOnlyRepositoryBuilder();
         var paymentWriteOnlyRepository = new IPaymentWriteOnlyRepositoryBuilder().Build();
+        var loggedUser = new ILoggedUserBuilder().Build();
         var unitOfWork = new IUnitOfWorkBuilder().Commit(!concurrencyError).Build();
         
         if (session is not null)
@@ -154,6 +164,7 @@ public class OrderPaymentUseCaseTests(ITestOutputHelper output)
 
         return new OrderPaymentUseCase
         (
+            loggedUser: loggedUser,
             paymentWriteOnlyRepository: paymentWriteOnlyRepository,
             sessionWriteOnlyRepository: sessionWriteOnlyRepositoryBuilder.Build(),
             unitOfWork: unitOfWork
