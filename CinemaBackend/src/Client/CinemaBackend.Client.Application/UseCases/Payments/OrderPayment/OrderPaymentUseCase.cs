@@ -29,6 +29,12 @@ public class OrderPaymentUseCase(
         {
             throw new NotFoundException();
         }
+
+        var dateNow = DateTime.UtcNow;
+        if (session.StartTicketSalesAt <= dateNow && dateNow < session.StartsAt)
+        {
+            throw new NotFoundException();
+        }
         
         var roomFilteredSeats = session.SessionRoom.Seats
             .Where(s => request.Seats.Contains(s.Id))

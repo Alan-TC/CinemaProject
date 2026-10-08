@@ -64,6 +64,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<ILoggedUser, LoggedUser>();
 
         services.AddScoped<IPaymentWriteOnlyRepository, PaymentRepository>();
+        services.AddScoped<IPaymentReadOnlyRepository, PaymentRepository>();
     }
 
     private static void AddCommonInfrastructure(this IServiceCollection services, IConfiguration configuration)
