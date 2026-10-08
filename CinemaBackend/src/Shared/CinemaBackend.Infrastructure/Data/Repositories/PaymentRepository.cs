@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaBackend.Infrastructure.Data.Repositories;
 
-internal class PaymentRepository(CinemaDbContext dbContext) : IPaymentWriteOnlyRepository, IPaymentReadOnlyRepository
+internal class PaymentRepository(CinemaDbContext dbContext) : IPaymentWriteOnlyRepository, IPaymentReadOnlyRepository, IPaymentUpdateOnlyRepository
 {
     private readonly CinemaDbContext _dbContext = dbContext;
     
@@ -13,12 +13,19 @@ internal class PaymentRepository(CinemaDbContext dbContext) : IPaymentWriteOnlyR
         await _dbContext.Payments.AddAsync(payment);
     }
 
-    public async Task<Payment?> GetById(Guid id)
+    async Task<Payment?> IPaymentReadOnlyRepository.GetById(Guid id, Guid userId)
     {
         return await _dbContext.Payments
             .AsNoTracking()
             .Include(e => e.Session)
             .Include(e => e.Seats)
-            .FirstOrDefaultAsync(e => e.Id == id && e.DeactivatedAt == null);
+            .FirstOrDefaultAsync(e => e.Id == id && e.DeactivatedAt == null && e.UserId == userId);
+    }
+    async Task<Payment?> IPaymentUpdateOnlyRepository.GetById(Guid id, Guid userId)
+    {
+        return await _dbContext.Payments
+            .Include(e => e.Session)
+            .Include(e => e.Seats)
+            .FirstOrDefaultAsync(e => e.Id == id && e.DeactivatedAt == null && e.UserId == userId);
     }
 }

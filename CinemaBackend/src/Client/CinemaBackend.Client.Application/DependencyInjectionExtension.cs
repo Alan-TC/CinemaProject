@@ -1,10 +1,13 @@
 ﻿using CinemaBackend.Client.Application.UseCases.Authentication.Login.WithEmailAndPassword;
 using CinemaBackend.Client.Application.UseCases.Authentication.RefreshToken;
+using CinemaBackend.Client.Application.UseCases.CinemaTickets.GetById;
+using CinemaBackend.Client.Application.UseCases.CinemaTickets.GetUserCinemaTickets;
 using CinemaBackend.Client.Application.UseCases.Movies.GetById;
 using CinemaBackend.Client.Application.UseCases.Movies.GetMovies;
 using CinemaBackend.Client.Application.UseCases.Movies.GetMovieSessions;
 using CinemaBackend.Client.Application.UseCases.Payments.GetPayment;
 using CinemaBackend.Client.Application.UseCases.Payments.OrderPayment;
+using CinemaBackend.Client.Application.UseCases.Payments.PayOrder;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetById;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetSessions;
 using CinemaBackend.Client.Application.UseCases.Users.GetProfile;
@@ -37,5 +40,9 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IOrderPaymentUseCase, OrderPaymentUseCase>();
         services.AddScoped<IGetPaymentUseCase, GetPaymentUseCase>();
+        services.AddScoped<IPayOrderUseCase, PayOrderUseCase>();
+
+        services.AddScoped<IGetUserCinemaTicketsUseCase, GetUserCinemaTicketsUseCase>();
+        services.AddScoped<IGetUserCinemaTicketByIdUseCase, GetUserCinemaTicketByIdUseCase>();
     }
 }

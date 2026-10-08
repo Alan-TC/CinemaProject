@@ -18,7 +18,15 @@ public class PaymentMapping : IEntityTypeConfiguration<Domain.Entities.PaymentEn
             .HasForeignKey<Domain.Entities.PaymentEntities.Payment>(x => x.SessionId)
             .OnDelete(DeleteBehavior.NoAction);
 
+        builder.HasOne<Domain.Entities.UserEntities.User>()
+            .WithOne()
+            .HasForeignKey<Domain.Entities.PaymentEntities.Payment>(x => x.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         builder.Property(x => x.Status)
             .HasConversion<string>();
+
+        builder.Property<uint>("row_version")
+            .IsRowVersion();
     }
 }

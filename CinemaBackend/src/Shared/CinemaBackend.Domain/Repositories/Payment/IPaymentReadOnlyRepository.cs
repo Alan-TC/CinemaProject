@@ -2,5 +2,5 @@ namespace CinemaBackend.Domain.Repositories.Payment;
 
 public interface IPaymentReadOnlyRepository
 {
-    Task<Entities.PaymentEntities.Payment?> GetById(Guid id);
+    Task<Entities.PaymentEntities.Payment?> GetById(Guid id, Guid userId);
 }

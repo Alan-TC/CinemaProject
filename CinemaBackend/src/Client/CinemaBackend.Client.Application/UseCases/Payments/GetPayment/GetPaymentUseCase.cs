@@ -1,17 +1,21 @@
 ﻿using CinemaBackend.Communication.Exceptions;
 using CinemaBackend.Communication.Responses;
+using CinemaBackend.Domain.Identity.Client;
 using CinemaBackend.Domain.Repositories.Payment;
 
 namespace CinemaBackend.Client.Application.UseCases.Payments.GetPayment;
 
 public class GetPaymentUseCase(
-    IPaymentReadOnlyRepository paymentReadOnlyRepository) : IGetPaymentUseCase
+    IPaymentReadOnlyRepository paymentReadOnlyRepository,
+    ILoggedUser loggedUser) : IGetPaymentUseCase
 {
     private readonly IPaymentReadOnlyRepository _paymentReadOnlyRepository = paymentReadOnlyRepository;
-    
+
+    private readonly ILoggedUser _loggedUser = loggedUser;
+
     public async Task<PaymentResponseJson> Execute(Guid id)
     {
-        var payment = await _paymentReadOnlyRepository.GetById(id);
+        var payment = await _paymentReadOnlyRepository.GetById(id, _loggedUser.GetUserId());
 
         if (payment == null)
         {

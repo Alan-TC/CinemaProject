@@ -1,5 +1,6 @@
 ﻿using CinemaBackend.Client.Application.UseCases.Payments.GetPayment;
 using CinemaBackend.Client.Application.UseCases.Payments.OrderPayment;
+using CinemaBackend.Client.Application.UseCases.Payments.PayOrder;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -15,13 +16,25 @@ public class OrdersController : ControllerBase
     [HttpGet("{id:Guid}")]
     [ProducesResponseType(typeof(PaymentResponseJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Order(
+    public async Task<IActionResult> GetOrder(
         [FromServices] IGetPaymentUseCase useCase,
         [FromRoute] Guid id)
     {
         var result = await useCase.Execute(id);
 
         return Ok(result);
+    }
+
+    [HttpGet("{id:Guid}/pay")]
+    [ProducesResponseType(typeof(PaymentResponseJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PayOrder(
+        [FromServices] IPayOrderUseCase useCase,
+        [FromRoute] Guid id)
+    {
+        await useCase.Execute(id);
+
+        return Ok();
     }
 
     [HttpPost]

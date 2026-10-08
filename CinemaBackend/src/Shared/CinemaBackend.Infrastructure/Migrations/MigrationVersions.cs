@@ -10,4 +10,5 @@ internal abstract class MigrationVersions
     public const uint AlterColumnsFromTimestampToTimestampz = 6;
     public const uint UserTable = 7;
     public const uint PaymentTable = 8;
+    public const uint CinemaTicketsTable = 9;
 }
