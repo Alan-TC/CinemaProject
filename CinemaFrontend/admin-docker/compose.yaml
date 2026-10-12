@@ -1,0 +1,8 @@
+services:
+  server:
+    image: cinema.frontend.admin
+    build:
+      context: ../
+      dockerfile: admin-docker/Dockerfile
+    ports:
+      - 4200:8080
