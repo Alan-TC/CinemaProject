@@ -1,0 +1,56 @@
+<div class="register-container">
+  <div class="logo">
+    <lib-logo></lib-logo>
+  </div>
+  <form class="register" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <div class="register__inputs">
+      <p class="register__title inter-black">CADASTRO</p>
+      <div class="register__inputs-item">
+        <lib-input placeholder="Nome" formControlName="name"></lib-input>
+        @if(hasRequiredNameError()) {
+          <p class="register__error-msg inter-black">Nome é obrigatório.</p>
+        }
+      </div>
+
+      <div class="register__inputs-item">
+        <lib-input placeholder="E-mail" formControlName="email"></lib-input>
+        @if(hasRequiredEmailError()) {
+          <p class="register__error-msg inter-black">E-mail é obrigatório.</p>
+        }
+        @if(hasInvalidEmailError()) {
+          <p class="register__error-msg inter-black">E-mail inválido.</p>
+        }
+      </div>
+
+      <div class="register__inputs-item">
+        <lib-input placeholder="Senha" formControlName="password" type="password"></lib-input>
+        @if(hasRequiredPasswordError()) {
+          <p class="register__error-msg inter-black">Senha é obrigatória.</p>
+        }
+      </div>
+
+      <div class="register__inputs-item">
+        <lib-input placeholder="Confirmar senha" formControlName="confirmPassword" type="password"></lib-input>
+        @if(hasRequiredConfirmPasswordError()) {
+          <p class="register__error-msg inter-black">Confirme a senha.</p>
+        }
+        @if(hasPasswordsMismatchError()) {
+          <p class="register__error-msg inter-black">As senhas não coincidem.</p>
+        }
+      </div>
+
+      @if(registerForm.invalid) {
+        @if(registerForm.hasError('invalidValues')) {
+          <p class="register__error-msg inter-black">{{ registerForm.getError('invalidValues') }}</p>
+        }
+
+        @if(registerForm.hasError('unknownError')) {
+          <p class="register__error-msg inter-black">Ocorreu um erro inesperado.</p>
+        }
+      }
+    </div>
+    <div class="register__buttons">
+      <lib-button styleType="negative" type="button" name="Cancelar" (click)="returnToLogin()"></lib-button> <lib-button type="submit" name="Cadastrar"></lib-button>
+    </div>
+  </form>
+</div>
