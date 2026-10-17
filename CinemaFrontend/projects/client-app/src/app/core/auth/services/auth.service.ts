@@ -1,4 +1,4 @@
-import { inject, Service } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { BehaviorSubject, catchError, filter, map, Observable, of, take, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -16,6 +16,13 @@ export class AuthService {
   private _isRefreshing = false;
   private _refreshTokenSubject = new BehaviorSubject<ITokens | null | 'error' >(null);
 
+  isLoggedId = signal<boolean>(false);
+
+  constructor() {
+    this.validateTokens().subscribe((isValid) => {
+      this.isLoggedId.set(isValid);
+    });
+  }
 
   login(email: string, password: string): Observable<ITokens> {
     return this._httpClient.post<ITokens>(
@@ -24,6 +31,7 @@ export class AuthService {
         map((response) => {
           localStorage.setItem(this.ACCESS_TOKEN_KEY, response.accessToken);
           localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
+          this.isLoggedId.set(true);
           return response;
         })
       );
@@ -32,6 +40,7 @@ export class AuthService {
   clear_tokens(): void {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    this.isLoggedId.set(false);
   }
 
   refreshToken(): Observable<ITokens | 'error'> {
@@ -42,6 +51,7 @@ export class AuthService {
       return this._refreshToken().pipe(
         tap((response) => {
           this._isRefreshing = false;
+          this.isLoggedId.set(true);
           this._refreshTokenSubject.next(response);
           return response;
         }),

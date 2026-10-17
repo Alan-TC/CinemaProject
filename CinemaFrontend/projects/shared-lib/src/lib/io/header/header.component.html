@@ -10,6 +10,14 @@
     </p>
   </div>
   <div class="header__user inter-black">
-    <lib-user [profileNavItems]="profileNavItems()" (action)="action.emit($event)"></lib-user>
+    @if(isLoggedIn()) {
+      <lib-user [profileNavItems]="profileNavItems()" (action)="action.emit($event)"></lib-user>
+    } @else {
+      @if(loggedInAction()?.action) {
+        <a class="header__login" (click)="action.emit(loggedInAction()?.action || '')"><span>Entrar</span><span>Registrar</span></a>
+      } @else if(loggedInAction()?.route) {
+        <a class="header__login" [routerLink]="loggedInAction()?.route"><span>Entrar</span><span>Registrar</span></a>
+      }
+    }
   </div>
 </header>

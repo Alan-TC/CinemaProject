@@ -12,6 +12,8 @@ export class HeaderComponent {
   readonly logoRedirect = input<string>('');
   readonly centerRedirect = input<string>('');
   readonly subName = input<string>('');
+  readonly isLoggedIn = input<boolean>(true);
+  readonly loggedInAction = input<{route?: string, action?: string}>();
 
   readonly profileNavItems = input<{label: string, route?: string, action?: string}[]>([]);
   readonly action = output<string>();
