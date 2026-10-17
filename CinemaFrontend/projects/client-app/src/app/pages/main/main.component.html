@@ -1,1 +1,12 @@
-<p>main works!</p>
+<div class="main">
+  <lib-header class="main__header"
+    logoRedirect="/"
+    centerRedirect="/"
+    [isLoggedIn]="isLoggedIn()"
+    [loggedInAction]="loggedInAction"
+    [profileNavItems]="profileNavItems"
+    (action)="onProfileNavActionHandler($event)"></lib-header>
+  <div class="main__content">
+  </div>
+</div>
+
