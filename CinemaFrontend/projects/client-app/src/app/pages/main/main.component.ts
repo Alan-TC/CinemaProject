@@ -7,7 +7,7 @@ import { filter, map } from 'rxjs';
 
 @Component({
   imports: [HeaderComponent, RouterOutlet],
-  selector: 'app-main',
+  selector: 'cln-main',
   styleUrl: './main.component.scss',
   templateUrl: './main.component.html',
 })

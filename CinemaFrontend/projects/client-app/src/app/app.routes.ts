@@ -6,6 +6,12 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/main/main.component').then((m) => m.MainComponent),
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/sessions-movies/sessios-movies.routes').then((m) => m.routes)
+      }
+    ]
   },
   {
     path: 'login',

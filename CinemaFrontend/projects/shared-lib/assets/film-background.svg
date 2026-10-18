@@ -1,0 +1,13 @@
+<svg width="702" height="314" viewBox="0 0 702 314" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- The filter attribute was removed from here -->
+  <g>
+    <path d="M662 10C673.046 10 682 18.9543 682 30V284C682 295.046 673.046 304 662 304H40C28.9543 304 20 295.046 20 284V30C20 18.9543 28.9543 10 40 10H662ZM50 248.5V277.5H80V248.5H50ZM622 277.5H652V248.5H622V277.5ZM50 206.5H80V177.5H50V206.5ZM622 206.5H652V177.5H622V206.5ZM50 135.5H80V106.5H50V135.5ZM622 135.5H652V106.5H622V135.5ZM50 65H80V36H50V65ZM622 65H652V36H622V65Z" fill="url(#paint0_linear_740_3902)" />
+  </g>
+  <defs>
+    <!-- The long <filter> block was deleted from here -->
+    <linearGradient id="paint0_linear_740_3902" x1="351" y1="157" x2="586" y2="277" gradientUnits="userSpaceOnUse">
+      <stop offset="0.304463" stop-color="#312525" />
+      <stop offset="0.908654" stop-color="#433030" stop-opacity="0.5" />
+    </linearGradient>
+  </defs>
+</svg>
