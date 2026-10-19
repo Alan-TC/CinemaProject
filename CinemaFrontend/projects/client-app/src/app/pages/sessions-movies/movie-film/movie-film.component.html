@@ -1,8 +1,11 @@
 <div class="film-container" (click)="movieClicked.emit(movie().id)">
   <div class="film-container__movie">
-    <img
-      [src]="movie().imagesUrl.featuredBanner"
-      onerror="this.style.display='none'">
+    @if (movie()?.imagesUrl?.featuredBanner) {
+      <img
+        [src]="movie().imagesUrl.featuredBanner"
+        onerror="this.style.display='none'"
+        alt="Movie Featured Banner">
+    }
 
     <div
       class="film-container__movie-class-ind"
@@ -14,7 +17,7 @@
         {{ movie().title }}
       </div>
       <div class="film-container__movie-infos-description besley-regular">
-        {{ movie().releaseDate | date:'dd/MM/yyyy' }} <span class="circle"></span> {{movie().filmGenres.join(', ') }} <span class="circle"></span> {{ movie().duration | date:'h:mm' }}
+        {{ movie().releaseDate | date:'dd/MM/yyyy' }} <span class="circle"></span> {{movie().filmGenres.join(', ') }} <span class="circle"></span> {{ movie().duration }}
       </div>
     </div>
   </div>

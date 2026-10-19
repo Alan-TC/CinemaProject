@@ -1,3 +1,14 @@
+:host {
+  display: block;
+  width: 100%;
+
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
+}
+
 .film-container {
   width: 100%;
   max-width: 663px;
@@ -13,7 +24,6 @@
   background: url('../../../../../../shared-lib/assets/film-background.svg') no-repeat center center;
   background-size: cover;
 
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.8));
   transition: filter 0.2s ease-in-out;
 
   &:hover {
@@ -70,7 +80,7 @@
 
   &__movie-class-ind {
     position: absolute;
-    width: clamp(0px, 4.5vw, 25px);
+    width: clamp(0px, 2.25vw, 25px);
 
     aspect-ratio: 1 / 1;
     background-size: cover;
@@ -92,7 +102,7 @@
     overflow: hidden;
 
     line-height: 1;
-    font-size: clamp(0px, 6vw, 40px);
+    font-size: clamp(0px, 3vw, 40px);
   }
 
   &__movie-infos-description {
@@ -100,7 +110,7 @@
     white-space: nowrap;
     overflow: hidden;
     line-height: 1;
-    font-size: clamp(0px, 2.3vw, 15px);
+    font-size: clamp(0px, 1.3vw, 15px);
 
     display: flex;
     align-items: center;

@@ -1,1 +1,21 @@
-<cln-movie-film (movieClicked)="movieClicked($event)" [movie]="movie1"></cln-movie-film>
+<div class="container">
+  <div class="container__featured-movies">
+    <cln-movie-film
+      class="film"
+      [class]="thirdFeaturedMovieClass()"
+      (movieClicked)="movieClicked($event)"
+      [movie]="movie1()"></cln-movie-film>
+    <cln-movie-film
+      class="film"
+      [class]="firstFeaturedMovieClass()"
+      (movieClicked)="movieClicked($event)"
+      [movie]="movie2()"></cln-movie-film>
+    <cln-movie-film
+      class="film"
+      [class]="secondFeaturedMovieClass()"
+      (movieClicked)="movieClicked($event)"
+      [movie]="movie3()"></cln-movie-film>
+  </div>
+  <div class="container__lists">
+  </div>
+</div>

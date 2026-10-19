@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { IMovie } from './../../core/movies/models/movie.interface';
+import { afterNextRender, Component, DestroyRef, inject, signal } from '@angular/core';
 import { MovieFilmComponent } from './movie-film/movie-film.component';
+import { MoviesService } from '../../core/movies/services/movies.service';
 
 @Component({
   imports: [MovieFilmComponent],
@@ -8,20 +10,77 @@ import { MovieFilmComponent } from './movie-film/movie-film.component';
   templateUrl: './sessions-movies.component.html',
 })
 export class SessionsMoviesComponent {
-  movie1 = {
-    id: '01a0f2e8-f8d1-777a-9753-e7af5949de75',
-    title: 'The Batman sfefwefewfwefwefewfewfe',
-    sinopse: 'When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city\'s hidden corruption and question his family\'s involvement.',
-    duration: "175",
-    releaseDate: new Date('2022-03-04'),
-    filmGenres: ['Action', 'Crime', 'Drama'],
-    classInd: 'Rated12Plus',
+  private destroyRef = inject(DestroyRef);
+  private readonly _moviesService = inject(MoviesService);
+
+  firstFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('middle-film');
+  secondFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('right-film');
+  thirdFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('left-film');
+
+  private _emptyMovie: IMovie = {
+    id: '',
+    title: '',
+    sinopse: '',
+    duration: '',
+    releaseDate: new Date(),
+    filmGenres: [],
+    classInd: '',
     imagesUrl: {
-      posterUrl: "http://localhost:5002/assets/movies/01a0f2e8-f8d1-777a-9753-e7af5949de75/featured-banner.jpeg",
-      featuredBanner: "http://localhost:5002/assets/movies/01a0f2e8-f8d1-777a-9753-e7af5949de75/featured-banner.jpeg",
-      standardBanner: "http://localhost:5002/assets/movies/01a0f2e8-f8d1-777a-9753-e7af5949de75/featured-banner.jpeg"
+      posterUrl: null,
+      featuredBanner: null,
+      standardBanner: null
     }
   };
+
+  movie1 = signal<IMovie>(this._emptyMovie);
+  movie2 = signal<IMovie>(this._emptyMovie);
+  movie3 = signal<IMovie>(this._emptyMovie);
+
+  constructor() {
+    afterNextRender(() => {
+      const intervalId = setInterval(() => {
+        this.firstFeaturedMovieClass.update(c => this.nextFeaturedMovieClass(c));
+        this.secondFeaturedMovieClass.update(c => this.nextFeaturedMovieClass(c));
+        this.thirdFeaturedMovieClass.update(c => this.nextFeaturedMovieClass(c));
+      }, 8050);
+
+      this.destroyRef.onDestroy(() => clearInterval(intervalId));
+    });
+  }
+
+  ngOnInit() {
+    this._moviesService.getFeaturedMovies().subscribe({
+      next: (response) => {
+        if (response.items.length >= 3) {
+          this.movie1.set(response.items[0]);
+          this.movie2.set(response.items[1]);
+          this.movie3.set(response.items[2]);
+        }
+        else if (response.items.length === 2) {
+          this.movie1.set(response.items[0]);
+          this.movie2.set(response.items[1]);
+          this.movie3.set(response.items[0]);
+        }
+        else if (response.items.length === 1) {
+          this.movie1.set(response.items[0]);
+          this.movie2.set(response.items[0]);
+          this.movie3.set(response.items[0]);
+        }
+      }
+    });
+  }
+
+  nextFeaturedMovieClass(currClass: 'left-film' | 'middle-film' | 'right-film')
+    : 'left-film' | 'middle-film' | 'right-film' {
+      switch (currClass) {
+        case 'left-film':
+          return 'right-film';
+        case 'middle-film':
+          return 'left-film';
+        case 'right-film':
+          return 'middle-film';
+      }
+  }
 
   movieClicked(movieId: string) {
     console.log('Movie clicked:', movieId);
