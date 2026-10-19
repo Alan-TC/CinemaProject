@@ -13,7 +13,7 @@ import { AuthService } from '../../core/auth/services/auth.service';
     InputComponent,
     ReactiveFormsModule,
     RouterModule ],
-  selector: 'app-login',
+  selector: 'cln-login',
   styleUrl: './login.component.scss',
   templateUrl: './login.component.html',
 })

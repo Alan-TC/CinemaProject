@@ -4,8 +4,10 @@ using CinemaBackend.Client.Api.Tokens;
 using CinemaBackend.Client.Application;
 using CinemaBackend.Infrastructure;
 using CinemaBackend.Infrastructure.Security.Tokens;
+using CinemaBackend.Infrastructure.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.Extensions.FileProviders;
 using Scalar.AspNetCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -101,4 +103,21 @@ app.MapControllers();
 
 await app.Services.ApplyMigrations();
 
+var (storageRootPath, storageRequestPath) = GetStorageFileRootPath();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(storageRootPath),
+    RequestPath = storageRequestPath
+});
+
 app.Run();
+
+(string storageRootPath, string storageRequestPath) GetStorageFileRootPath()
+{
+    using var scope = app.Services.CreateScope();
+
+    var hostInfo = scope.ServiceProvider.GetService<IHostInfoProvider>();
+
+    return (hostInfo!.GetStorageRootPath(), hostInfo!.GetStorageRequestPath());
+}

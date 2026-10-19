@@ -14,7 +14,7 @@ import { UsersService } from '../../core/users/services/users.service';
     ReactiveFormsModule,
     RouterModule
   ],
-  selector: 'app-register',
+  selector: 'cln-register',
   styleUrl: './register.component.scss',
   templateUrl: './register.component.html',
 })

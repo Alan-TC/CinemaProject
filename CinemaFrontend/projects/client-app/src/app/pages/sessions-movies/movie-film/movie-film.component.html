@@ -1,0 +1,24 @@
+<div class="film-container" (click)="movieClicked.emit(movie().id)">
+  <div class="film-container__movie">
+    @if (movie()?.imagesUrl?.featuredBanner) {
+      <img
+        [src]="movie().imagesUrl.featuredBanner"
+        onerror="this.style.display='none'"
+        alt="Movie Featured Banner">
+    }
+
+    <div
+      class="film-container__movie-class-ind"
+      [style.background-image]="'url(' + (movie().classInd | classInd) + ')'">
+    </div>
+
+    <div class="film-container__movie-infos">
+      <div class="film-container__movie-infos-title besley-regular">
+        {{ movie().title }}
+      </div>
+      <div class="film-container__movie-infos-description besley-regular">
+        {{ movie().releaseDate | date:'dd/MM/yyyy' }} <span class="circle"></span> {{movie().filmGenres.join(', ') }} <span class="circle"></span> {{ movie().duration }}
+      </div>
+    </div>
+  </div>
+</div>

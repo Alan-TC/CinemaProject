@@ -84,7 +84,7 @@
       },
       "root": "projects/client-app",
       "sourceRoot": "projects/client-app/src",
-      "prefix": "app",
+      "prefix": "cln",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -96,6 +96,10 @@
               {
                 "glob": "**/*",
                 "input": "projects/client-app/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/shared-lib/assets"
               }
             ],
             "styles": ["projects/client-app/src/styles.scss"]
