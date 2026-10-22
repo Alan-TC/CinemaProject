@@ -1,0 +1,25 @@
+<div class="film-container" (click)="sessionClicked.emit(session().id)">
+  <div class="film-content">
+    @if (session()?.moviePosterUrl) {
+      <img
+        [src]="session()?.moviePosterUrl"
+        onerror="this.style.display='none'"
+        alt="Movie Poster">
+    }
+
+    <div class="film-content__top">
+      <div class="film-content__title inter-black marquee">
+        <span class="marquee__content">{{ session().movieTitle }}</span>
+      </div>
+      <div
+      class="film-content__class-ind"
+      [style.background-image]="'url(' + (session().classInd | classInd) + ')'">
+    </div>
+    </div>
+    <div class="film-content__bottom inter-black">
+      <div class="week-day">{{ session().startsAt | date:'EEE' }}</div>
+      <div class="month-day">{{ session().startsAt | date:'d/M' }}</div>
+      <div class="start-end-hour">{{ session().startsAt | date:'HH:mm' }} - {{ session().endsAt | date:'HH:mm' }}</div>
+    </div>
+  </div>
+</div>

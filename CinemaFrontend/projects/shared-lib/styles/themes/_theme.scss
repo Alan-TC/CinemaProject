@@ -6,6 +6,7 @@
 
   --neutral-text: #{$white};
   --activated-text: #{$gold-500};
+  --inactive-text: #{$gold-100};
   --negative-text: #{$red-500};
   --hover-text: #{$blue-300};
   --default-shadow: color-mix(in srgb, #{$black} 50%, transparent);

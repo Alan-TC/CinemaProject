@@ -1,10 +1,21 @@
+import { SearchInputComponent } from './../../../../../shared-lib/src/lib/io/search-input/search-input.component';
 import { IMovie } from './../../core/movies/models/movie.interface';
 import { afterNextRender, Component, DestroyRef, inject, signal } from '@angular/core';
 import { MovieFilmComponent } from './movie-film/movie-film.component';
 import { MoviesService } from '../../core/movies/services/movies.service';
+import { RouterModule , RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { SessionsMoviesService } from './services/sessions-movies.service';
 
 @Component({
-  imports: [MovieFilmComponent],
+  imports: [
+    MovieFilmComponent,
+    RouterModule,
+    RouterOutlet,
+    SearchInputComponent,
+    RouterLink,
+    RouterLinkActive
+  ],
+  providers: [SessionsMoviesService],
   selector: 'cln-sessions-movies',
   styleUrl: './sessions-movies.component.scss',
   templateUrl: './sessions-movies.component.html',
@@ -12,6 +23,9 @@ import { MoviesService } from '../../core/movies/services/movies.service';
 export class SessionsMoviesComponent {
   private destroyRef = inject(DestroyRef);
   private readonly _moviesService = inject(MoviesService);
+  private readonly _sessionsMoviesService = inject(SessionsMoviesService);
+
+  private readonly _router = inject(Router);
 
   firstFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('middle-film');
   secondFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('right-film');
@@ -70,6 +84,23 @@ export class SessionsMoviesComponent {
     });
   }
 
+  onScroll(event: Event) {
+    const element = event.target as HTMLElement;
+
+    const scrollInfo = {
+      scrollTop: element.scrollTop,
+      clientHeight: element.clientHeight,
+      scrollHeight: element.scrollHeight
+    };
+
+    this._sessionsMoviesService.emitOnScroll(scrollInfo);
+  }
+
+  onSearchClick(searchQuery: string) {
+    let searchTerm = searchQuery.trim() || null;
+    this._sessionsMoviesService.searchQuery.set(searchTerm);
+  }
+
   nextFeaturedMovieClass(currClass: 'left-film' | 'middle-film' | 'right-film')
     : 'left-film' | 'middle-film' | 'right-film' {
       switch (currClass) {
@@ -83,6 +114,6 @@ export class SessionsMoviesComponent {
   }
 
   movieClicked(movieId: string) {
-    console.log('Movie clicked:', movieId);
+    this._router.navigate(['/movies', movieId]);
   }
 }
