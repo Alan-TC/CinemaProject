@@ -15,7 +15,7 @@
   align-items: center;
 
   width: 100%;
-  max-width: 200px;
+  max-width: 230px;
 
   aspect-ratio: 248 / 266;
 
@@ -24,6 +24,8 @@
 
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
   cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.8));

@@ -27,7 +27,7 @@ export class SessionsComponent {
   currPage = 1;
   pageSize = 16;
   hasNext = true;
-  isLoading = false;
+  isLoading = true;
 
   constructor() {
     toObservable(this._sessionsMoviesService.searchQuery)

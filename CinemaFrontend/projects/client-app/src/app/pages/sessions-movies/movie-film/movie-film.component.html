@@ -17,7 +17,7 @@
         {{ movie().title }}
       </div>
       <div class="film-container__movie-infos-description besley-regular">
-        {{ movie().releaseDate | date:'dd/MM/yyyy' }} <span class="circle"></span> {{movie().filmGenres.join(', ') }} <span class="circle"></span> {{ movie().duration }}
+        {{ movie().releaseDate | date:'dd/MM/yyyy' }} <span class="circle"></span> {{movie().filmGenres.join(', ') }} <span class="circle"></span> {{ movie().duration.split(':')[0] }}h {{ movie().duration.split(':')[1] }}m
       </div>
     </div>
   </div>
