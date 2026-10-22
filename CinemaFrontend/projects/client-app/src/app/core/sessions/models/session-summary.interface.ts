@@ -4,7 +4,7 @@ export interface ISessionSummary {
   id: string,
   movieTitle: string,
   classInd: string,
-  moviePosterUrl: IMovieImagesUrl | null,
+  moviePosterUrl: string | null,
   startsAt: Date,
   endsAt: Date
 }

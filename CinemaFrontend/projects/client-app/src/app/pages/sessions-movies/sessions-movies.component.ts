@@ -3,7 +3,7 @@ import { IMovie } from './../../core/movies/models/movie.interface';
 import { afterNextRender, Component, DestroyRef, inject, signal } from '@angular/core';
 import { MovieFilmComponent } from './movie-film/movie-film.component';
 import { MoviesService } from '../../core/movies/services/movies.service';
-import { RouterModule , RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterModule , RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { SessionsMoviesService } from './services/sessions-movies.service';
 
 @Component({
@@ -24,6 +24,8 @@ export class SessionsMoviesComponent {
   private destroyRef = inject(DestroyRef);
   private readonly _moviesService = inject(MoviesService);
   private readonly _sessionsMoviesService = inject(SessionsMoviesService);
+
+  private readonly _router = inject(Router);
 
   firstFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('middle-film');
   secondFeaturedMovieClass = signal<'left-film' | 'middle-film' | 'right-film'>('right-film');
@@ -112,6 +114,6 @@ export class SessionsMoviesComponent {
   }
 
   movieClicked(movieId: string) {
-    console.log('Movie clicked:', movieId);
+    this._router.navigate(['/movies', movieId]);
   }
 }

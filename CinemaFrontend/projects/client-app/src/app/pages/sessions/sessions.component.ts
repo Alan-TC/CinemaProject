@@ -4,9 +4,13 @@ import { SessionsService } from '../../core/sessions/services/sessions.service';
 import { ISessionSummary } from '../../core/sessions/models/session-summary.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { SessionSummaryComponent } from './session-summary/session-summary.component';
+import { Router } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [
+    SessionSummaryComponent
+  ],
   selector: 'cln-sessions',
   styleUrl: './sessions.component.scss',
   templateUrl: './sessions.component.html',
@@ -15,6 +19,8 @@ export class SessionsComponent {
   private readonly _sessionsMoviesService = inject(SessionsMoviesService);
   private readonly _sessionsService = inject(SessionsService);
   private readonly _destroyRef = inject(DestroyRef);
+
+  private readonly _router = inject(Router);
 
   sessions = signal<ISessionSummary[]>([]);
 
@@ -57,8 +63,11 @@ export class SessionsComponent {
     });
   }
 
+  sessionClicked(sessionId: string): void {
+    this._router.navigate(['/sessions', sessionId]);
+  }
+
   handleScroll(scrollInfo: {scrollTop: number, clientHeight: number, scrollHeight: number}): void {
-    console.log('Scroll event received:', scrollInfo);
     const chegouNoFinal =
       scrollInfo.scrollTop + scrollInfo.clientHeight >=
       scrollInfo.scrollHeight - 240;

@@ -1,4 +1,14 @@
-p {
-  height: 200px;
-  background-color: red;
+:host {
+  display: block;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  padding-bottom: 60px;
 }

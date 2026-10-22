@@ -1,3 +1,5 @@
-@for(session of sessions(); track session.id) {
-  <p>{{ session.movieTitle }}</p>
-}
+<div class="container">
+  @for(session of sessions(); track session.id) {
+    <cln-session-summary [session]="session" (sessionClicked)="sessionClicked($event)"></cln-session-summary>
+  }
+</div>
