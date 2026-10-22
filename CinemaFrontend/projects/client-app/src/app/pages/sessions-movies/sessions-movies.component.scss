@@ -20,6 +20,43 @@
     width: 100%;
     height: clamp(0px, 38vw, 350px);
   }
+
+  &__lists {
+    padding: 20px;
+  }
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+
+  margin-bottom: 20px;
+
+  &__options {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.option {
+  font-size: 25px;
+  color: var(--inactive-text);
+  cursor: pointer;
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--activated-text);
+  }
+}
+
+.active {
+  color: var(--activated-text);
 }
 
 .film {
