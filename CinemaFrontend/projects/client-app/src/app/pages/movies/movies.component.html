@@ -1,1 +1,5 @@
-<p>movies works!</p>
+<div class="container">
+  @for(movie of movies(); track movie.id) {
+    <cln-movie-card [movie]="movie" (movieClicked)="movieClicked($event)"></cln-movie-card>
+  }
+</div>

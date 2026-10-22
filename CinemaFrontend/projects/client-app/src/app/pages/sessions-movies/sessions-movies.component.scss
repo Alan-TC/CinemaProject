@@ -27,6 +27,10 @@
   }
 }
 
+.container::-webkit-scrollbar {
+  display: none;
+}
+
 .list-header {
   display: flex;
   justify-content: space-between;

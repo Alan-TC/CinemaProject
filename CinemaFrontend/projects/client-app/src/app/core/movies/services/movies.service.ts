@@ -14,6 +14,12 @@ export class MoviesService {
     return this._httpClient.post<IPaginationResponse<IMovie>>(`${this.REQUEST_URL}/filter`, null);
   }
 
+  getMovies(page: number, pageSize: number, searchTerm: string | null): Observable<IPaginationResponse<IMovie>> {
+    return this._httpClient.post<IPaginationResponse<IMovie>>(
+      `${this.REQUEST_URL}/filter?currentPage=${page}&pageSize=${pageSize}`,
+      { searchTerm });
+  }
+
   getMovieById(id: string):
     Observable<IMovie>
   {
