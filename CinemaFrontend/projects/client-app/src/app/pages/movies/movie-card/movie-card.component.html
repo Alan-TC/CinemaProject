@@ -25,6 +25,11 @@
             {{ movie().filmGenres.join(', ') }}
             <span class="circle"></span>
             {{ movie().duration.split(':')[0] }}h {{ movie().duration.split(':')[1] }}min
+            <span class="circle"></span>
+            <div
+            class="infos-details__class-ind"
+            [style.background-image]="'url(' + (movie().classInd | classInd) + ')'">
+            </div>
           </div>
         </div>
         <div class="infos-deatils__bottom besley-regular">

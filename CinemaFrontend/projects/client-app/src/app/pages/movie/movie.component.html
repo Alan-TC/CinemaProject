@@ -1,0 +1,54 @@
+<div class="container" (scroll)="handleScroll($event)">
+  <div class="container__top">
+    <div class="movie">
+      <div class="movie__poster">
+        @if (movie()?.imagesUrl?.posterUrl) {
+          <img
+            [src]="movie()!.imagesUrl.posterUrl"
+            onerror="this.style.display='none'"
+            alt="Movie Poster">
+        }
+      </div>
+      <div class="movie__infos">
+        @if (movie()?.imagesUrl?.standardBanner) {
+          <img
+            [src]="movie()!.imagesUrl.standardBanner"
+            onerror="this.style.display='none'"
+            alt="Movie Poster">
+        }
+
+        <div class="movie__infos-details infos-details">
+          <div class="infos-deatils__top">
+            <p class="infos-details__title inter-black">{{ movie()?.title }}</p>
+            <div class="infos-details__infos">
+              {{ movie()?.releaseDate | date: 'dd/MM/yyyy' }}
+              <span class="circle"></span>
+              {{ movie()?.filmGenres?.join(', ') }}
+              <span class="circle"></span>
+              {{ movie()?.duration.split(':')[0] }}h {{ movie()?.duration.split(':')[1] }}min
+                          <span class="circle"></span>
+            <div
+            class="infos-details__class-ind"
+            [style.background-image]="'url(' + ((movie()?.classInd || '') | classInd) + ')'">
+            </div>
+            </div>
+          </div>
+          <div class="infos-deatils__bottom besley-regular">
+            <p class="infos-details__sinopse">Sinopse:</p>
+            <p class="infos-details__sinopse-text">
+              {{ movie()?.sinopse }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container__list">
+    <p class="title inter-black">Sessões</p>
+    <div class="container__list-grid">
+    @for(session of sessions(); track session.id) {
+      <cln-session-card [session]="session" (sessionClicked)="sessionClicked($event)"></cln-session-card>
+    }
+    </div>
+  </div>
+</div>

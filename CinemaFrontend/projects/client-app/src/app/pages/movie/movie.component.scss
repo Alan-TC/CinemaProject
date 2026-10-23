@@ -1,0 +1,183 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &__top {
+    width: 100%;
+    aspect-ratio: 1536 / 350;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--page-featured-surface);
+    box-shadow: var(--page-featured-surface-shadow);
+  }
+
+  &__list {
+    width: 100%;
+
+    padding: 20px;
+  }
+
+  &__list .title {
+    display: block;
+    width: 100%;
+
+    font-size: clamp(0px, 2.5vw, 25px);
+    color: var(--activated-text);
+
+    margin-bottom: 20px;
+  }
+
+  &__list-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    padding-bottom: 60px;
+  }
+}
+
+.movie {
+  width: 90%;
+  aspect-ratio: 1297 / 307;
+
+  display: flex;
+
+  gap: 20px;
+
+  &__poster {
+    width: 16.5%;
+    aspect-ratio: 213 / 307;
+
+    position: relative;
+
+    border-radius: 10px;
+    overflow: hidden;
+    background: gray;
+  }
+
+  &__poster img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    display: block;
+    z-index: 2;
+  }
+
+  &__infos {
+    width: 83.5%;
+    aspect-ratio: 1084 / 307;
+
+    position: relative;
+
+    border-radius: 10px;
+    overflow: hidden;
+    background: gray;
+  }
+
+  &__infos img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    display: block;
+    z-index: 2;
+
+    filter: brightness(0.35);
+  }
+
+  &__infos-details {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    padding: 10px;
+    z-index: 3;
+  }
+
+  &__poster::after {
+    content: '';
+    width: 50%;
+    height: 50%;
+
+    position: absolute;
+    z-index: 1;
+
+    transform: translate(-50%, -50%);
+
+    top: 50%;
+    left: 50%;
+
+    background: url('../../../../../shared-lib/assets/file-image-solid-full.svg') no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.infos-details {
+  display: grid;
+
+  color: white;
+
+  &__title {
+    font-size: clamp(0px, 2.5vw, 40px);
+  }
+
+  &__infos {
+    display: flex;
+    align-items: center;
+
+    font-size: clamp(0px, 1.3vw, 15px);
+  }
+
+  &__class-ind {
+    width: clamp(0px, 1.7vw, 20px);
+
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    margin: clamp(0px, 4.5vw, 5px);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__sinopse {
+    font-size: clamp(0px, 2.5vw, 25px);
+  }
+
+  &__sinopse-text {
+    font-size: clamp(0px, 2.5vw, 15px);
+  }
+}
+
+.circle {
+  display: inline-block;
+  background: white;
+  width: clamp(0px, 1vw, 5px);;
+  margin: 0 clamp(0px, 1vw, 5px);;
+
+  text-align: center;
+
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
