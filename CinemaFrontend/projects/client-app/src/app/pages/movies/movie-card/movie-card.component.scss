@@ -138,6 +138,18 @@
     font-size: clamp(0px, 1.3vw, 15px);
   }
 
+  &__class-ind {
+    width: clamp(0px, 1.7vw, 20px);
+
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    margin: clamp(0px, 4.5vw, 5px);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   &__sinopse {
     font-size: clamp(0px, 2.5vw, 25px);
   }

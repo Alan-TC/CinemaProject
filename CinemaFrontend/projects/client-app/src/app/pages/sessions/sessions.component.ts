@@ -4,12 +4,12 @@ import { SessionsService } from '../../core/sessions/services/sessions.service';
 import { ISessionSummary } from '../../core/sessions/models/session-summary.interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, switchMap, tap } from 'rxjs';
-import { SessionSummaryComponent } from './session-summary/session-summary.component';
 import { Router } from '@angular/router';
+import { SessionCardComponent } from '../../core/sessions/components/session-card/session-card.component';
 
 @Component({
   imports: [
-    SessionSummaryComponent
+    SessionCardComponent
   ],
   selector: 'cln-sessions',
   styleUrl: './sessions.component.scss',

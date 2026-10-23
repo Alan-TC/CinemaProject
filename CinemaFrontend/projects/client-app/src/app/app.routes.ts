@@ -10,6 +10,10 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/sessions-movies/sessios-movies.routes').then((m) => m.routes)
+      },
+      {
+        path: 'movies/:movieId',
+        loadComponent: () => import("./pages/movie/movie.component").then((m) => m.MovieComponent)
       }
     ]
   },

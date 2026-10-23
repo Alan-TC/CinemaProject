@@ -4,6 +4,7 @@ import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
 import { IMovie } from '../models/movie.interface';
 import { IPaginationResponse } from '../../shared/models/pagination-response.interface';
+import { ISessionSummary } from '../../sessions/models/session-summary.interface';
 
 @Service()
 export class MoviesService {
@@ -18,6 +19,11 @@ export class MoviesService {
     return this._httpClient.post<IPaginationResponse<IMovie>>(
       `${this.REQUEST_URL}/filter?currentPage=${page}&pageSize=${pageSize}`,
       { searchTerm });
+  }
+
+  getSessions(page: number, pageSize: number, movieId: string): Observable<IPaginationResponse<ISessionSummary>> {
+    return this._httpClient.post<IPaginationResponse<ISessionSummary>>
+      (`${this.REQUEST_URL}/${movieId}/sessions?currentPage=${page}&pageSize=${pageSize}`, null);
   }
 
   getMovieById(id: string):
