@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  overflow-y: auto;
+}
+
+:host::-webkit-scrollbar {
+  display: none;
+}
+
+
+.container {
+  width: 100%;
+  min-height: 350px;
+  height: 75%;
+
+  background: var(--page-surface);
+  background-attachment: fixed;
+
+  margin-block: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: clamp(10px, 3vw, 60px);
+  padding: 0px clamp(10px, 3vw, 20px);
+
+  &__options {
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+  }
+
+  &__menu {
+    width: 100%;
+    max-width: 820px;
+    height: 100%;
+  }
+}
