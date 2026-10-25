@@ -1,5 +1,3 @@
-import { IMovieImagesUrl } from "../../movies/models/movies-images-url.interface";
-
 export interface ISessionSummary {
   id: string,
   movieTitle: string,

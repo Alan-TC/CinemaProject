@@ -12,6 +12,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/sessions-movies/sessios-movies.routes').then((m) => m.routes)
       },
       {
+        path: 'my-account',
+        canActivate: [authGuard],
+        loadChildren: () => import("./pages/my-account/my-account.routes").then((m) => m.routes)
+      },
+      {
         path: 'movies/:movieId',
         loadComponent: () => import("./pages/movie/movie.component").then((m) => m.MovieComponent)
       }

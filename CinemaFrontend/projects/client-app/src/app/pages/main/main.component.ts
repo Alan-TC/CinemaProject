@@ -28,6 +28,7 @@ export class MainComponent {
 
   profileNavItems = [
     { label: 'Home', route: '/' },
+    { label: 'Minha conta', route: '/my-account' },
     { label: 'Sair', action: 'logout' }
   ];
 

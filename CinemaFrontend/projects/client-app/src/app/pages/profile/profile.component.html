@@ -1,0 +1,47 @@
+<lib-options-menu class="menu">
+  <lib-options-menu-header class="menu__header-container">
+    <div class="menu__header-right">
+      <p class="inter-black">Perfil</p>
+    </div>
+  </lib-options-menu-header>
+<lib-options-menu-content class="menu__content">
+  <form class="menu__content-form" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <div class="input">
+      <label for="name">NOME</label>
+      <input type="text" id="name" formControlName="name" placeholder="Digite seu nome" />
+    </div>
+    @if(hasRequiredNameError()) {
+      <p class="error-msg inter-black">Nome é obrigatório.</p>
+    }
+    <div class="input">
+      <label for="email">E-MAIL</label>
+      <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" />
+    </div>
+    @if(hasRequiredEmailError()) {
+      <p class="error-msg inter-black">E-mail é obrigatório.</p>
+    }
+    @if(hasInvalidEmailError()) {
+      <p class="error-msg inter-black">E-mail inválido.</p>
+    }
+
+    <div class="menu__content-form-bottom">
+      <div class="errors-messages">
+        @if(profileForm.invalid) {
+          @if(profileForm.hasError('invalidValues')) {
+            <p class="error-msg inter-black">{{ profileForm.getError('invalidValues') }}</p>
+          }
+
+          @if(profileForm.hasError('unknownError')) {
+            <p class="error-msg inter-black">Ocorreu um erro inesperado.</p>
+          }
+        }
+      </div>
+      <div class="buttons">
+        <lib-button styleType="neutral" [class.disabled]="isEditMode" type="button" name="Editar" (click)="formSwitchEditMode(true)"></lib-button>
+        <lib-button styleType="negative" [class.disabled]="!isEditMode" type="button" name="Cancelar" (click)="onCancel()"></lib-button>
+        <lib-button styleType="confirm" [class.disabled]="!isEditMode" type="submit" name="Salvar"></lib-button>
+      </div>
+    </div>
+  </form>
+</lib-options-menu-content>
+</lib-options-menu>

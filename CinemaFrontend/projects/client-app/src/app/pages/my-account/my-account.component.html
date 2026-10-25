@@ -1,0 +1,10 @@
+<div class="container">
+  <lib-options-selector class="container__options"
+  [optionsItems]="optionsItems"
+  (action)="onOptionsItemsActionHandler($event)"
+  ></lib-options-selector>
+
+  <div class="container__menu">
+    <router-outlet></router-outlet>
+  </div>
+</div>
