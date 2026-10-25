@@ -58,5 +58,6 @@ export class MainComponent {
 
   private logout() {
     this._authService.clear_tokens();
+    this._router.navigate(['/']);
   }
 }
