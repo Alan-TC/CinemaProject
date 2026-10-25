@@ -48,7 +48,7 @@ public class PayOrderUseCase(
 
         await _cinemaTicketWriteOnlyRepository.AddTicket(cinemaTicket);
 
-        _ = _unitOfWork.Commit();
+        _ = await _unitOfWork.Commit();
     }
 
     public async Task<string> GenerateValidCode()
