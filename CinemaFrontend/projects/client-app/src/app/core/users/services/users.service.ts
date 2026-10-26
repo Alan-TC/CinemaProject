@@ -2,6 +2,7 @@ import { inject, Service } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { IUserProfile } from '../models/user-profile.interface';
 
 @Service()
 export class UsersService {
@@ -11,5 +12,11 @@ export class UsersService {
   register(name: string, email: string, password: string): Observable<null>{
     return this._httpClient.post<null>(
       this.REQUEST_URL, { name, email, password });
+  }
+
+  getProfile():
+    Observable<IUserProfile>
+  {
+    return this._httpClient.get<IUserProfile>(`${this.REQUEST_URL}/profile`);
   }
 }

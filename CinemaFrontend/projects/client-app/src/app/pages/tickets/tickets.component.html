@@ -1,0 +1,14 @@
+<lib-options-menu class="menu">
+  <lib-options-menu-header class="menu__header-container">
+    <div class="menu__header-right">
+      <p class="inter-black">Meus Ingressos</p>
+    </div>
+  </lib-options-menu-header>
+  <lib-options-menu-content class="menu__content">
+    <div class="menu__content-scrollable" (scroll)="onScroll($event)">
+      @for(ticket of tickets(); track ticket.id) {
+        <cln-ticket-card [ticket]="ticket" (ticketClicked)="onTicketClicked($event)"></cln-ticket-card>
+      }
+    </div>
+  </lib-options-menu-content>
+</lib-options-menu>

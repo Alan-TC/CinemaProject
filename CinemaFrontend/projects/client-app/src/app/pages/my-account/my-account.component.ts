@@ -15,7 +15,7 @@ export class MyAccountComponent {
 
   optionsItems = [
     { label: 'Perfil', route: 'profile' },
-    { label: 'Ingressos', route: '/tickets' },
+    { label: 'Ingressos', route: 'tickets' },
     { label: 'Sair', action: 'logout' }
   ];
 

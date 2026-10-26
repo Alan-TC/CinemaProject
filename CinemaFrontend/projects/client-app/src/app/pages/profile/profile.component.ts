@@ -1,8 +1,8 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OptionsMenuComponent, OptionsMenuContentDirective, OptionsMenuHeaderDirective } from './../../../../../shared-lib/src/lib/pages/options/options-menu/options-menu.component';
 import { Component, inject } from '@angular/core';
-import { UsersService } from '../../core/user/services/users.service';
-import { IUserProfile } from '../../core/user/models/user-profile.interface';
+import { UsersService } from '../../core/users/services/users.service';
+import { IUserProfile } from '../../core/users/models/user-profile.interface';
 import { ButtonComponent } from '../../../../../shared-lib/src/lib/io/button/button.component';
 
 @Component({

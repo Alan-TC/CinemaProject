@@ -1,0 +1,62 @@
+<div class="container">
+  <lib-options-menu class="menu-ticket">
+    <lib-options-menu-header class="menu-ticket__header-container">
+      <div class="menu-ticket__header-right">
+        <p class="inter-black">INFORMAÇÕES DO INGRESSO</p>
+      </div>
+    </lib-options-menu-header>
+    <lib-options-menu-content class="menu-ticket__content">
+      <div class="menu-ticket__content-left inter-black">
+        <div class="menu-ticket__item">
+          <p>Assentos</p>
+          <p>{{ ticket()?.seatsCodes.join(', ') }}</p>
+        </div>
+        <div class="menu-ticket__item">
+          <p>Meia Entrada: {{ ticket()?.halfPriceTickets }}</p>
+        </div>
+      </div>
+      <div class="menu-ticket__content-right inter-black">
+        <div class="menu-ticket__item">
+          <p>Sala</p>
+          <p>{{ ticket()?.theaterRoomTag || 'Não disponível' }}</p>
+        </div>
+        <div class="menu-ticket__item">
+          <p>Data</p>
+          <p>{{ ticket()?.startsAt | date:'dd/MM/yyyy' }}</p>
+        </div>
+        <div class="menu-ticket__item">
+          <p>Código</p>
+          <p>{{ ticket()?.code.slice(0, 4) }}-{{ ticket()?.code.slice(4) }}</p>
+        </div>
+      </div>
+    </lib-options-menu-content>
+  </lib-options-menu>
+
+  <lib-options-menu class="menu-movie">
+    <lib-options-menu-header class="menu-movie__header-container">
+      <div class="menu-movie__header-right">
+        <p class="inter-black">INFORMAÇÕES DO FILME</p>
+      </div>
+    </lib-options-menu-header>
+    <lib-options-menu-content class="menu-movie__content">
+      <div class="menu-movie__content-banner">
+        @if(ticket()?.movie?.imagesUrl?.standardBanner){
+          <img [src]="ticket()?.movie?.imagesUrl?.standardBanner" alt="Banner do filme" />
+        }
+      </div>
+      <div class="menu-movie__infos inter-black">
+        <p class="menu-movie__infos-title">{{ ticket()?.movie?.title }}</p>
+        <div class="menu-movie__infos-details">
+          {{ ticket()?.movie.filmGenres?.join(', ') }}
+          <span class="circle"></span>
+          {{ ticket()?.movie.duration.split(':')[0] }}h {{ ticket()?.movie.duration.split(':')[1] }}min
+          <span class="circle"></span>
+          <div
+            class="menu-movie__infos-class-ind"
+            [style.background-image]="'url(' + ((ticket()?.movie.classInd || '') | classInd) + ')'">
+          </div>
+        </div>
+      </div>
+    </lib-options-menu-content>
+  </lib-options-menu>
+</div>

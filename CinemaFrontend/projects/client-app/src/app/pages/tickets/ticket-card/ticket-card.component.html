@@ -1,0 +1,17 @@
+<div class="ticket" (click)="ticketClicked.emit(ticket().id)">
+  <div class="ticket__left inter-black">
+    <p class="seats-title">Assentos</p>
+    <p class="seats">{{ ticket().seatsCodes.join(', ') }}</p>
+    <p class="seats-half-price">Meia Entrada: {{ ticket().halfPriceTickets }}</p>
+  </div>
+  <div class="ticket__right inter-black">
+    <p class="right-text">Sala</p>
+    <p class="right-text">{{ ticket().theaterRoomTag }}</p>
+
+    <p class="right-text">Data</p>
+    <p class="right-text">{{ ticket().startsAt | date:'dd/MM/yyyy' }}</p>
+
+    <p class="right-text">Código</p>
+    <p class="right-text">{{ ticket().code.slice(0, 4) }}-{{ ticket().code.slice(4) }}</p>
+  </div>
+</div>

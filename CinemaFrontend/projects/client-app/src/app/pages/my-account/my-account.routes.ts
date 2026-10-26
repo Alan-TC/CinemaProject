@@ -13,6 +13,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         loadComponent: () => import("../profile/profile.component").then((m) => m.ProfileComponent)
+      },
+      {
+        path: 'tickets',
+        loadComponent: () => import("../tickets/tickets.component").then((m) => m.TicketsComponent)
       }
     ]
   }
