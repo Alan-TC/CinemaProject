@@ -25,6 +25,7 @@ internal static class SessionMappings
                 Seats = entity.SessionRoom.Seats
                     .Select(s => new SeatReponseJson
                     {
+                        Id = s.Id,
                         Code = s.Code,
                         PosX = s.PosX,
                         PosY = s.PosY,
