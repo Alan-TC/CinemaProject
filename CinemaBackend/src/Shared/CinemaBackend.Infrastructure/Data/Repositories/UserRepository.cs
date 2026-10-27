@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaBackend.Infrastructure.Data.Repositories;
 
-internal class UserRepository(CinemaDbContext dbContext) : IUserReadOnlyRepository, IUserWriteOnlyRepository
+internal class UserRepository(CinemaDbContext dbContext) : IUserReadOnlyRepository, IUserWriteOnlyRepository, IUserUpdateOnlyRepository
 {
     private readonly CinemaDbContext _dbContext = dbContext;
 
@@ -26,11 +26,18 @@ internal class UserRepository(CinemaDbContext dbContext) : IUserReadOnlyReposito
             .FirstOrDefaultAsync(u => u.Email == email && u.DeactivatedAt == null);
     }
 
-    public async Task<User?> GetUserById(Guid id)
+    async Task<User?> IUserReadOnlyRepository.GetUserById(Guid id)
     {
         return await _dbContext
             .Users
             .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id && u.DeactivatedAt == null);
+    }
+
+    async Task<User?> IUserUpdateOnlyRepository.GetUserById(Guid id)
+    {
+        return await _dbContext
+            .Users
             .FirstOrDefaultAsync(u => u.Id == id && u.DeactivatedAt == null);
     }
 }
