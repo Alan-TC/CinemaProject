@@ -55,6 +55,7 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IUserReadOnlyRepository,  UserRepository>();
         services.AddScoped<IUserWriteOnlyRepository,  UserRepository>();
+        services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
 
         services.AddScoped<IMovieImageStorage, MovieImageStorage>();
         services.AddScoped<IMovieReadOnlyRepository, MovieRepository>();

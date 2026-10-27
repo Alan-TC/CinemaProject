@@ -1,5 +1,6 @@
 ﻿using CinemaBackend.Client.Application.UseCases.Users.GetProfile;
 using CinemaBackend.Client.Application.UseCases.Users.Register;
+using CinemaBackend.Client.Application.UseCases.Users.UpdateProfile;
 using CinemaBackend.Communication.Requests;
 using CinemaBackend.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -32,5 +33,17 @@ public class UsersController : ControllerBase
         var result = await useCase.Execute();
 
         return Ok(result);
+    }
+
+    [Authorize]
+    [HttpPost("profile")]
+    [ProducesResponseType(typeof(UserProfileJson), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Update(
+        [FromServices] IUpdateUserProfileUseCase useCase,
+        [FromBody] UserProfileRequestJson request)
+    {
+        await useCase.Execute(request);
+
+        return Ok();
     }
 }

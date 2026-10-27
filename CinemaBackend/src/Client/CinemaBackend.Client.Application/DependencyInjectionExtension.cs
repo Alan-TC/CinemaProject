@@ -12,6 +12,7 @@ using CinemaBackend.Client.Application.UseCases.Sessions.GetById;
 using CinemaBackend.Client.Application.UseCases.Sessions.GetSessions;
 using CinemaBackend.Client.Application.UseCases.Users.GetProfile;
 using CinemaBackend.Client.Application.UseCases.Users.Register;
+using CinemaBackend.Client.Application.UseCases.Users.UpdateProfile;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CinemaBackend.Client.Application;
@@ -27,6 +28,7 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+        services.AddScoped<IUpdateUserProfileUseCase, UpdateUserProfileUseCase>();
 
         services.AddScoped<IRefreshTokenUseCase, RefreshTokenUseCase>();
         services.AddScoped<ILoginWithEmailAndPasswordUseCase, LoginWithEmailAndPasswordUseCase>();
