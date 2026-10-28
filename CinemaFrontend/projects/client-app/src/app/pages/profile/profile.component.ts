@@ -43,12 +43,39 @@ export class ProfileComponent {
   }
 
   saveProfile() {
-    this.onCancel();
     if (this.profileForm.invalid) {
       this.profileForm.markAllAsTouched();
       return;
     }
+
+    this.isLoading = true;
+
+    const profile: IUserProfile = {
+      name: this.profileForm.get('name')?.value || '',
+      email: this.profileForm.get('email')?.value || '',
+    };
+
+    this._usersService.updateProfile(profile)
+      .subscribe({
+        next: () => {
+          this.userProfile = profile;
+          this.isLoading = false;
+          this.formSwitchEditMode(false);
+        },
+        error: (error) => {
+          this.isLoading = false;
+
+          if (error.status === 400 || error.status === 409) {
+            if (error.error) {
+              this.profileForm.setErrors({invalidValues: error.error.errorMessages.join(', ')});
+              return;
+            }
+          }
+          this.profileForm.setErrors({unknownError: true});
+        }
+      });
   }
+
   hasRequiredNameError() {
     return this.profileForm.get('name')?.touched && this.profileForm.get('name')?.hasError('required');
   }

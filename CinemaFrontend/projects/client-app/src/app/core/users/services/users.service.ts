@@ -19,4 +19,10 @@ export class UsersService {
   {
     return this._httpClient.get<IUserProfile>(`${this.REQUEST_URL}/profile`);
   }
+
+  updateProfile(profile: IUserProfile):
+    Observable<IUserProfile>
+  {
+    return this._httpClient.put<IUserProfile>(`${this.REQUEST_URL}/profile`, profile);
+  }
 }
