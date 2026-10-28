@@ -15,6 +15,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Create(
         [FromServices] IRegisterUserUseCase useCase,
         [FromBody] UserRequestJson request)
@@ -38,6 +39,8 @@ public class UsersController : ControllerBase
     [Authorize]
     [HttpPut("profile")]
     [ProducesResponseType(typeof(UserProfileJson), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateUserProfileUseCase useCase,
         [FromBody] UserProfileRequestJson request)
