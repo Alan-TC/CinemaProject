@@ -36,7 +36,7 @@ public class UsersController : ControllerBase
     }
 
     [Authorize]
-    [HttpPost("profile")]
+    [HttpPut("profile")]
     [ProducesResponseType(typeof(UserProfileJson), StatusCodes.Status204NoContent)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateUserProfileUseCase useCase,
