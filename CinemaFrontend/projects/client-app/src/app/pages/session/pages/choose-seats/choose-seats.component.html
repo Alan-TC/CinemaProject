@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="container__left">
+
+  </div>
+  <div class="container__right">
+    <cln-buy-process-card progressType="seats"
+    (seatClicked)="progressSeatClicked($event)"
+    (buttonClicked)="progressButtonClicked($event)"
+    [session]="session()"></cln-buy-process-card>
+  </div>
+</div>

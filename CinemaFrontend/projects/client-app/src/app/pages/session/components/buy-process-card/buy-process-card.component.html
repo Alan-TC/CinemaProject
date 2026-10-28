@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card__progress"
+    [class.progress-seats]="progressType() === 'seats'"
+    [class.progress-tickets]="progressType() === 'tickets'"
+    [class.progress-payment]="progressType() === 'payment'">
+  </div>
+
+  <div class="card__content">
+    <div class="content-movie">
+      <div class="content-movie__poster">
+        @if (session()?.movie.imagesUrl?.posterUrl) {
+          <img [src]="session()?.movie.imagesUrl?.posterUrl" alt="Poster do filme {{ session()?.movie.title }}" />
+        }
+      </div>
+      <div class="content-movie__info">
+        <p class="marquee"><span class="marquee__content inter-black">{{ session()?.movie.title }}</span></p>
+        <div class="content-movie__info-details infos-details">
+          <div class="infos-details__infos inter-black">
+            {{ session()?.movie.duration.split(':')[0] }}h {{ session()?.movie.duration.split(':')[1] }}m
+            <span class="circle"></span>
+            {{ session()?.movie.filmGenres?.join(', ') }}
+            <span class="circle"></span>
+            <div
+            class="infos-details__class-ind"
+            [style.background-image]="'url(' + ((session()?.movie.classInd || '') | classInd) + ')'">
+            </div>
+          </div>
+        </div>
+        <div class="content-movie__info-session inter-black">
+          <div class="week-day">{{ session()?.startsAt | date:'EEE' }}</div>
+          <div class="month-day">DATA: {{ session()?.startsAt | date:'dd/MM/yyyy' }}</div>
+          <div class="start-end-hour">HORÁRIO: {{ session()?.startsAt | date:'HH:mm' }} - {{ session()?.endsAt | date:'HH:mm' }}</div>
+          <div class="room">SALA: {{ session()?.sessionRoom.tag }}</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="seats-line inter-black">ASSENTOS: </p>
+
+    <div class="card__content-seats">
+      @for(seat of selectedSeats(); track seat.id) {
+        <div class="selected-seat"
+          (click)="onSeatClicked(seat.id)"
+          [class.canClickSeat]="canClickSeat">
+          <div class="selected-seat-surface inter-black">ASSENTO: {{ seat.code }}</div>
+          <div class="selected-seat-cancel inter-black">CANCELAR</div>
+        </div>
+      }
+    </div>
+
+    <div class="card__content-buttons">
+      @if(progressType() === 'seats') {
+        <lib-button (click)="onClick('left')" name="Cancelar" styleType="negative" type="button"></lib-button>
+        <lib-button (click)="onClick('right')" name="Próximo" styleType="confirm" type="button"></lib-button>
+      }
+      @else if(progressType() === 'tickets') {
+        <lib-button (click)="onClick('left')" name="Voltar" styleType="neutral" type="button"></lib-button>
+        <lib-button (click)="onClick('right')" name="Próximo" styleType="confirm" type="button"></lib-button>
+      }
+      @else if(progressType() === 'payment') {
+        <lib-button (click)="onClick('left')" name="Voltar" styleType="neutral" type="button"></lib-button>
+        <lib-button (click)="onClick('right')" name="Comprar" styleType="confirm" type="button"></lib-button>
+      }
+    </div>
+  </div>
+</div>
