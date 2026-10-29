@@ -86,6 +86,7 @@ export class AuthService {
       this.REQUEST_URL + '/refresh', { refreshToken }
     ).pipe(
       tap((response) => {
+        console.log('Refresh token successful:', response);
         localStorage.setItem(this.ACCESS_TOKEN_KEY, response.accessToken);
         localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
       })
@@ -98,14 +99,12 @@ export class AuthService {
 
   validateTokens(): Observable<boolean> {
     const accessToken = localStorage.getItem(this.ACCESS_TOKEN_KEY);
-    if (!accessToken) {
-      return of(false);
-    }
-    if (!this.isTokenExpired(accessToken)) {
+    const refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
+
+    if (accessToken && !this.isTokenExpired(accessToken)) {
       return of(true);
     }
 
-    const refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
     if (!refreshToken || this.isTokenExpired(refreshToken)) {
       return of(false);
     }

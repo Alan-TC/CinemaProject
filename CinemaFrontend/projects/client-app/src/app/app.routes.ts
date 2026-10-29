@@ -23,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'tickets/:ticketId',
         loadComponent: () => import("./pages/ticket/ticket.component").then((m) => m.TicketComponent)
+      },
+      {
+        path: 'sessions/:sessionId',
+        loadChildren: () => import("./pages/session/session.routes").then((m) => m.routes)
       }
     ]
   },

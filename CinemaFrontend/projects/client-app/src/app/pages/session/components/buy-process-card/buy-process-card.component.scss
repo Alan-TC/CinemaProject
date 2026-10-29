@@ -1,0 +1,236 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__progress {
+    width: 100%;
+
+    aspect-ratio: 370/70;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #1A1A1A;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+
+    background: var(--page-surface);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    border-radius: 10px;
+  }
+
+  &__content-seats {
+    width: 100%;
+    aspect-ratio: 370/200;
+    gap: 5px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto;
+  }
+
+  &__content-buttons {
+    height: max-content;
+    margin-top: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 10px;
+  }
+}
+
+.selected-seat {
+  position: relative;
+  width: 90%;
+  aspect-ratio: 350/80;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url('/selected-seat.svg') no-repeat center;
+  background-size: cover;
+
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.canClickSeat {
+  cursor: pointer;
+}
+
+.canClickSeat:hover .selected-seat-cancel {
+  display: flex;
+}
+
+.selected-seat-cancel {
+  position: absolute;
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 10px;
+  width: 80%;
+  aspect-ratio: 350/80;
+
+  background: rgba(85, 7, 7, 0.9);
+  color: white;
+}
+
+.selected-seat-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 80%;
+  aspect-ratio: 350/80;
+
+  background: black;
+  color: white;
+
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.content-movie {
+  width: 100%;
+
+  aspect-ratio: 350/145;
+  padding: 10px;
+  gap: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__poster {
+    position: relative;
+    width: 30%;
+    aspect-ratio: 101/145;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+  }
+
+  &__poster img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    display: block;
+    z-index: 2;
+  }
+
+  &__info {
+    width: 70%;
+    aspect-ratio: 241/145;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 10px;
+
+    color: white;
+
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &__info-details {
+    width: 100%;
+    height: 100%;
+    container-type: inline-size;
+  }
+
+  &__info-session {
+    margin-top: auto;
+    font-size: clamp(0px, 0.9cqw, 15px);
+  }
+}
+
+.infos-details {
+  color: white;
+  height: max-content;
+  container-type: inline-size;
+
+  &__infos {
+    display: flex;
+    align-items: center;
+
+    font-size: clamp(0px, 5.3cqw, 15px);
+  }
+
+  &__class-ind {
+    width: clamp(0px, 8.7cqw, 30px);
+
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.seats-line {
+  width: 100%;
+  color: white;
+
+  background: black;
+
+  padding: 5px;
+}
+
+.circle {
+  display: inline-block;
+  background: white;
+  width: clamp(0px, 2cqw, 5px);;
+  margin: 0 clamp(0px, 1cqw, 5px);;
+
+  text-align: center;
+
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.progress-seats {
+  background: url('/progress-bar/progress-seats.svg') no-repeat center;
+  background-size: cover;
+}
+
+.progress-tickets {
+  background: url('/progress-bar/progress-tickets.svg') no-repeat center;
+  background-size: cover;
+}
+
+.progress-payment {
+  background: url('/progress-bar/progress-payment.svg') no-repeat center;
+  background-size: cover;
+}
