@@ -1,0 +1,64 @@
+<div class="editor">
+  <div class="editor__grid-container">
+    <div class="editor__grid-layout-container">
+      @if(errorMessage() !== ""){
+        <p class="error-message inter-black">{{ errorMessage() }}</p>
+      }
+      <div
+        #layoutContainer
+        class="layout-container"
+        (wheel)="onWheel($event)"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+        (pointercancel)="onPointerUp($event)"
+        (pointerleave)="onPointerUp($event)"
+        >
+        <div
+          #layoutElement
+          class="layout"
+          [style.scale]="scale()"
+          [style.transform]="'translate(' + translateX + 'px, ' + translateY + 'px)'"
+          (click)="onLayoutClick($event)"
+          >
+          @for(row of theaterLayout().seats; track $index; let rowIndex = $index){
+            <div class="layout__row">
+              @for(col of row; track $index; let colIndex = $index){
+                <div
+                  style="color: white; font-size: 5px;"
+                  class="layout__cell"
+                  [class.layout__available]="col.type === 'Available'"
+                  [class.layout__unavailable]="col.type === 'Unavailable'"
+                  [class.layout__selected]="col.type === 'Selected'"
+                  [attr.data-seatId]="col.id"
+                  >
+                  </div>
+              }
+            </div>
+          }
+          <div class="layout__screen inter-black unselectable">
+            Tela
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <input class="slider" (input)="onSliderChange($event)" type="range" [min]="minZoom() * 100" [max]="maxZoom() * 100" [value]="scale() * 100" step="any" class="slider" id="myRange">
+      </div>
+      <div class="editor__grid-legend">
+        <div class="editor__grid-legend-item">
+          <div class="layout__cell layout__selected"></div>
+          <p class="editor__legend-text inter-black">SELECIONADO</p>
+        </div>
+        <div class="editor__grid-legend-item">
+          <div class="layout__cell layout__available"></div>
+          <p class="editor__legend-text inter-black">DISPONÍVEL</p>
+        </div>
+        <div class="editor__grid-legend-item">
+          <div class="layout__cell layout__unavailable"></div>
+          <p class="editor__legend-text inter-black">INDISPONÍVEL</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

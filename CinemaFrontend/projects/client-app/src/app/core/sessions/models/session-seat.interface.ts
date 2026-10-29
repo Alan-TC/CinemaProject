@@ -3,5 +3,5 @@ export interface ISessionSeat {
   code: string,
   posX: number,
   posY: number,
-  Status: 'Available' | 'Unavailable' | 'Selected'
+  status: 'Available' | 'Unavailable'
 }

@@ -4,7 +4,8 @@
   </div>
   <div class="container__right">
     <cln-buy-process-card progressType="tickets"
-    (seatClicked)="progressSeatClicked($event)"
+    [selectedSeats]="selectedSeats()"
+    (seatClicked)="updateSeat($event)"
     (buttonClicked)="progressButtonClicked($event)"
     [session]="session()"></cln-buy-process-card>
   </div>

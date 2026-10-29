@@ -25,15 +25,15 @@ export class ChooseTicketsComponent {
     this._sessionPageService.loadSession(this.sessionId());
   }
 
+  updateSeat(seatId: string) {
+    this._sessionPageService.updateSelectedSeat(seatId);
+  }
+
   progressButtonClicked(button: 'left' | 'right') {
     if (button == 'left') {
       this._router.navigate(['sessions', this.sessionId(), 'choose-seats']);
     } else if (button == 'right') {
       this._router.navigate(['sessions', this.sessionId(), 'payment-method']);
     }
-  }
-
-  progressSeatClicked(seatId: string) {
-    this._sessionPageService.removeSelectedSeat(seatId);
   }
 }
