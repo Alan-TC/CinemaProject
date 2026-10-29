@@ -1,0 +1,8 @@
+services:
+  cinema-frontend-client:
+    image: cinema.frontend.client
+    build:
+      context: ../
+      dockerfile: client-docker/Dockerfile
+    ports:
+      - 4201:8080
