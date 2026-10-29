@@ -1,1 +1,68 @@
 @use '../../session.scss';
+
+.options-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0px, 1.5cqw, 10px);
+
+  padding: clamp(0px, 1.5cqw, 10px);
+}
+
+.bottom-text {
+  margin-top: auto;
+
+  font-size: clamp(0px, 1.5cqw, 10px);
+}
+
+.elipse {
+  width: clamp(0px, 6cqw, 12px);
+
+  aspect-ratio: 15/29;
+
+  border-radius: 30%;
+
+  background: white;
+}
+
+.increase-button {
+  width: 20px;
+
+  aspect-ratio: 1/1;
+
+  border-radius: 10%;
+
+  text-align: center;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+
+  border: none;
+  cursor: pointer;
+
+  &__negative {
+    background: var(--interactive-negative-surface);
+  }
+
+  &__positive {
+    background: var(--interactive-confirm-surface);
+  }
+
+  &__negative:hover, &__positive:hover {
+    filter: brightness(1.2);
+  }
+}
+
+.number-count {
+  width: 20px;
+  aspect-ratio: 1/1;
+  border-radius: 10%;
+
+  background: white;
+  color: black;
+
+  text-align: center;
+}

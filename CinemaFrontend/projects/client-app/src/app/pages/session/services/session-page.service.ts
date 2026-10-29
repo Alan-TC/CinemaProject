@@ -70,6 +70,7 @@ private readonly MAX_SELECTED_SEATS = 5;
   });
 
   loadSession(sessionId: string): void {
+    this._errorMessage.set('');
     this._sessionService.getSessionById(sessionId)
       .pipe(take(1))
       .subscribe({
