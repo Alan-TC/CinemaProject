@@ -1,6 +1,7 @@
 ﻿include:
   - path: ./CinemaBackend/dev-utils/infrastructure/postgres.yaml
   - path: ./CinemaFrontend/admin-docker/compose.yaml
+  - path: ./CinemaFrontend/client-docker/compose.yaml
 
 services:
   init-storage:

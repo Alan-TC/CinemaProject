@@ -18,6 +18,9 @@ export function handle401Error(
         return next(addTokenHeader(request, token!.accessToken))
       }),
       catchError((error) => {
+        if (router.url.includes('/login')) {
+          return throwError(() => error);
+        }
         router.navigate(['/login'], {
           queryParams: { returnUrl: router.url }
         });
