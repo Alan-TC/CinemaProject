@@ -110,7 +110,7 @@
   width: 80%;
   aspect-ratio: 350/80;
 
-  background: black;
+  background: var(--option-film-surface);;
   color: white;
 
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));

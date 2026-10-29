@@ -1,6 +1,48 @@
 <div class="container">
   <div class="container__left">
-
+    <div class="menu">
+      <div class="menu__header inter-black">
+        <p>Tipo dos Ingressos</p>
+      </div>
+      <div class="menu__content">
+        <div class="options-container">
+          <div class="option inter-black">
+            <div class="option__content">
+              <div class="option__content-left">
+                <p class="option__text">INTEIRA</p> <span class="elipse"></span> <p class="option__text">{{ session()?.pricing | currency:'BRL' }}</p>
+              </div>
+              <div class="option__content-right">
+                <button (click)="incrementHalfPrice(1)" class="increase-button increase-button__negative">-</button>
+                <div class="number-count">{{ selectedSeats().length - totalHalfPrice() }}</div>
+                <button (click)="incrementHalfPrice(-1)" class="increase-button increase-button__positive">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="option inter-black">
+            <div class="option__content">
+              <div class="option__content-left">
+                <p class="option__text">MEIA</p> <span class="elipse"></span> <p class="option__text">{{ ((session()?.pricing || 0) / 2) | currency:'BRL' }}</p>
+              </div>
+              <div class="option__content-right">
+                <button (click)="incrementHalfPrice(-1)" class="increase-button increase-button__negative">-</button>
+                <div class="number-count">{{ totalHalfPrice() }}</div>
+                <button (click)="incrementHalfPrice(1)" class="increase-button increase-button__positive">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="session-price-details inter-black">
+          <div class="session-price-details__left">
+            <p class="normal-text">TOTAL DE ASSENTOS: {{ selectedSeats().length }}</p>
+            <p class="normal-text">TOTAL DE INGRESSOS: {{ selectedSeats().length }}</p>
+            <p class="bottom-text">ASSENTOS E INGRESSOS DEVEM TER A MESMA QUANTIDADE</p>
+          </div>
+          <div class="session-price-details__right">
+            <p class="normal-text">VALOR TOTAL: {{ totalPrice() | currency:'BRL' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="container__right">
     <cln-buy-process-card progressType="tickets"
