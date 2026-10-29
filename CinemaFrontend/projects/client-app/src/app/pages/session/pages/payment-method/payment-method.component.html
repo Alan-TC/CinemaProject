@@ -1,9 +1,39 @@
 <div class="container">
   <div class="container__left">
-
+    <div class="menu">
+      <div class="menu__header inter-black">
+        <p>Método de Pagamento</p>
+      </div>
+      <div class="menu__content">
+        <div class="options-container">
+          <div class="option inter-black">
+            <div class="option__content">
+              <div class="option__content-left">
+                <p class="option__text">PASSE LIVRE</p>
+              </div>
+              <div class="option__content-right">
+                <input [(ngModel)]="isChecked" type="checkbox" style="width: 25px; aspect-ratio: 1/1; cursor: pointer;" />
+              </div>
+            </div>
+          </div>
+          @if(errorMessage() !== ""){
+          <p class="error-message inter-black">{{ errorMessage() }}</p>
+          }
+        </div>
+        <div class="session-price-details inter-black">
+          <div class="session-price-details__left">
+            <p class="normal-text">TOTAL DE ASSENTOS: {{ selectedSeats().length }}</p>
+            <p class="normal-text">TOTAL DE INGRESSOS: {{ selectedSeats().length }}</p>
+          </div>
+          <div class="session-price-details__right">
+            <p class="normal-text">VALOR TOTAL: {{ totalPrice() | currency:'BRL' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="container__right">
-    <cln-buy-process-card progressType="payment"
+    <cln-buy-process-card progressType="tickets"
     [selectedSeats]="selectedSeats()"
     (seatClicked)="updateSeat($event)"
     (buttonClicked)="progressButtonClicked($event)"

@@ -31,6 +31,11 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'orders/:orderId',
+    canActivate: [authGuard],
+    loadComponent: () => import("./pages/order/order.component").then((m) => m.OrderComponent)
+  },
+  {
     path: 'login',
     canActivate: [guestGuard],
     loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
