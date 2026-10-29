@@ -1,0 +1,24 @@
+<div class="container">
+  <span
+  [style]="{ display: state() === 'loading' || state() === 'processing' ? 'block' : 'none' }"
+  class="loader"></span>
+  <span
+  [style]="{ display: state() === 'success' ? 'block' : 'none' }"
+  class="success"></span>
+  <p
+  [style]="{ display: state() === 'loading' ? 'block' : 'none' }"
+  class="loading-message inter-black"
+  >Validando pedido...</p>
+  <p
+  [style]="{ display: state() === 'processing' ? 'block' : 'none' }"
+  class="loading-message inter-black"
+  >Realizando pagamento...</p>
+  <p
+  [style]="{ display: state() === 'success' ? 'block' : 'none' }"
+  class="loading-message inter-black"
+  >Pagamento realizado com sucesso!</p>
+  <p
+  [style]="{ display: state() === 'error' ? 'block' : 'none' }"
+  class="loading-message inter-black"
+  >Ocorreu um erro!</p>
+</div>

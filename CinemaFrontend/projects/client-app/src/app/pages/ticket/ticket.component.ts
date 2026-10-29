@@ -30,6 +30,7 @@ export class TicketComponent {
   ngOnInit() {
     this._ticketService.getTicketById(this.ticketId()).subscribe({
       next: (ticket) => {
+        console.log(ticket);
         this.ticket.set(ticket);
       },
       error: (_) => {

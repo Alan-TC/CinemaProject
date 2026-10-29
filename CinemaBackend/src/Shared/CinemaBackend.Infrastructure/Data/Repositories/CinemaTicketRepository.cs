@@ -20,7 +20,7 @@ internal class CinemaTicketRepository(CinemaDbContext dbContext) : ICinemaTicket
         return _dbContext.CinemaTickets
             .AsNoTracking()
             .AsSplitQuery()
-            .Where(e => e.DeactivatedAt == null && e.Payment.UserId == userId)
+            .Where(e => e.Id == ticketId && e.DeactivatedAt == null && e.Payment.UserId == userId)
             .Include(e => e.Payment)
                 .ThenInclude(e => e.Session)
                     .ThenInclude(e => e.Movie)

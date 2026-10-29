@@ -25,7 +25,7 @@ public class OrdersController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{id:Guid}/pay")]
+    [HttpPut("{id:Guid}/pay")]
     [ProducesResponseType(typeof(PaymentResponseJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponseJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PayOrder(
